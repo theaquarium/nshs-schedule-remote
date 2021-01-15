@@ -13,7 +13,7 @@ export function Welcome() {
 
     return (
         <div className="container my-6">
-            <div className="content">
+            <div className="content mx-3">
                 <h1>Welcome!</h1>
                 <br />
                 <p className="is-size-5">
