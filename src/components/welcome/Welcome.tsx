@@ -42,8 +42,9 @@ export function Welcome() {
                 <p className="is-size-5">
                     I value your privacy. All data is saved{' '}
                     <span className="is-italic">on your device only.</span> I
-                    will collect some basic usage data so that I can figure out
-                    how to improve your experience, but{' '}
+                    will collect some basic usage data such as user count and
+                    page statistics so that I can figure out how to improve your
+                    experience, but{' '}
                     <span className="is-italic">
                         none of your personal information will be sent anywhere.
                     </span>
