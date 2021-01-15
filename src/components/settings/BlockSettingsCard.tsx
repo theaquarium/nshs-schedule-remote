@@ -304,7 +304,15 @@ export function BlockSettingsCard({ blockType }: { blockType: string }) {
                     cursor: 'pointer',
                 }}
             >
-                <p className="card-header-title">{blockName}</p>
+                <p className="card-header-title">
+                    {blockName}
+                    {state.nickname && state.nickname.length > 0 ? (
+                        <span className="is-italic">
+                            &nbsp;(
+                            {state.nickname})
+                        </span>
+                    ) : null}
+                </p>
                 <span className="card-header-icon" aria-label="Expand">
                     <span className="icon">
                         {isOpen ? <IoChevronDown /> : <IoChevronBack />}
