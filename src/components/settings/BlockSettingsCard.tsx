@@ -131,6 +131,11 @@ export function BlockSettingsCard({ blockType }: { blockType: string }) {
 
         loginOptions = (
             <React.Fragment>
+                <p className="my-2">
+                    Automatic login mode will automatically generate you a Zoom
+                    link with the password embedded. This is the recommended
+                    method.
+                </p>
                 <div className="field">
                     <label className="label is-normal">Meeting ID</label>
                     <div className="control">
@@ -228,6 +233,11 @@ export function BlockSettingsCard({ blockType }: { blockType: string }) {
 
         loginOptions = (
             <React.Fragment>
+                <p className="my-2">
+                    Manual login mode lets you join a Zoom link you already
+                    have. You should probably use Automatic mode except in
+                    special circumstances.
+                </p>
                 <div className="field">
                     <label className="label is-normal">Link</label>
                     <div className="control">
