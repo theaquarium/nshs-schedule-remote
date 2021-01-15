@@ -20,7 +20,7 @@ export function WeekButtons() {
                 false
             ) : (
                 <span className="has-text-grey-light mx-2 is-size-5">
-                    I think it's
+                    What week is it?
                 </span>
             )}
 
