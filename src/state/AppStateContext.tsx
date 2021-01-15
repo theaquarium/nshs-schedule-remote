@@ -49,7 +49,7 @@ export function AppStateProvider(props: any) {
             isInitialMount.current = false;
 
             // Read state
-            const savedAppStateString = localStorage.getItem('appstate');
+            const savedAppStateString = window.localStorage.getItem('appstate');
             if (savedAppStateString) {
                 const savedState = JSON.parse(savedAppStateString);
                 setAppState({
@@ -66,7 +66,7 @@ export function AppStateProvider(props: any) {
         } else {
             // Save state
             const appStateString = JSON.stringify(appState);
-            localStorage.setItem('appstate', appStateString);
+            window.localStorage.setItem('appstate', appStateString);
         }
     }, [appState]);
 

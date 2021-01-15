@@ -15,6 +15,7 @@ import { Settings } from './components/settings/Settings';
 import { Dialog } from './components/dialog/Dialog';
 import { Footer } from './components/footer/Footer';
 import { Welcome } from './components/welcome/Welcome';
+import { Reset } from './components/reset/Reset';
 
 export default function App() {
     const appState = useAppState();
@@ -53,6 +54,9 @@ export default function App() {
             <AppStateUpdater>
                 <div className="App">
                     <Switch>
+                        <Route path="/reset">
+                            <Reset />
+                        </Route>
                         <Route path="/welcome">
                             {appState.value.isOnboarded ? (
                                 <Redirect to="/" />

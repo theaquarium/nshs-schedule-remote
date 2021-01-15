@@ -20,7 +20,10 @@ export function ClassBanner({
     let loginLink: string | undefined;
     let password: string | undefined;
 
-    if (blockSettings?.login?.automatic) {
+    if (
+        blockSettings?.login?.automatic &&
+        blockSettings.login.automatic.meetingId.length > 0
+    ) {
         loginLink = generateZoomLink(blockSettings.login.automatic);
         password = blockSettings.login.automatic.password;
     } else if (blockSettings?.login?.manual) {

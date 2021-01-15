@@ -9,7 +9,10 @@ export function FlexBlockDialogCard({ setting }: { setting: FlexSettings }) {
     let loginLink: string | undefined;
     let password: string | undefined;
 
-    if (setting.login?.automatic) {
+    if (
+        setting.login?.automatic &&
+        setting.login.automatic.meetingId.length > 0
+    ) {
         loginLink = generateZoomLink(setting.login.automatic);
         password = setting.login.automatic.password;
     } else if (setting?.login?.manual) {

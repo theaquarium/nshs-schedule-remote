@@ -106,7 +106,7 @@ export function SettingsProvider(props: any) {
             isInitialMount.current = false;
 
             // Read state
-            const savedSettingsString = localStorage.getItem('settings');
+            const savedSettingsString = window.localStorage.getItem('settings');
             if (savedSettingsString) {
                 const savedSettings = JSON.parse(savedSettingsString);
                 setSettings({ ...defaultState, ...savedSettings });
@@ -114,7 +114,7 @@ export function SettingsProvider(props: any) {
         } else {
             // Save state
             const settingsString = JSON.stringify(settings);
-            localStorage.setItem('settings', settingsString);
+            window.localStorage.setItem('settings', settingsString);
         }
     }, [settings]);
 

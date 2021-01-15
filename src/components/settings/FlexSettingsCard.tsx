@@ -128,12 +128,14 @@ export function FlexSettingsCard({ flexSettingId }: { flexSettingId: string }) {
                     </div>
                 </div>
                 <div className="field">
-                    <label className="label is-normal">Password</label>
+                    <label className="label is-normal">
+                        Password (Optional)
+                    </label>
                     <div className="control">
                         <input
                             className="input is-rounded is-normal"
                             type="password"
-                            placeholder="Meeting Password"
+                            placeholder="Meeting Password (Optional)"
                             name="password"
                             onChange={handleLoginChange}
                             value={state.login?.automatic?.password || ''}
@@ -223,12 +225,14 @@ export function FlexSettingsCard({ flexSettingId }: { flexSettingId: string }) {
                     </div>
                 </div>
                 <div className="field">
-                    <label className="label is-normal">Password</label>
+                    <label className="label is-normal">
+                        Password (Optional)
+                    </label>
                     <div className="control">
                         <input
                             className="input is-rounded is-normal"
                             type="password"
-                            placeholder="Meeting Password"
+                            placeholder="Meeting Password (Optional)"
                             name="password"
                             onChange={handleLoginChange}
                             value={state.login?.manual?.password || ''}
