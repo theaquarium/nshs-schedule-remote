@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from 'react';
-import { IoChevronBack, IoChevronDown } from 'react-icons/io5';
+import { IoChevronBack, IoChevronDown, IoEye, IoEyeOff } from 'react-icons/io5';
 
 import {
     AutomaticLogin,
@@ -16,6 +16,7 @@ export function FlexSettingsCard({ flexSettingId }: { flexSettingId: string }) {
     );
 
     const [isOpen, setIsOpen] = React.useState(false);
+    const [showPassword, setShowPassword] = React.useState(false);
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         const target = event.target;
@@ -50,6 +51,10 @@ export function FlexSettingsCard({ flexSettingId }: { flexSettingId: string }) {
 
     const toggleCard = () => {
         setIsOpen(!isOpen);
+    };
+
+    const toggleShowPassword = () => {
+        setShowPassword(!showPassword);
     };
 
     const deleteFlexMeeting = () => {
@@ -132,19 +137,29 @@ export function FlexSettingsCard({ flexSettingId }: { flexSettingId: string }) {
                         />
                     </div>
                 </div>
-                <div className="field">
-                    <label className="label is-normal">
-                        Password (Optional)
-                    </label>
-                    <div className="control">
+                <label className="label is-normal">Password (Optional)</label>
+                <div className="field has-addons">
+                    <div className="control is-expanded">
                         <input
                             className="input is-rounded is-normal"
-                            type="password"
+                            type={showPassword ? 'text' : 'password'}
                             placeholder="Meeting Password (Optional)"
                             name="password"
                             onChange={handleLoginChange}
                             value={state.login?.automatic?.password || ''}
                         />
+                    </div>
+                    <div className="control">
+                        <button
+                            type="button"
+                            className="button is-link is-rounded"
+                            title="Show Password?"
+                            onClick={toggleShowPassword}
+                        >
+                            <span className="icon">
+                                {showPassword ? <IoEye /> : <IoEyeOff />}
+                            </span>
+                        </button>
                     </div>
                 </div>
                 <div className="field">
@@ -234,19 +249,29 @@ export function FlexSettingsCard({ flexSettingId }: { flexSettingId: string }) {
                         />
                     </div>
                 </div>
-                <div className="field">
-                    <label className="label is-normal">
-                        Password (Optional)
-                    </label>
-                    <div className="control">
+                <label className="label is-normal">Password (Optional)</label>
+                <div className="field has-addons">
+                    <div className="control is-expanded">
                         <input
                             className="input is-rounded is-normal"
-                            type="password"
+                            type={showPassword ? 'text' : 'password'}
                             placeholder="Meeting Password (Optional)"
                             name="password"
                             onChange={handleLoginChange}
                             value={state.login?.manual?.password || ''}
                         />
+                    </div>
+                    <div className="control">
+                        <button
+                            type="button"
+                            className="button is-link is-rounded"
+                            title="Show Password?"
+                            onClick={toggleShowPassword}
+                        >
+                            <span className="icon">
+                                {showPassword ? <IoEye /> : <IoEyeOff />}
+                            </span>
+                        </button>
                     </div>
                 </div>
             </React.Fragment>

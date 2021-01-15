@@ -60,7 +60,7 @@ export function ScheduleCard({
                             <div className="control">
                                 <button
                                     type="button"
-                                    className="button is-primary is-rounded"
+                                    className="button is-link is-rounded"
                                     onClick={() => {
                                         copyTextToClipboard(password || '');
                                         dialogState.close();
