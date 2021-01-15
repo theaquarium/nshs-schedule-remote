@@ -1,0 +1,192 @@
+import React from 'react';
+import { Block, LunchBlocks } from '../../schedule';
+import { BlockSettings } from '../../state/SettingsContext';
+import { copyTextToClipboard, generateZoomLink } from '../../utils';
+import { useDialog } from '../dialog/Dialog';
+
+export function ClassBanner({
+    isNow,
+    block,
+    blockSettings,
+    activeLunchBlock,
+}: {
+    isNow: boolean;
+    block: Block;
+    blockSettings?: BlockSettings;
+    activeLunchBlock?: number;
+}) {
+    const dialogState = useDialog();
+
+    let loginLink: string | undefined;
+    let password: string | undefined;
+
+    if (blockSettings?.login?.automatic) {
+        loginLink = generateZoomLink(blockSettings.login.automatic);
+        password = blockSettings.login.automatic.password;
+    } else if (blockSettings?.login?.manual) {
+        loginLink = blockSettings.login.manual.link;
+        password = blockSettings.login.manual.password;
+    }
+
+    const openPasswordDialog = () => {
+        dialogState.open(
+            <div className="modal-content">
+                <div className="card">
+                    <div className="card-content">
+                        <label className="label">Password</label>
+                        <div className="field has-addons">
+                            <div className="control is-expanded">
+                                <input
+                                    className="input is-rounded is-family-monospace"
+                                    type="text"
+                                    value={password}
+                                    placeholder={'Password'}
+                                    readOnly
+                                />
+                            </div>
+                            <div className="control">
+                                <button
+                                    type="button"
+                                    className="button is-primary is-rounded"
+                                    onClick={() => {
+                                        copyTextToClipboard(password || '');
+                                        dialogState.close();
+                                    }}
+                                >
+                                    Copy
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>,
+        );
+    };
+
+    return (
+        <section className="hero is-medium is-bold is-primary">
+            <div className="hero-head">
+                <div className="pl-4 pt-3">
+                    <h3 className="subtitle is-3 is-italic">
+                        {isNow ? 'Now' : 'Coming Up'}
+                    </h3>
+                </div>
+            </div>
+            <div
+                className="hero-body"
+                style={block.isLunch ? { paddingBottom: '3rem' } : {}}
+            >
+                <div className="container level">
+                    <div className="level-left">
+                        <div className="is-flex is-flex-direction-column is-justify-content-center">
+                            <h1 className="title">
+                                {block.name}
+                                {block.async ? ' Async' : ''}
+                                {blockSettings?.nickname ? (
+                                    <span className="is-italic">
+                                        &nbsp;({blockSettings.nickname})
+                                    </span>
+                                ) : null}
+                            </h1>
+                            <h2 className="subtitle">
+                                {block.startTime}-{block.endTime}
+                                <span className="is-italic">
+                                    &nbsp;({block.length})
+                                </span>
+                            </h2>
+                        </div>
+                    </div>
+                    {loginLink && !block.async ? (
+                        <div className="level-right is-flex is-flex-direction-column is-justify-content-center">
+                            <a
+                                className="button is-black is-large is-rounded is-fullwidth my-1"
+                                href={loginLink}
+                            >
+                                Join
+                            </a>
+                            {password ? (
+                                <button
+                                    className="button is-link is-medium is-rounded is-fullwidth my-1"
+                                    onClick={openPasswordDialog}
+                                >
+                                    Show Password
+                                </button>
+                            ) : null}
+                        </div>
+                    ) : null}
+                </div>
+            </div>
+            <div className="hero-foot">
+                {block.isLunch ? (
+                    <div className="container mb-5 px-4">
+                        <div className="columns is-vcentered">
+                            <div className="column">
+                                <div
+                                    className="notification"
+                                    style={
+                                        activeLunchBlock === 0
+                                            ? { background: '#237fa9' }
+                                            : {}
+                                    }
+                                >
+                                    <p className="has-text-weight-bold">
+                                        {LunchBlocks[0].name}
+                                    </p>
+                                    <p>
+                                        {LunchBlocks[0].startTime}-
+                                        {LunchBlocks[0].endTime}
+                                        <span className="is-italic">
+                                            &nbsp;({LunchBlocks[0].length})
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="column">
+                                <div
+                                    className="notification"
+                                    style={
+                                        activeLunchBlock === 1
+                                            ? { background: '#237fa9' }
+                                            : {}
+                                    }
+                                >
+                                    <p className="has-text-weight-bold">
+                                        {LunchBlocks[1].name}
+                                    </p>
+                                    <p>
+                                        {LunchBlocks[1].startTime}-
+                                        {LunchBlocks[1].endTime}
+                                        <span className="is-italic">
+                                            &nbsp;({LunchBlocks[1].length})
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="column">
+                                <div
+                                    className="notification"
+                                    style={
+                                        activeLunchBlock === 2
+                                            ? { background: '#237fa9' }
+                                            : {}
+                                    }
+                                >
+                                    <p className="has-text-weight-bold">
+                                        {LunchBlocks[2].name}
+                                    </p>
+                                    <p>
+                                        {LunchBlocks[2].startTime}-
+                                        {LunchBlocks[2].endTime}
+                                        <span className="is-italic">
+                                            &nbsp;({LunchBlocks[2].length})
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ) : null}
+            </div>
+        </section>
+    );
+}

@@ -1,58 +1,97 @@
 import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Redirect,
+} from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
-  );
+import { AppStateUpdater } from './state/AppStateUpdater';
+import { useAppState } from './state/AppStateContext';
+
+import { Header } from './components/header/Header';
+import { Schedule } from './components/schedule/Schedule';
+import { Settings } from './components/settings/Settings';
+import { Dialog } from './components/dialog/Dialog';
+import { Footer } from './components/footer/Footer';
+import { Welcome } from './components/welcome/Welcome';
+
+export default function App() {
+    const appState = useAppState();
+    let weekdayName;
+
+    // Redirect away from /
+    switch (appState.value.weekday) {
+        case 0:
+            weekdayName = 'weekend';
+            break;
+        case 1:
+            weekdayName = 'monday';
+            break;
+        case 2:
+            weekdayName = 'tuesday';
+            break;
+        case 3:
+            weekdayName = 'wednesday';
+            break;
+        case 4:
+            weekdayName = 'thursday';
+            break;
+        case 5:
+            weekdayName = 'friday';
+            break;
+        case 6:
+            weekdayName = 'weekend';
+            break;
+        default:
+            weekdayName = 'monday';
+            break;
+    }
+
+    return (
+        <Router>
+            <AppStateUpdater>
+                <div className="App">
+                    <Switch>
+                        <Route path="/welcome">
+                            {appState.value.isOnboarded ? (
+                                <Redirect to="/" />
+                            ) : null}
+                            <Welcome />
+                        </Route>
+                        {appState.value.isOnboarded ? (
+                            <Route>
+                                <Dialog>
+                                    <Header />
+
+                                    <Switch>
+                                        <Route path="/settings">
+                                            <Settings />
+                                        </Route>
+                                        <Route
+                                            path={[
+                                                '/monday',
+                                                '/tuesday',
+                                                '/wednesday',
+                                                '/thursday',
+                                                '/friday',
+                                                '/weekend',
+                                            ]}
+                                        >
+                                            <Schedule />
+                                        </Route>
+                                        <Redirect to={`/${weekdayName}`} />
+                                    </Switch>
+
+                                    <Footer />
+                                </Dialog>
+                            </Route>
+                        ) : (
+                            <Redirect to="/welcome" />
+                        )}
+                    </Switch>
+                </div>
+            </AppStateUpdater>
+        </Router>
+    );
 }
-
-export default App;

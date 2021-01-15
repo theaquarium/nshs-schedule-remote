@@ -1,0 +1,117 @@
+import React from 'react';
+
+export interface AppStateType {
+    isOnboarded: boolean;
+    ready: boolean;
+    weekNum?: number;
+    lastUpdateTime?: number;
+    lastWeekSetTime?: number;
+    weekday?: number;
+    activeBlock?: string;
+    nextBlock?: string;
+    activeLunch?: number;
+    lastQuoteUpdate?: number;
+    quoteIndex?: number;
+}
+
+export interface AppStateContextType {
+    value: AppStateType;
+    resetAppState: () => void;
+    setAppStateDirect: (stateChanges: Partial<AppStateType>) => void;
+    setAppState: (
+        setterFunction: (state: AppStateType) => Partial<AppStateType>,
+    ) => void;
+}
+
+const defaultState = {
+    isOnboarded: true,
+    ready: false,
+};
+
+// Create Context
+const AppStateContext = React.createContext<AppStateContextType>({
+    value: defaultState,
+    resetAppState: () => {},
+    setAppStateDirect: () => {},
+    setAppState: () => {},
+});
+
+// Provider component
+export function AppStateProvider(props: any) {
+    // Get component state
+    const [appState, setAppState] = React.useState<AppStateType>(defaultState);
+
+    // Save and read state
+    const isInitialMount = React.useRef(true);
+
+    React.useEffect(() => {
+        if (isInitialMount.current) {
+            isInitialMount.current = false;
+
+            // Read state
+            const savedAppStateString = localStorage.getItem('appstate');
+            if (savedAppStateString) {
+                const savedState = JSON.parse(savedAppStateString);
+                setAppState({
+                    ...defaultState,
+                    ...savedState,
+                    ready: true,
+                });
+            } else {
+                setAppStateDirect({
+                    isOnboarded: false,
+                });
+            }
+        } else {
+            // Save state
+            const appStateString = JSON.stringify(appState);
+            localStorage.setItem('appstate', appStateString);
+        }
+    }, [appState]);
+
+    // Memoized just in case
+    const resetAppState = React.useMemo(() => {
+        return () => {
+            setAppState(defaultState);
+        };
+    }, [setAppState]);
+
+    const setAppStateDirect = React.useMemo(() => {
+        return (stateChanges: Partial<AppStateType>) => {
+            setAppState((appState: AppStateType) => {
+                return {
+                    ...appState,
+                    ...stateChanges,
+                };
+            });
+        };
+    }, [setAppState]);
+
+    // const setAppStateWrapper = React.useMemo(() => {
+    //     return (
+    //         setterFunction: (state: AppStateType) => Partial<AppStateType>,
+    //     ) => {
+    //         setAppState((appState: AppStateType) => {
+    //             const stateChanges = setterFunction(appState);
+
+    //             return {
+    //                 ...appState,
+    //                 ...stateChanges,
+    //             };
+    //         });
+    //     };
+    // }, [setAppState]);
+
+    const appStateProp = {
+        value: appState,
+        resetAppState,
+        setAppStateDirect,
+        setAppState,
+    };
+
+    return <AppStateContext.Provider {...props} value={appStateProp} />;
+}
+
+export function useAppState() {
+    return React.useContext(AppStateContext);
+}
