@@ -40,9 +40,13 @@ export function Welcome() {
                 </p>
 
                 <p className="is-size-5">
-                    All data is saved{' '}
-                    <span className="is-italic">on your device only</span> and
-                    none of your information will be sent anywhere.
+                    I value your privacy. All data is saved{' '}
+                    <span className="is-italic">on your device only.</span> I
+                    will collect some basic usage data so that I can figure out
+                    how to improve your experience, but{' '}
+                    <span className="is-italic">
+                        none of your personal information will be sent anywhere.
+                    </span>
                 </p>
 
                 <p className="is-size-5">
