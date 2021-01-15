@@ -25,7 +25,7 @@ export function Header(props: any) {
                     </Link>
                 </div>
                 <div
-                    className="level-right"
+                    className="level-right is-flex is-justify-content-center"
                     style={{
                         flexShrink: 1,
                     }}
