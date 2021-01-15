@@ -58,7 +58,8 @@ export function AppStateProvider(props: any) {
                     ready: true,
                 });
             } else {
-                setAppStateDirect({
+                setAppState({
+                    ...defaultState,
                     isOnboarded: false,
                 });
             }

@@ -57,7 +57,7 @@ export function Welcome() {
                     free to send me an email at{' '}
                     <a href="mailto:peter@vashevko.com">peter@vashevko.com</a>{' '}
                     or message me on Discord at{' '}
-                    <span className="is-family-monospace">aquarium#9352</span>
+                    <span className="is-family-monospace">aquarium#9352</span>{' '}
                     to let me know what you think.
                 </p>
 

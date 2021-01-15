@@ -1,7 +1,6 @@
 import React from 'react';
-import { Block, LunchBlocks } from '../../schedule';
+import { Block } from '../../schedule';
 import { FlexSettings } from '../../state/SettingsContext';
-import { copyTextToClipboard, generateZoomLink } from '../../utils';
 import { useDialog } from '../dialog/Dialog';
 import { FlexBlockDialogCard } from '../dialog/FlexBlockDialogCard';
 
