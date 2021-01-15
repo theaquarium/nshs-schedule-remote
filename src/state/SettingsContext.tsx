@@ -31,6 +31,7 @@ export interface FlexSettings {
 }
 
 export interface SettingsType {
+    ready: boolean;
     userNickname: string;
     showQuotes: boolean;
     blockSettings: {
@@ -57,6 +58,7 @@ export interface SettingsContextType {
 }
 
 const defaultState: SettingsType = {
+    ready: false,
     userNickname: '',
     showQuotes: true,
     blockSettings: {
@@ -109,7 +111,7 @@ export function SettingsProvider(props: any) {
             const savedSettingsString = window.localStorage.getItem('settings');
             if (savedSettingsString) {
                 const savedSettings = JSON.parse(savedSettingsString);
-                setSettings({ ...defaultState, ...savedSettings });
+                setSettings({ ...defaultState, ...savedSettings, ready: true });
             }
         } else {
             // Save state

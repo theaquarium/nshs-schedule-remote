@@ -44,30 +44,36 @@ export function Settings() {
 
     return (
         <div className="container px-3 my-3">
-            <h1 className="title">Settings</h1>
-            <MainSettings />
-            <div className="divider">Reset</div>
-            <ResetButtons />
-            <div className="divider">Class Blocks</div>
-            <BlockSettingsCard blockType="a" />
-            <BlockSettingsCard blockType="b" />
-            <BlockSettingsCard blockType="c" />
-            <BlockSettingsCard blockType="d" />
-            <BlockSettingsCard blockType="e" />
-            <BlockSettingsCard blockType="f" />
-            <BlockSettingsCard blockType="g" />
-            <BlockSettingsCard blockType="community" />
-            <div className="divider">Flex Block</div>
-            {flexMeetings}
-            <button
-                className="button is-fullwidth is-rounded is-link"
-                onClick={newFlex}
-            >
-                <span className="icon mr-1">
-                    <IoAdd />
-                </span>
-                Add New Flex Meeting
-            </button>
+            {settings.value.ready ? (
+                <React.Fragment>
+                    <h1 className="title">Settings</h1>
+                    <MainSettings />
+                    <div className="divider">Reset</div>
+                    <ResetButtons />
+                    <div className="divider">Class Blocks</div>
+                    <BlockSettingsCard blockType="a" />
+                    <BlockSettingsCard blockType="b" />
+                    <BlockSettingsCard blockType="c" />
+                    <BlockSettingsCard blockType="d" />
+                    <BlockSettingsCard blockType="e" />
+                    <BlockSettingsCard blockType="f" />
+                    <BlockSettingsCard blockType="g" />
+                    <BlockSettingsCard blockType="community" />
+                    <div className="divider">Flex Block</div>
+                    {flexMeetings}
+                    <button
+                        className="button is-fullwidth is-rounded is-link"
+                        onClick={newFlex}
+                    >
+                        <span className="icon mr-1">
+                            <IoAdd />
+                        </span>
+                        Add New Flex Meeting
+                    </button>
+                </React.Fragment>
+            ) : (
+                <h1 className="has-text-centered">Loading...</h1>
+            )}
         </div>
     );
 }
