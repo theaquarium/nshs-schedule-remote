@@ -112,6 +112,11 @@ export function SettingsProvider(props: any) {
             if (savedSettingsString) {
                 const savedSettings = JSON.parse(savedSettingsString);
                 setSettings({ ...defaultState, ...savedSettings, ready: true });
+            } else {
+                setSettings({
+                    ...defaultState,
+                    ready: true,
+                });
             }
         } else {
             // Save state
