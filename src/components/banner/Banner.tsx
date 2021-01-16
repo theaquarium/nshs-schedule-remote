@@ -29,7 +29,13 @@ export function Banner() {
         if (appState.value.activeBlock === 'none') {
             if (appState.value.nextBlock === 'none') {
                 return (
-                    <EndOfDayBanner isWeekend={appState.value.weekday === 5} />
+                    <EndOfDayBanner
+                        isWeekend={
+                            appState.value.weekday === 5 ||
+                            appState.value.weekday === 6 ||
+                            appState.value.weekday === 0
+                        }
+                    />
                 );
             }
 

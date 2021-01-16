@@ -383,7 +383,8 @@ export function FlexSettingsCard({ flexSettingId }: { flexSettingId: string }) {
 
                     <div>{loginOptions}</div>
 
-                    <br />
+                    <div className="divider">Delete</div>
+
                     <button
                         type="button"
                         className="button is-danger is-fullwidth is-rounded is-outlined"
