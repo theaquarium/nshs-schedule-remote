@@ -44,9 +44,6 @@ export default function App() {
         case 6:
             weekdayName = 'weekend';
             break;
-        default:
-            weekdayName = 'monday';
-            break;
     }
 
     return (
@@ -84,7 +81,13 @@ export default function App() {
                                         >
                                             <Schedule />
                                         </Route>
-                                        <Redirect to={`/${weekdayName}`} />
+                                        {weekdayName ? (
+                                            <Redirect to={`/${weekdayName}`} />
+                                        ) : (
+                                            <h1 className="title has-text-centered">
+                                                Loading...
+                                            </h1>
+                                        )}
                                     </Switch>
 
                                     <Footer />
