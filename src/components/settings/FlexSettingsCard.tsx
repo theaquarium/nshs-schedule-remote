@@ -173,7 +173,7 @@ export function FlexSettingsCard({ flexSettingId }: { flexSettingId: string }) {
                         onChange={handleLoginChange}
                     />
                     <label htmlFor={flexSettingId + 'inNewtonDomainCheckbox'}>
-                        Is this a link for an NPS meeting?
+                        Is this an NPS meeting?
                     </label>
                 </div>
                 {!state.login?.automatic?.inNewtonDomain ? (

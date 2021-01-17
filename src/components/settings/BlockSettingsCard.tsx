@@ -190,7 +190,7 @@ export function BlockSettingsCard({ blockType }: { blockType: string }) {
                         onChange={handleLoginChange}
                     />
                     <label htmlFor={blockType + 'block-inNewtonDomainCheckbox'}>
-                        Is this a link for an NPS meeting?
+                        Is this an NPS meeting?
                     </label>
                 </div>
                 {!state.login?.automatic?.inNewtonDomain ? (

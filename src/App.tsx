@@ -16,6 +16,8 @@ import { Dialog } from './components/dialog/Dialog';
 import { Footer } from './components/footer/Footer';
 import { Welcome } from './components/welcome/Welcome';
 import { Reset } from './components/reset/Reset';
+import { PrivacyPolicy } from './components/privacy-policy/PrivacyPolicy';
+import { Help } from './components/help/Help';
 
 export default function App() {
     const appState = useAppState();
@@ -66,6 +68,12 @@ export default function App() {
                                     <Header />
 
                                     <Switch>
+                                        <Route path="/help">
+                                            <Help />
+                                        </Route>
+                                        <Route path="/privacypolicy">
+                                            <PrivacyPolicy />
+                                        </Route>
                                         <Route path="/settings">
                                             <Settings />
                                         </Route>

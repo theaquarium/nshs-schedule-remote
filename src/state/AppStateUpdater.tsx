@@ -140,7 +140,7 @@ export function AppStateUpdater(props: any) {
         // Initial update on load
         setTimeout(update, 1000);
 
-        const interval = setInterval(update, 30 * 1000);
+        const interval = setInterval(update, 15 * 1000);
 
         return () => clearInterval(interval);
     }, [history, setAppState]);

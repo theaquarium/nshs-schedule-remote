@@ -1,9 +1,15 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export function Footer() {
     return (
         <footer className="footer mt-6">
             <div className="content has-text-centered">
+                <p>
+                    <Link to="/help">Need Help?</Link>
+                    <br />
+                    <Link to="/privacypolicy">Privacy Policy</Link>
+                </p>
                 <p>
                     Made with ♥ by{' '}
                     <a href="https://github.com/theaquarium">Peter Vashevko</a>.
@@ -13,13 +19,11 @@ export function Footer() {
                         GitHub
                     </a>
                     .
-                    <br />
-                    <br />
+                </p>
+                <p>
                     Having issues? Found a bug? Need support? Send me an email
                     at{' '}
-                    <a href="mailto:peter@vashevko.com">
-                        peter@vashevko.com
-                    </a>{' '}
+                    <a href="mailto:peter@vashevko.com">peter@vashevko.com</a>{' '}
                     <br />
                     or message me on Discord at{' '}
                     <span className="is-family-monospace">aquarium#9352</span>.
