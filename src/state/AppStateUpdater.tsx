@@ -52,7 +52,7 @@ export function AppStateUpdater(props: any) {
                 const startLastUpdate = startOfWeek(lastUpdate);
                 const startNow = startOfWeek(now);
                 const weekDiff = differenceInWeeks(startNow, startLastUpdate);
-                if (!stateChanges.weekNum) {
+                if (stateChanges.weekNum === undefined) {
                     // Set last update to 0 (1970), so it'll show as a guess
                     stateChanges.lastWeekSetTime = 0;
                     stateChanges.weekNum = 0;
