@@ -1,6 +1,14 @@
 .sticky-aside {
+    --menu-top-offset: 1.5rem;
+    --menu-bottom-offset: 1.5rem;
+
     position: -webkit-sticky;
     position: sticky;
 
-    top: 1.5rem;
+    overflow-y: auto;
+
+    top: var(--menu-top-offset);
+    max-height: calc(
+        100vh - var(--menu-bottom-offset) - var(--menu-top-offset)
+    );
 }
