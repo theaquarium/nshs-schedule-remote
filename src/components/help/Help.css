@@ -1,14 +1,16 @@
-.sticky-aside {
-    --menu-top-offset: 1.5rem;
-    --menu-bottom-offset: 1.5rem;
+@media screen and (min-width: 769px), print {
+    .sticky-aside {
+        --menu-top-offset: 1.5rem;
+        --menu-bottom-offset: 1.5rem;
 
-    position: -webkit-sticky;
-    position: sticky;
+        position: -webkit-sticky;
+        position: sticky;
 
-    overflow-y: auto;
+        overflow-y: auto;
 
-    top: var(--menu-top-offset);
-    max-height: calc(
-        100vh - var(--menu-bottom-offset) - var(--menu-top-offset)
-    );
+        top: var(--menu-top-offset);
+        max-height: calc(
+            100vh - var(--menu-bottom-offset) - var(--menu-top-offset)
+        );
+    }
 }
