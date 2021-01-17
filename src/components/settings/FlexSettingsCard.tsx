@@ -356,7 +356,7 @@ export function FlexSettingsCard({ flexSettingId }: { flexSettingId: string }) {
                                     });
                                 }}
                             >
-                                Automatic
+                                Automatic (Recommended)
                             </button>
                             <button
                                 type="button"

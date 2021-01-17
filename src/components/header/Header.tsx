@@ -4,7 +4,7 @@ import { IoCalendar, IoCog } from 'react-icons/io5';
 import { WeekButtons } from '../week-buttons/WeekButtons';
 import { InspirationalQuotes } from '../inspirational-quotes/InspirationalQuotes';
 
-export function Header(props: any) {
+export function Header() {
     return (
         <header className="level mb-0">
             <div

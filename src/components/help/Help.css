@@ -1,0 +1,6 @@
+.sticky-aside {
+    position: -webkit-sticky;
+    position: sticky;
+
+    top: 1.5rem;
+}

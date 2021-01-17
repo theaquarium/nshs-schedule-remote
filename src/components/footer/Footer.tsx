@@ -5,7 +5,7 @@ export function Footer() {
     return (
         <footer className="footer mt-6">
             <div className="content has-text-centered">
-                <p>
+                <p className="is-size-5">
                     <Link to="/help">Need Help?</Link>
                     <br />
                     <Link to="/privacypolicy">Privacy Policy</Link>

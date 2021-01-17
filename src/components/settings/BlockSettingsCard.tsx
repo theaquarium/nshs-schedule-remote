@@ -403,7 +403,7 @@ export function BlockSettingsCard({ blockType }: { blockType: string }) {
                                             });
                                         }}
                                     >
-                                        Automatic
+                                        Automatic (Recommended)
                                     </button>
                                     <button
                                         type="button"
