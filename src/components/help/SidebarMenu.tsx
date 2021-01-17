@@ -3,8 +3,6 @@ import './Help.css';
 
 import { SidebarLink } from './SidebarLink';
 
-// type MenuCallback = () => number | undefined;
-
 type MenuContextType = {
     activeElement: string;
     addElement: (element: HTMLElement) => void;
@@ -12,7 +10,7 @@ type MenuContextType = {
 };
 
 const MenuContext = React.createContext<MenuContextType>({
-    activeElement: '',
+    activeElement: 'accessing-this-page',
     addElement: () => {},
     removeElement: () => {},
 });
