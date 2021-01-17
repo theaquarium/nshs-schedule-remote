@@ -11,8 +11,8 @@ export function PrivacyPolicy() {
                     describes how your data is stored and used.
                 </p>
                 <p>
-                    Your privacy is important to us, that's why all of your data
-                    stays on your device.
+                    Your privacy is important, that's why all of your data stays
+                    on your device.
                 </p>
 
                 <h3>Are my settings or data sent anywhere?</h3>
@@ -22,7 +22,7 @@ export function PrivacyPolicy() {
                     and cannot be viewed by any other party.
                 </p>
 
-                <h3>Do we use cookies?</h3>
+                <h3>Does this site use cookies?</h3>
                 <p>
                     Yes. Cookies are small files that a site or its service
                     provider transfers to your computer's hard drive through
@@ -31,10 +31,11 @@ export function PrivacyPolicy() {
                     capture and remember certain information.
                 </p>
                 <p>
-                    We use cookies to compile aggregate data about site traffic
-                    and site interactions in order to offer better site
-                    experiences in the future. We may also use trusted third
-                    party services that track this information on our behalf.
+                    This site uses cookies to compile aggregate data about site
+                    traffic and site interactions in order to offer better site
+                    experiences in the future. This site may also use trusted
+                    third party services that track this information on my
+                    behalf.
                 </p>
 
                 <h3>Analytics</h3>
@@ -63,16 +64,16 @@ export function PrivacyPolicy() {
 
                 <h3>Changes to this Privacy Policy</h3>
                 <p>
-                    We reserve the right to change this privacy policy at any
-                    time. If we decide to change our privacy policy, we will
+                    I reserve the right to change this privacy policy at any
+                    time. If I decide to change this privacy policy, I will
                     update the privacy policy modification date below.
                 </p>
-                <p>This policy was last modified on 2021-01-16.</p>
+                <p>This policy was last modified on 2021-01-17.</p>
 
-                <h3>Contact Us</h3>
+                <h3>Contact Me</h3>
                 <p>
                     If there are any questions regarding this privacy policy you
-                    may contact us at&nbsp;
+                    may contact me at&nbsp;
                     <a href="mailto:peter@vashevko.com">peter@vashevko.com</a>
                     &nbsp;or message me on Discord at&nbsp;
                     <span className="is-family-monospace">aquarium#9352</span>.

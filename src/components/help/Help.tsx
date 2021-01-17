@@ -2,7 +2,6 @@ import React from 'react';
 import { IoAdd, IoCalendar, IoCog } from 'react-icons/io5';
 import './Help.css';
 
-import { HashLink } from 'react-router-hash-link';
 import { SidebarMenu } from './SidebarMenu';
 
 export function Help() {
