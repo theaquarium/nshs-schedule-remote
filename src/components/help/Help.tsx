@@ -3,6 +3,7 @@ import { IoAdd, IoCalendar, IoCog } from 'react-icons/io5';
 import './Help.css';
 
 import { HashLink } from 'react-router-hash-link';
+import { SidebarMenu } from './SidebarMenu';
 
 export function Help() {
     return (
@@ -10,133 +11,8 @@ export function Help() {
             <div className="mx-3">
                 <div className="columns">
                     <div className="column is-one-third">
-                        <aside className="menu sticky-aside">
-                            <h1 className="title">Help Page</h1>
-                            <ul className="menu-list">
-                                <li>
-                                    <HashLink to="#accessing-this-page" smooth>
-                                        Accessing This Page
-                                    </HashLink>
-                                </li>
-                            </ul>
-                            <p className="menu-label">Schedule</p>
-                            <ul className="menu-list">
-                                <li>
-                                    <HashLink to="#using-the-schedule" smooth>
-                                        Using the Schedule
-                                    </HashLink>
-                                    <ul>
-                                        <li>
-                                            <HashLink to="#week-buttons" smooth>
-                                                Week Buttons
-                                            </HashLink>
-                                        </li>
-                                        <li>
-                                            <HashLink
-                                                to="#schedule-banner"
-                                                smooth
-                                            >
-                                                Schedule Banner
-                                            </HashLink>
-                                        </li>
-                                        <li>
-                                            <HashLink
-                                                to="#block-schedule"
-                                                smooth
-                                            >
-                                                Block Schedule
-                                            </HashLink>
-                                        </li>
-                                        <li>
-                                            <HashLink to="#lunches" smooth>
-                                                Lunches
-                                            </HashLink>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <p className="menu-label">Settings</p>
-                            <ul className="menu-list">
-                                <li>
-                                    <HashLink to="#settings-page" smooth>
-                                        Settings Page
-                                    </HashLink>
-                                </li>
-                                <li>
-                                    <HashLink
-                                        to="#configuring-your-classes"
-                                        smooth
-                                    >
-                                        Configuring Your Classes
-                                    </HashLink>
-                                    <ul>
-                                        <li>
-                                            <HashLink
-                                                to="#setting-class-info"
-                                                smooth
-                                            >
-                                                Setting Class Info
-                                            </HashLink>
-                                        </li>
-                                        <li>
-                                            <HashLink
-                                                to="#configuring-login-information"
-                                                smooth
-                                            >
-                                                Configuring Login Information
-                                            </HashLink>
-                                            <ul>
-                                                <li>
-                                                    <HashLink
-                                                        to="#no-login"
-                                                        smooth
-                                                    >
-                                                        No Login
-                                                    </HashLink>
-                                                </li>
-                                                <li>
-                                                    <HashLink
-                                                        to="#automatic-login-mode"
-                                                        smooth
-                                                    >
-                                                        Automatic Login Mode
-                                                    </HashLink>
-                                                </li>
-                                                <li>
-                                                    <HashLink
-                                                        to="#manual-login-mode"
-                                                        smooth
-                                                    >
-                                                        Manual Login Mode
-                                                    </HashLink>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <HashLink
-                                        to="#configuring-flex-meetings"
-                                        smooth
-                                    >
-                                        Configuring Flex Meetings
-                                    </HashLink>
-                                    <HashLink to="#motivational-phrases" smooth>
-                                        Motivational Phrases
-                                    </HashLink>
-                                </li>
-                            </ul>
-                            <p className="menu-label">Other Info</p>
-                            <ul className="menu-list">
-                                <li>
-                                    <HashLink to="#contact-me" smooth>
-                                        Contact Me
-                                    </HashLink>
-                                </li>
-                            </ul>
-                        </aside>
+                        <SidebarMenu />
                     </div>
-
                     <div className="column content mx-3 is-size-5">
                         <h2 id="accessing-this-page">Accessing This Page</h2>
 
