@@ -10,7 +10,7 @@ type MenuContextType = {
 };
 
 const MenuContext = React.createContext<MenuContextType>({
-    activeElement: 'accessing-this-page',
+    activeElement: '',
     addElement: () => {},
     removeElement: () => {},
 });
@@ -20,7 +20,9 @@ export const useMenuContext = () => {
 };
 
 export function SidebarMenu() {
-    const [activeElement, setActiveElement] = React.useState('');
+    const [activeElement, setActiveElement] = React.useState(
+        'accessing-this-page',
+    );
     const [elementList, setElementList] = React.useState<HTMLElement[]>([]);
 
     const addElement = React.useMemo(() => {
