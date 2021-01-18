@@ -1,6 +1,10 @@
 import React from 'react';
 import { FlexSettings } from '../../state/SettingsContext';
-import { copyTextToClipboard, generateZoomLink } from '../../utils';
+import {
+    copyTextToClipboard,
+    generateNormalLink,
+    generateZoomLink,
+} from '../../utils';
 import { useDialog } from './Dialog';
 
 export function FlexBlockDialogCard({ setting }: { setting: FlexSettings }) {
@@ -8,6 +12,7 @@ export function FlexBlockDialogCard({ setting }: { setting: FlexSettings }) {
 
     let loginLink: string | undefined;
     let password: string | undefined;
+    let normalLink: string | undefined;
 
     if (
         setting.login?.automatic &&
@@ -15,9 +20,11 @@ export function FlexBlockDialogCard({ setting }: { setting: FlexSettings }) {
     ) {
         loginLink = generateZoomLink(setting.login.automatic);
         password = setting.login.automatic.password;
+        normalLink = generateNormalLink(setting.login.automatic);
     } else if (setting?.login?.manual) {
         loginLink = setting.login.manual.link;
         password = setting.login.manual.password;
+        normalLink = setting.login.manual.link;
     }
 
     const openPasswordDialog = () => {
@@ -42,6 +49,42 @@ export function FlexBlockDialogCard({ setting }: { setting: FlexSettings }) {
                                     className="button is-link is-rounded"
                                     onClick={() => {
                                         copyTextToClipboard(password || '');
+                                        dialogState.close();
+                                    }}
+                                >
+                                    Copy
+                                </button>
+                            </div>
+                        </div>
+
+                        <label className="label">Zoom Link</label>
+                        <div className="field has-addons">
+                            <div className="control is-expanded">
+                                <input
+                                    className="input is-rounded is-family-monospace"
+                                    type="text"
+                                    value={normalLink}
+                                    placeholder={'Zoom Link'}
+                                    readOnly
+                                />
+                            </div>
+                            <div className="control">
+                                <a
+                                    className="button is-black is-rounded"
+                                    href={normalLink}
+                                    onClick={() => {
+                                        dialogState.close();
+                                    }}
+                                >
+                                    Join
+                                </a>
+                            </div>
+                            <div className="control">
+                                <button
+                                    type="button"
+                                    className="button is-link is-rounded"
+                                    onClick={() => {
+                                        copyTextToClipboard(normalLink || '');
                                         dialogState.close();
                                     }}
                                 >
@@ -79,7 +122,7 @@ export function FlexBlockDialogCard({ setting }: { setting: FlexSettings }) {
                                         className="button is-link is-normal is-rounded is-fullwidth my-1"
                                         onClick={openPasswordDialog}
                                     >
-                                        Show Password
+                                        Meeting Info
                                     </button>
                                 ) : null}
                             </div>

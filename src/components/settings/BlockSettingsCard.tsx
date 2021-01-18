@@ -141,6 +141,11 @@ export function BlockSettingsCard({ blockType }: { blockType: string }) {
                     link with the password embedded. This is the recommended
                     method.
                 </p>
+                <p className="my-2">
+                    You can usually find your meeting ID in the email from your
+                    teacher with the meeting information or by copying the 11
+                    numbers at the end of a Zoom link.
+                </p>
                 <div className="field">
                     <label className="label is-normal">Meeting ID</label>
                     <div className="control">

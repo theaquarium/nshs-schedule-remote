@@ -1,5 +1,11 @@
 import React, { ChangeEvent } from 'react';
-import { IoChevronBack, IoChevronDown, IoEye, IoEyeOff } from 'react-icons/io5';
+import {
+    IoChevronBack,
+    IoChevronDown,
+    IoEye,
+    IoEyeOff,
+    IoTrash,
+} from 'react-icons/io5';
 
 import {
     AutomaticLogin,
@@ -123,6 +129,11 @@ export function FlexSettingsCard({ flexSettingId }: { flexSettingId: string }) {
                     Automatic login mode will automatically generate you a Zoom
                     link with the password embedded. This is the recommended
                     method.
+                </p>
+                <p className="my-2">
+                    You can usually find your meeting ID in the email from your
+                    teacher with the meeting information or by copying the 11
+                    numbers at the end of a Zoom link.
                 </p>
                 <div className="field">
                     <label className="label is-normal">Meeting ID</label>
@@ -390,6 +401,9 @@ export function FlexSettingsCard({ flexSettingId }: { flexSettingId: string }) {
                         className="button is-danger is-fullwidth is-rounded is-outlined"
                         onClick={deleteFlexMeeting}
                     >
+                        <span className="icon mr-1">
+                            <IoTrash />
+                        </span>
                         Delete Flex Meeting
                     </button>
                 </div>

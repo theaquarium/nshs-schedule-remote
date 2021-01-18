@@ -1,7 +1,11 @@
 import React from 'react';
 import { Block, LunchBlocks } from '../../schedule';
 import { BlockSettings } from '../../state/SettingsContext';
-import { copyTextToClipboard, generateZoomLink } from '../../utils';
+import {
+    copyTextToClipboard,
+    generateNormalLink,
+    generateZoomLink,
+} from '../../utils';
 import { useDialog } from '../dialog/Dialog';
 
 export function ClassBanner({
@@ -19,6 +23,7 @@ export function ClassBanner({
 
     let loginLink: string | undefined;
     let password: string | undefined;
+    let normalLink: string | undefined;
 
     if (
         blockSettings?.login?.automatic &&
@@ -26,9 +31,11 @@ export function ClassBanner({
     ) {
         loginLink = generateZoomLink(blockSettings.login.automatic);
         password = blockSettings.login.automatic.password;
+        normalLink = generateNormalLink(blockSettings.login.automatic);
     } else if (blockSettings?.login?.manual) {
         loginLink = blockSettings.login.manual.link;
         password = blockSettings.login.manual.password;
+        normalLink = blockSettings.login.manual.link;
     }
 
     const openPasswordDialog = () => {
@@ -53,6 +60,42 @@ export function ClassBanner({
                                     className="button is-primary is-rounded"
                                     onClick={() => {
                                         copyTextToClipboard(password || '');
+                                        dialogState.close();
+                                    }}
+                                >
+                                    Copy
+                                </button>
+                            </div>
+                        </div>
+
+                        <label className="label">Zoom Link</label>
+                        <div className="field has-addons">
+                            <div className="control is-expanded">
+                                <input
+                                    className="input is-rounded is-family-monospace"
+                                    type="text"
+                                    value={normalLink}
+                                    placeholder={'Zoom Link'}
+                                    readOnly
+                                />
+                            </div>
+                            <div className="control">
+                                <a
+                                    className="button is-black is-rounded"
+                                    href={normalLink}
+                                    onClick={() => {
+                                        dialogState.close();
+                                    }}
+                                >
+                                    Join
+                                </a>
+                            </div>
+                            <div className="control">
+                                <button
+                                    type="button"
+                                    className="button is-link is-rounded"
+                                    onClick={() => {
+                                        copyTextToClipboard(normalLink || '');
                                         dialogState.close();
                                     }}
                                 >
@@ -112,7 +155,7 @@ export function ClassBanner({
                                     className="button is-link is-medium is-rounded is-fullwidth my-1"
                                     onClick={openPasswordDialog}
                                 >
-                                    Show Password
+                                    Meeting Info
                                 </button>
                             ) : null}
                         </div>

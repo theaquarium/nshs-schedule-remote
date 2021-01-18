@@ -9,6 +9,7 @@ import { FlexSettingsCard } from './FlexSettingsCard';
 
 import { MainSettings } from './MainSettings';
 import { ResetButtons } from './ResetButtons';
+import { SerializationSettings } from './SerializationSettings';
 
 export function Settings() {
     const settings = useSettings();
@@ -50,6 +51,8 @@ export function Settings() {
                     <MainSettings />
                     <div className="divider">Reset</div>
                     <ResetButtons />
+                    <div className="divider">Save/Load Settings</div>
+                    <SerializationSettings />
                     <div className="divider">Class Blocks</div>
                     <BlockSettingsCard blockType="a" />
                     <BlockSettingsCard blockType="b" />

@@ -57,7 +57,7 @@ export interface SettingsContextType {
     ) => void;
 }
 
-const defaultState: SettingsType = {
+export const defaultState: SettingsType = {
     ready: false,
     userNickname: '',
     showQuotes: true,

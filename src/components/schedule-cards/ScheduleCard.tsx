@@ -1,7 +1,11 @@
 import React from 'react';
 import { Block, LunchBlocks } from '../../schedule';
 import { BlockSettings } from '../../state/SettingsContext';
-import { copyTextToClipboard, generateZoomLink } from '../../utils';
+import {
+    copyTextToClipboard,
+    generateNormalLink,
+    generateZoomLink,
+} from '../../utils';
 import { useDialog } from '../dialog/Dialog';
 
 export function ScheduleCard({
@@ -21,6 +25,7 @@ export function ScheduleCard({
 
     let loginLink: string | undefined;
     let password: string | undefined;
+    let normalLink: string | undefined;
 
     if (
         blockSettings?.login?.automatic &&
@@ -28,9 +33,11 @@ export function ScheduleCard({
     ) {
         loginLink = generateZoomLink(blockSettings.login.automatic);
         password = blockSettings.login.automatic.password;
+        normalLink = generateNormalLink(blockSettings.login.automatic);
     } else if (blockSettings?.login?.manual) {
         loginLink = blockSettings.login.manual.link;
         password = blockSettings.login.manual.password;
+        normalLink = blockSettings.login.manual.link;
     }
 
     let cardColor;
@@ -63,6 +70,42 @@ export function ScheduleCard({
                                     className="button is-link is-rounded"
                                     onClick={() => {
                                         copyTextToClipboard(password || '');
+                                        dialogState.close();
+                                    }}
+                                >
+                                    Copy
+                                </button>
+                            </div>
+                        </div>
+
+                        <label className="label">Zoom Link</label>
+                        <div className="field has-addons">
+                            <div className="control is-expanded">
+                                <input
+                                    className="input is-rounded is-family-monospace"
+                                    type="text"
+                                    value={normalLink}
+                                    placeholder={'Zoom Link'}
+                                    readOnly
+                                />
+                            </div>
+                            <div className="control">
+                                <a
+                                    className="button is-black is-rounded"
+                                    href={normalLink}
+                                    onClick={() => {
+                                        dialogState.close();
+                                    }}
+                                >
+                                    Join
+                                </a>
+                            </div>
+                            <div className="control">
+                                <button
+                                    type="button"
+                                    className="button is-link is-rounded"
+                                    onClick={() => {
+                                        copyTextToClipboard(normalLink || '');
                                         dialogState.close();
                                     }}
                                 >
@@ -128,7 +171,7 @@ export function ScheduleCard({
                                                 className="button is-link is-normal is-rounded is-fullwidth my-1"
                                                 onClick={openPasswordDialog}
                                             >
-                                                Show Password
+                                                Meeting Info
                                             </button>
                                         ) : null}
                                     </div>

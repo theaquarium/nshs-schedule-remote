@@ -14,6 +14,16 @@ export function generateZoomLink(loginInfo: AutomaticLogin): string {
     }`;
 }
 
+export function generateNormalLink(loginInfo: AutomaticLogin): string {
+    const domain = loginInfo.inNewtonDomain
+        ? 'newton-k12-ma-us'
+        : loginInfo.customDomain || '';
+
+    return `https://${domain.length > 0 ? `${domain}.` : ''}zoom.us/j/${
+        loginInfo.meetingId
+    }`;
+}
+
 export function todayFromTimeString(
     now: Date,
     timeString: string,

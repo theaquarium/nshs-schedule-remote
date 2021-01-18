@@ -1,5 +1,12 @@
 import React from 'react';
-import { IoAdd, IoCalendar, IoCog } from 'react-icons/io5';
+import {
+    IoAdd,
+    IoCalendar,
+    IoCloudDownload,
+    IoCloudUpload,
+    IoCog,
+    IoTrash,
+} from 'react-icons/io5';
 import './Help.css';
 
 import { SidebarMenu } from './SidebarMenu';
@@ -126,6 +133,84 @@ export function Help() {
                             Lunch blocks will show information about lunches on
                             the banner and day schedule cards, and will
                             highlight the current lunch period in dark blue.
+                        </p>
+
+                        <h4 id="joining-meetings">Joining Meetings</h4>
+                        <p>
+                            If you've set up your meeting links in the schedule,
+                            you can join your meetings directly from it. During
+                            the school day, you can join the current or upcoming
+                            class from the Class Banner by pressing the{' '}
+                            <span
+                                className="has-text-weight-bold"
+                                style={{
+                                    whiteSpace: 'nowrap',
+                                }}
+                            >
+                                Join
+                            </span>{' '}
+                            button.
+                        </p>
+
+                        <p>
+                            You can also join meetings from the Block Schedule
+                            by pressing the{' '}
+                            <span
+                                className="has-text-weight-bold"
+                                style={{
+                                    whiteSpace: 'nowrap',
+                                }}
+                            >
+                                Join
+                            </span>{' '}
+                            button on a class card.
+                        </p>
+
+                        <p>
+                            You can view the meeting password and link by
+                            pressing the{' '}
+                            <span
+                                className="has-text-weight-bold"
+                                style={{
+                                    whiteSpace: 'nowrap',
+                                }}
+                            >
+                                Meeting Info
+                            </span>{' '}
+                            button on the Class Banner or on a class card.
+                        </p>
+
+                        <p>
+                            You can join Flex Meetings by pressing the{' '}
+                            <span
+                                className="has-text-weight-bold"
+                                style={{
+                                    whiteSpace: 'nowrap',
+                                }}
+                            >
+                                Show Links
+                            </span>{' '}
+                            button and clicking on the{' '}
+                            <span
+                                className="has-text-weight-bold"
+                                style={{
+                                    whiteSpace: 'nowrap',
+                                }}
+                            >
+                                Join
+                            </span>{' '}
+                            button on one of the Flex Meeting cards. Just like
+                            for classes, you can view more Flex Meeting info by
+                            pressing the{' '}
+                            <span
+                                className="has-text-weight-bold"
+                                style={{
+                                    whiteSpace: 'nowrap',
+                                }}
+                            >
+                                Meeting Info
+                            </span>{' '}
+                            button.
                         </p>
 
                         <h2 id="settings">Settings</h2>
@@ -353,6 +438,9 @@ export function Help() {
                                     whiteSpace: 'nowrap',
                                 }}
                             >
+                                <span className="icon mr-1">
+                                    <IoTrash />
+                                </span>
                                 Delete Flex Meeting
                             </span>{' '}
                             button at the bottom of a Flex Meeting settings
@@ -373,6 +461,79 @@ export function Help() {
                                 Show Motivational Phrases?
                             </span>{' '}
                             option on the settings page.
+                        </p>
+
+                        <h3 id="save-load-settings">Save/Load Settings</h3>
+                        <p>
+                            If you need to move your settings to a new device,
+                            you can export your current settings to a file and
+                            import them on a new device.
+                        </p>
+                        <p>
+                            To save your settings to a file, click the{' '}
+                            <span
+                                className="has-text-weight-bold"
+                                style={{
+                                    whiteSpace: 'nowrap',
+                                }}
+                            >
+                                <span className="icon mr-1">
+                                    <IoCloudDownload />
+                                </span>
+                                Export Settings
+                            </span>{' '}
+                            button and a settings file will be downloaded.
+                        </p>
+
+                        <p>
+                            To import a settings file, click the{' '}
+                            <span
+                                className="has-text-weight-bold"
+                                style={{
+                                    whiteSpace: 'nowrap',
+                                }}
+                            >
+                                <span className="icon mr-1">
+                                    <IoCloudUpload />
+                                </span>
+                                Import Settings
+                            </span>{' '}
+                            button and you will be prompted to import the
+                            settings. Please note: your current settings will be
+                            overwritten if you choose to import settings from a
+                            file.
+                        </p>
+
+                        <h3 id="resetting">Resetting</h3>
+                        <p>
+                            You can reset your settings to their default values
+                            at any time by pressing the{' '}
+                            <span
+                                className="has-text-weight-bold"
+                                style={{
+                                    whiteSpace: 'nowrap',
+                                }}
+                            >
+                                Reset Settings
+                            </span>{' '}
+                            button on the settings page.
+                        </p>
+                        <p>
+                            Some issues with the schedule can be caused by a
+                            corrupted state. If you experience an issue with the
+                            schedule, you can try resetting the app state with
+                            the{' '}
+                            <span
+                                className="has-text-weight-bold"
+                                style={{
+                                    whiteSpace: 'nowrap',
+                                }}
+                            >
+                                Reset App State
+                            </span>{' '}
+                            button on the settings page. Resetting the app state
+                            will not clear any of your settings and will only
+                            reload the schedule.
                         </p>
 
                         <h2 id="other-info">Other Info</h2>

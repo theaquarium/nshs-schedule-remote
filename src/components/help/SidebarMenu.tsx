@@ -120,6 +120,11 @@ export function SidebarMenu() {
                                     Lunches
                                 </SidebarLink>
                             </li>
+                            <li>
+                                <SidebarLink linkedId="joining-meetings">
+                                    Joining Meetings
+                                </SidebarLink>
+                            </li>
                         </ul>
                     </li>
                 </ul>
@@ -168,8 +173,20 @@ export function SidebarMenu() {
                         <SidebarLink linkedId="configuring-flex-meetings">
                             Configuring Flex Meetings
                         </SidebarLink>
+                    </li>
+                    <li>
                         <SidebarLink linkedId="motivational-phrases">
                             Motivational Phrases
+                        </SidebarLink>
+                    </li>
+                    <li>
+                        <SidebarLink linkedId="save-load-settings">
+                            Save/Load Settings
+                        </SidebarLink>
+                    </li>
+                    <li>
+                        <SidebarLink linkedId="resetting">
+                            Resetting
                         </SidebarLink>
                     </li>
                 </ul>
