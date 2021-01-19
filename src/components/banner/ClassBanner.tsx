@@ -156,6 +156,7 @@ export function ClassBanner({
                             </a>
                             {password ? (
                                 <button
+                                    type="button"
                                     className="button is-link is-medium is-rounded is-fullwidth my-1"
                                     onClick={openPasswordDialog}
                                 >
