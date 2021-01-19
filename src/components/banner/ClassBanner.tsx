@@ -86,6 +86,8 @@ export function ClassBanner({
                                     onClick={() => {
                                         dialogState.close();
                                     }}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                 >
                                     Join
                                 </a>
@@ -147,6 +149,8 @@ export function ClassBanner({
                             <a
                                 className="button is-black is-large is-rounded is-fullwidth my-1"
                                 href={loginLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
                             >
                                 Join
                             </a>

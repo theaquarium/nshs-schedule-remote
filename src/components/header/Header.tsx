@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
-import { IoCalendar, IoCog } from 'react-icons/io5';
+import { IoCalendar, IoCog, IoHelpBuoy } from 'react-icons/io5';
 import { WeekButtons } from '../week-buttons/WeekButtons';
 import { InspirationalQuotes } from '../inspirational-quotes/InspirationalQuotes';
 
@@ -40,12 +40,36 @@ export function Header() {
                 }}
             >
                 <div
-                    className="level-left"
+                    className="level-left my-3"
                     style={{
                         flexShrink: 1,
                     }}
                 >
                     <WeekButtons />
+                </div>
+                <div className="level-item">
+                    <Switch>
+                        <Route path="/help">
+                            <Link
+                                to="/"
+                                className="button is-link is-rounded is-medium is-fullwidth"
+                            >
+                                <span className="icon">
+                                    <IoHelpBuoy className="is-size-4" />
+                                </span>
+                            </Link>
+                        </Route>
+                        <Route path="/">
+                            <Link
+                                to="/help"
+                                className="button is-link is-outlined is-rounded is-medium is-fullwidth"
+                            >
+                                <span className="icon">
+                                    <IoHelpBuoy className="is-size-4" />
+                                </span>
+                            </Link>
+                        </Route>
+                    </Switch>
                 </div>
                 <div className="level-right">
                     <Switch>

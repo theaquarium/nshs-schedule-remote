@@ -75,6 +75,8 @@ export function FlexBlockDialogCard({ setting }: { setting: FlexSettings }) {
                                     onClick={() => {
                                         dialogState.close();
                                     }}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                 >
                                     Join
                                 </a>
@@ -113,6 +115,8 @@ export function FlexBlockDialogCard({ setting }: { setting: FlexSettings }) {
                                 <a
                                     className="button is-black is-medium is-rounded is-fullwidth my-1"
                                     href={loginLink}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                 >
                                     Join
                                 </a>

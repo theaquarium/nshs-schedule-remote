@@ -116,4 +116,8 @@ export const Quotes: Quote[] = [
         named: 'Good day, {name}!',
         nameless: 'Good day!',
     },
+    {
+        named: 'Energy and persistence conquer all things, {name}!',
+        nameless: 'Energy and persistence conquer all things!',
+    },
 ];
