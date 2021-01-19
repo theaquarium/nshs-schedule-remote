@@ -23,6 +23,8 @@ export function FlexSettingsCard({ flexSettingId }: { flexSettingId: string }) {
 
     const [isOpen, setIsOpen] = React.useState(false);
     const [showPassword, setShowPassword] = React.useState(false);
+    const [isAutomaticLinkOpen, setIsAutomaticLinkOpen] = React.useState(false);
+    const [automaticLink, setAutomaticLink] = React.useState('');
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         const target = event.target;
@@ -61,6 +63,10 @@ export function FlexSettingsCard({ flexSettingId }: { flexSettingId: string }) {
 
     const toggleShowPassword = () => {
         setShowPassword(!showPassword);
+    };
+
+    const toggleAutomaticLinkOpen = () => {
+        setIsAutomaticLinkOpen(!isAutomaticLinkOpen);
     };
 
     const deleteFlexMeeting = () => {
@@ -105,6 +111,8 @@ export function FlexSettingsCard({ flexSettingId }: { flexSettingId: string }) {
             // Strip non-numbers from meeting ID
             if (name === 'meetingId' && typeof value === 'string') {
                 value = value.replace(/\D/g, '');
+                setIsAutomaticLinkOpen(false);
+                setAutomaticLink('');
             }
 
             if (typeof value === 'string') {
@@ -121,6 +129,59 @@ export function FlexSettingsCard({ flexSettingId }: { flexSettingId: string }) {
                     },
                 },
             });
+        };
+
+        const handleAutomaticLinkChange = (
+            event: ChangeEvent<HTMLInputElement>,
+        ) => {
+            const target = event.target;
+
+            let value = target.value;
+
+            const automaticLoginSettings: AutomaticLogin =
+                state.login?.automatic !== undefined
+                    ? state.login.automatic
+                    : {
+                          meetingId: '',
+                          password: '',
+                          inNewtonDomain: true,
+                      };
+
+            setAutomaticLink(value);
+
+            const linkRegex = /https:\/\/.*zoom.us\/j\/[\d]{11}/;
+
+            if (linkRegex.test(value)) {
+                const meetingIdRegex = /(?<=https:\/\/(.)*zoom.us\/j\/)[\d]{11}/;
+                const domainRegex = /(?<=https:\/\/).*(?=.zoom.us\/j\/[\d]{11})/;
+
+                const meetingIdList = value.match(meetingIdRegex);
+                const domainList = value.match(domainRegex);
+
+                if (meetingIdList !== null && meetingIdList.length > 0) {
+                    automaticLoginSettings.meetingId = meetingIdList[0];
+                }
+                if (domainList !== null && domainList.length > 0) {
+                    const domain = domainList[0];
+                    if (domain === 'newton-k12-ma-us') {
+                        automaticLoginSettings.inNewtonDomain = true;
+                        automaticLoginSettings.customDomain = '';
+                    } else {
+                        automaticLoginSettings.inNewtonDomain = false;
+                        automaticLoginSettings.customDomain = domain;
+                    }
+                } else {
+                    automaticLoginSettings.inNewtonDomain = false;
+                }
+
+                setState({
+                    ...state,
+                    login: {
+                        ...state.login,
+                        automatic: automaticLoginSettings,
+                    },
+                });
+            }
         };
 
         loginOptions = (
@@ -148,6 +209,37 @@ export function FlexSettingsCard({ flexSettingId }: { flexSettingId: string }) {
                         />
                     </div>
                 </div>
+
+                <div className="px-5 mb-2">
+                    <div className="has-text-left mb-2">
+                        <button
+                            type="button"
+                            className="button is-text is-rounded p-2"
+                            onClick={toggleAutomaticLinkOpen}
+                        >
+                            Need help?
+                        </button>
+                    </div>
+
+                    {isAutomaticLinkOpen ? (
+                        <div className="field">
+                            <label className="label is-normal">
+                                Enter your Zoom meeting link
+                            </label>
+                            <div className="control">
+                                <input
+                                    className="input is-rounded is-normal"
+                                    type="text"
+                                    placeholder="Meeting Link"
+                                    name="automaticLink"
+                                    onChange={handleAutomaticLinkChange}
+                                    value={automaticLink}
+                                />
+                            </div>
+                        </div>
+                    ) : null}
+                </div>
+
                 <label className="label is-normal">Password (Optional)</label>
                 <div className="field has-addons">
                     <div className="control is-expanded">
@@ -245,7 +337,8 @@ export function FlexSettingsCard({ flexSettingId }: { flexSettingId: string }) {
                 <p className="my-2">
                     Manual login mode lets you join a Zoom link you already
                     have. You should probably use Automatic mode except in
-                    special circumstances.
+                    special circumstances or if you have issues with Automatic
+                    mode.
                 </p>
                 <div className="field">
                     <label className="label is-normal">Link</label>

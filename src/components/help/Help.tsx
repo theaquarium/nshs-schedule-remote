@@ -375,6 +375,21 @@ export function Help() {
                             a custom meeting domain.
                         </p>
 
+                        <p>
+                            If you need help configuring automatic mode, press
+                            the{' '}
+                            <span
+                                className="has-text-weight-bold"
+                                style={{
+                                    whiteSpace: 'nowrap',
+                                }}
+                            >
+                                Need help?
+                            </span>{' '}
+                            button and paste the Zoom link you got from your
+                            teacher into the Meeting Link field that appears.
+                        </p>
+
                         <h5 id="manual-login-mode">Manual Login Mode</h5>
                         <p>
                             If you would not like to use Automatic mode, you can

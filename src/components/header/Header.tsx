@@ -16,7 +16,7 @@ export function Header() {
                 <div className="level-left">
                     <Link
                         to="/"
-                        className="button is-ghost is-rounded is-medium has-text-weight-bold is-fullwidth"
+                        className="button is-rounded is-medium has-text-weight-bold is-fullwidth"
                     >
                         <span className="icon mr-1">
                             <IoCalendar />

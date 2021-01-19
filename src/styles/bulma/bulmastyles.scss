@@ -99,6 +99,14 @@ $switch-focus: 1px dotted $grey-light;
 
 $divider-background-color: $border;
 
+// Ghost button styles
+$button-ghost-background: none;
+$button-ghost-border-color: transparent;
+$button-ghost-color: $link;
+$button-ghost-decoration: none;
+$button-ghost-hover-color: $link;
+$button-ghost-hover-decoration: underline;
+
 @import '~bulma/sass/utilities/_all';
 @import '~bulma/sass/base/_all';
 @import '~bulma/sass/elements/_all';
@@ -202,6 +210,20 @@ $divider-background-color: $border;
         .navbar-menu,
         .navbar-dropdown {
             border: none;
+        }
+    }
+}
+
+.button {
+    &.is-ghost {
+        background: $button-ghost-background;
+        border-color: $button-ghost-border-color;
+        color: $button-ghost-color;
+        text-decoration: $button-ghost-decoration;
+        &:hover,
+        &.is-hovered {
+            color: $button-ghost-hover-color;
+            text-decoration: $button-ghost-hover-decoration;
         }
     }
 }
