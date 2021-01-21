@@ -2,6 +2,7 @@ import React from 'react';
 import { IoAdd } from 'react-icons/io5';
 
 import { v4 as uuidv4 } from 'uuid';
+import { useAppState } from '../../state/AppStateContext';
 
 import { useSettings } from '../../state/SettingsContext';
 import { BlockSettingsCard } from './BlockSettingsCard';
@@ -13,6 +14,13 @@ import { SerializationSettings } from './SerializationSettings';
 
 export function Settings() {
     const settings = useSettings();
+    const appState = useAppState();
+
+    React.useEffect(() => {
+        if (!appState.value.hasViewedSettings) {
+            appState.setAppStateDirect({ hasViewedSettings: true });
+        }
+    }, [appState]);
 
     const newFlex = () => {
         const flexCount = Object.keys(settings.value.flexSettings).length;
@@ -54,7 +62,7 @@ export function Settings() {
                     <div className="divider">Save/Load Settings</div>
                     <SerializationSettings />
                     <div className="divider">Class Blocks</div>
-                    <BlockSettingsCard blockType="a" />
+                    <BlockSettingsCard blockType="a" isOpenDefault />
                     <BlockSettingsCard blockType="b" />
                     <BlockSettingsCard blockType="c" />
                     <BlockSettingsCard blockType="d" />
@@ -65,6 +73,7 @@ export function Settings() {
                     <div className="divider">Flex Block</div>
                     {flexMeetings}
                     <button
+                        type="button"
                         className="button is-fullwidth is-rounded is-link"
                         onClick={newFlex}
                     >

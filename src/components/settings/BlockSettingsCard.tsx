@@ -7,7 +7,13 @@ import {
     useSettings,
 } from '../../state/SettingsContext';
 
-export function BlockSettingsCard({ blockType }: { blockType: string }) {
+export function BlockSettingsCard({
+    blockType,
+    isOpenDefault,
+}: {
+    blockType: string;
+    isOpenDefault?: boolean;
+}) {
     let blockName;
 
     switch (blockType) {
@@ -44,7 +50,7 @@ export function BlockSettingsCard({ blockType }: { blockType: string }) {
         settings.value.blockSettings[blockType],
     );
 
-    const [isOpen, setIsOpen] = React.useState(false);
+    const [isOpen, setIsOpen] = React.useState(isOpenDefault);
     const [showPassword, setShowPassword] = React.useState(false);
     const [isAutomaticLinkOpen, setIsAutomaticLinkOpen] = React.useState(false);
     const [automaticLink, setAutomaticLink] = React.useState('');

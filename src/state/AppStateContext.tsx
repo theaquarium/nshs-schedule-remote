@@ -2,6 +2,7 @@ import React from 'react';
 
 export interface AppStateType {
     isOnboarded: boolean;
+    hasViewedSettings: boolean;
     ready: boolean;
     weekNum?: number;
     lastUpdateTime?: number;
@@ -25,6 +26,7 @@ export interface AppStateContextType {
 
 const defaultState = {
     isOnboarded: true,
+    hasViewedSettings: true,
     ready: false,
 };
 
@@ -61,6 +63,7 @@ export function AppStateProvider(props: any) {
                 setAppState({
                     ...defaultState,
                     isOnboarded: false,
+                    hasViewedSettings: false,
                 });
             }
         } else {

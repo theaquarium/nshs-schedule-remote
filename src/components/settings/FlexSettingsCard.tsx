@@ -13,7 +13,13 @@ import {
     useSettings,
 } from '../../state/SettingsContext';
 
-export function FlexSettingsCard({ flexSettingId }: { flexSettingId: string }) {
+export function FlexSettingsCard({
+    flexSettingId,
+    isOpenDefault,
+}: {
+    flexSettingId: string;
+    isOpenDefault?: boolean;
+}) {
     const settings = useSettings();
     const setSettings = settings.setSettings;
 
@@ -21,7 +27,7 @@ export function FlexSettingsCard({ flexSettingId }: { flexSettingId: string }) {
         settings.value.flexSettings[flexSettingId],
     );
 
-    const [isOpen, setIsOpen] = React.useState(false);
+    const [isOpen, setIsOpen] = React.useState(isOpenDefault);
     const [showPassword, setShowPassword] = React.useState(false);
     const [isAutomaticLinkOpen, setIsAutomaticLinkOpen] = React.useState(false);
     const [automaticLink, setAutomaticLink] = React.useState('');

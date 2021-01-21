@@ -3,8 +3,12 @@ import { Link, Route, Switch } from 'react-router-dom';
 import { IoCalendar, IoCog, IoHelpBuoy } from 'react-icons/io5';
 import { WeekButtons } from '../week-buttons/WeekButtons';
 import { InspirationalQuotes } from '../inspirational-quotes/InspirationalQuotes';
+import './Header.scss';
+import { useAppState } from '../../state/AppStateContext';
 
 export function Header() {
+    const appState = useAppState();
+
     return (
         <header className="level mb-0">
             <div
@@ -71,7 +75,7 @@ export function Header() {
                         </Route>
                     </Switch>
                 </div>
-                <div className="level-right">
+                <div className="level-right settings-button-container">
                     <Switch>
                         <Route path="/settings">
                             <Link
@@ -96,6 +100,14 @@ export function Header() {
                             </Link>
                         </Route>
                     </Switch>
+                    {appState.value.hasViewedSettings ? null : (
+                        <div className="settings-button-tooltip">
+                            <div className="settings-button-tooltip-arrow"></div>
+                            <span className="tag is-warning is-large is-rounded settings-button-tooltip-text">
+                                Set up your classes
+                            </span>
+                        </div>
+                    )}
                 </div>
             </div>
         </header>
