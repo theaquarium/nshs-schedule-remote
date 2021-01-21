@@ -87,7 +87,7 @@ export function Header() {
                         <Route path="/">
                             <Link
                                 to="/settings"
-                                className="button is-text is-rounded is-medium is-fullwidth"
+                                className="button is-link is-outlined is-rounded is-medium is-fullwidth"
                             >
                                 <span className="icon mr-1">
                                     <IoCog />
