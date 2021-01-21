@@ -26,7 +26,7 @@ export interface AppStateContextType {
 
 const defaultState = {
     isOnboarded: true,
-    hasViewedSettings: true,
+    hasViewedSettings: false,
     ready: false,
 };
 
@@ -63,7 +63,6 @@ export function AppStateProvider(props: any) {
                 setAppState({
                     ...defaultState,
                     isOnboarded: false,
-                    hasViewedSettings: false,
                 });
             }
         } else {
