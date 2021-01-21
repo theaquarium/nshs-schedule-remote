@@ -57,10 +57,7 @@ export function Settings() {
                 <React.Fragment>
                     <h1 className="title">Settings</h1>
                     <MainSettings />
-                    <div className="divider">Reset</div>
-                    <ResetButtons />
-                    <div className="divider">Save/Load Settings</div>
-                    <SerializationSettings />
+
                     <div className="divider">Class Blocks</div>
                     <BlockSettingsCard blockType="a" isOpenDefault />
                     <BlockSettingsCard blockType="b" />
@@ -82,6 +79,11 @@ export function Settings() {
                         </span>
                         Add New Flex Meeting
                     </button>
+
+                    <div className="divider">Save/Load Settings</div>
+                    <SerializationSettings />
+                    <div className="divider">Reset</div>
+                    <ResetButtons />
                 </React.Fragment>
             ) : (
                 <h1 className="has-text-centered">Loading...</h1>
