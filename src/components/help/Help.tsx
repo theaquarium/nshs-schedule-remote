@@ -32,7 +32,8 @@ export function Help() {
                             >
                                 Need Help?
                             </span>{' '}
-                            button at the bottom of the page.
+                            button at the bottom of the page or the life
+                            preserver icon in the header.
                         </p>
 
                         <h2 id="schedule-page">Schedule Page</h2>
