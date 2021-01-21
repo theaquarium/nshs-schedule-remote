@@ -20,6 +20,13 @@ export function Footer() {
                     </a>
                     .
                 </p>
+
+                <p>
+                    This website is not affiliated with, endorsed by, or in any
+                    way officially connected with Newton South High School or
+                    the Newton Public Schools.
+                </p>
+
                 <p>
                     Having issues? Found a bug? Need support? Send me an email
                     at{' '}
