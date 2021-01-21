@@ -144,6 +144,8 @@ export function FlexSettingsCard({
 
             let value = target.value;
 
+            setAutomaticLink(value);
+
             const automaticLoginSettings: AutomaticLogin =
                 state.login?.automatic !== undefined
                     ? state.login.automatic
@@ -152,8 +154,6 @@ export function FlexSettingsCard({
                           password: '',
                           inNewtonDomain: true,
                       };
-
-            setAutomaticLink(value);
 
             const linkRegex = /https:\/\/.*zoom.us\/j\/[\d]{9,11}/;
 
@@ -199,8 +199,8 @@ export function FlexSettingsCard({
                 </p>
                 <p className="my-2">
                     You can usually find your meeting ID in the email from your
-                    teacher with the meeting information or by copying the 11
-                    numbers at the end of a Zoom link.
+                    teacher with the meeting information or by copying the 10 or
+                    11 numbers at the end of a Zoom link.
                 </p>
                 <div className="field">
                     <label className="label is-normal">Meeting ID</label>
