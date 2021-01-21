@@ -155,11 +155,11 @@ export function FlexSettingsCard({
 
             setAutomaticLink(value);
 
-            const linkRegex = /https:\/\/.*zoom.us\/j\/[\d]{11}/;
+            const linkRegex = /https:\/\/.*zoom.us\/j\/[\d]{9,11}/;
 
             if (linkRegex.test(value)) {
-                const meetingIdRegex = /(?<=https:\/\/(.)*zoom.us\/j\/)[\d]{11}/;
-                const domainRegex = /(?<=https:\/\/).*(?=.zoom.us\/j\/[\d]{11})/;
+                const meetingIdRegex = /(?<=https:\/\/(.)*zoom.us\/j\/)[\d]{9,11}/;
+                const domainRegex = /(?<=https:\/\/).*(?=.zoom.us\/j\/[\d]{9,11})/;
 
                 const meetingIdList = value.match(meetingIdRegex);
                 const domainList = value.match(domainRegex);
