@@ -10,6 +10,7 @@ import { FlexBlockBanner } from './FlexBlockBanner';
 
 import { FlexSettings, useSettings } from '../../state/SettingsContext';
 import { getDay, getWeek } from '../../schedule';
+import { weekdayNumToName } from '../../utils';
 
 export function Banner() {
     const appState = useAppState();
@@ -92,12 +93,21 @@ export function Banner() {
                     />
                 );
             } else {
+                const dayName = weekdayNumToName(appState.value.weekday);
+                const inPerson =
+                    settings.value.inPerson &&
+                    appState.value.weekNum !== undefined &&
+                    dayName !== undefined &&
+                    settings.value.inPersonDays[appState.value.weekNum]?.[
+                        dayName
+                    ];
                 return (
                     <ClassBanner
                         isNow={isNow}
                         block={currentBlock}
                         blockSettings={currentBlockSettings}
                         activeLunchBlock={appState.value.activeLunch}
+                        inPerson={inPerson}
                     />
                 );
             }
@@ -108,11 +118,22 @@ export function Banner() {
             if (flexSettings === undefined)
                 flexSettings = {} as Record<string, FlexSettings>;
 
+            const dayName = weekdayNumToName(appState.value.weekday);
+            const inPerson =
+                settings.value.inPerson &&
+                appState.value.weekNum !== undefined &&
+                dayName !== undefined &&
+                settings.value.inPersonDays[appState.value.weekNum]?.[dayName];
+
             return (
                 <FlexBlockBanner
                     isNow={isNow}
                     block={currentBlock}
                     flexSettings={flexSettings}
+                    inPerson={inPerson}
+                    flexBlockInPersonSettings={
+                        settings.value.flexBlockInPersonSettings
+                    }
                 />
             );
         }

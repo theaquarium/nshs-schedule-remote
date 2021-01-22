@@ -1,6 +1,9 @@
 import React from 'react';
 import { Block } from '../../schedule';
-import { FlexSettings } from '../../state/SettingsContext';
+import {
+    FlexBlockInPersonSettings,
+    FlexSettings,
+} from '../../state/SettingsContext';
 import { useDialog } from '../dialog/Dialog';
 import { FlexBlockDialogCard } from '../dialog/FlexBlockDialogCard';
 
@@ -9,11 +12,15 @@ export function FlexScheduleCard({
     flexSettings,
     isActive,
     isPast,
+    inPerson,
+    flexBlockInPersonSettings,
 }: {
     block: Block;
     flexSettings: Record<string, FlexSettings>;
     isActive: boolean;
     isPast?: boolean;
+    inPerson: boolean;
+    flexBlockInPersonSettings?: FlexBlockInPersonSettings;
 }) {
     const dialogState = useDialog();
 
@@ -86,10 +93,26 @@ export function FlexScheduleCard({
                                     &nbsp;({block.length})
                                 </span>
                             </p>
+                            {inPerson &&
+                            flexBlockInPersonSettings?.flexClassroomNumber &&
+                            flexBlockInPersonSettings.flexClassroomNumber
+                                .length > 0 ? (
+                                <p
+                                    className={`subtitle ${
+                                        isPast ? 'has-text-grey' : ''
+                                    }`}
+                                >
+                                    Room{' '}
+                                    {
+                                        flexBlockInPersonSettings.flexClassroomNumber
+                                    }
+                                </p>
+                            ) : null}
                         </div>
                     </div>
                     <div className="level-right">
                         <button
+                            type="button"
                             className="button is-black is-medium is-rounded is-fullwidth"
                             onClick={openLinksDialog}
                         >

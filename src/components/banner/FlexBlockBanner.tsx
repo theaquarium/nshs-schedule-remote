@@ -1,6 +1,9 @@
 import React from 'react';
 import { Block } from '../../schedule';
-import { FlexSettings } from '../../state/SettingsContext';
+import {
+    FlexBlockInPersonSettings,
+    FlexSettings,
+} from '../../state/SettingsContext';
 import { useDialog } from '../dialog/Dialog';
 import { FlexBlockDialogCard } from '../dialog/FlexBlockDialogCard';
 
@@ -8,10 +11,14 @@ export function FlexBlockBanner({
     isNow,
     block,
     flexSettings,
+    inPerson,
+    flexBlockInPersonSettings,
 }: {
     isNow: boolean;
     block: Block;
     flexSettings: Record<string, FlexSettings>;
+    inPerson: boolean;
+    flexBlockInPersonSettings?: FlexBlockInPersonSettings;
 }) {
     const dialogState = useDialog();
 
@@ -70,6 +77,18 @@ export function FlexBlockBanner({
                                     &nbsp;({block.length})
                                 </span>
                             </h2>
+                            {inPerson &&
+                            flexBlockInPersonSettings &&
+                            flexBlockInPersonSettings.flexClassroomNumber &&
+                            flexBlockInPersonSettings.flexClassroomNumber
+                                .length > 0 ? (
+                                <h2 className="subtitle">
+                                    Room{' '}
+                                    {
+                                        flexBlockInPersonSettings.flexClassroomNumber
+                                    }
+                                </h2>
+                            ) : null}
                         </div>
                     </div>
                     <div className="level-right is-flex is-flex-direction-column is-justify-content-center">

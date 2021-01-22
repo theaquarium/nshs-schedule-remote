@@ -19,6 +19,8 @@ export interface BlockSettings {
         automatic?: AutomaticLogin;
         manual?: ManualLogin;
     };
+    classroomNumber?: string;
+    deskNumber?: string;
 }
 
 export interface FlexSettings {
@@ -28,6 +30,10 @@ export interface FlexSettings {
         automatic?: AutomaticLogin;
         manual?: ManualLogin;
     };
+}
+
+export interface FlexBlockInPersonSettings {
+    flexClassroomNumber: string;
 }
 
 export interface SettingsType {
@@ -46,6 +52,16 @@ export interface SettingsType {
         community: BlockSettings;
     };
     flexSettings: Record<string, FlexSettings>;
+    inPerson: boolean;
+    inPersonDays: {
+        [index: string]: boolean;
+        monday: boolean;
+        tuesday: boolean;
+        wednesday: boolean;
+        thursday: boolean;
+        friday: boolean;
+    }[];
+    flexBlockInPersonSettings?: FlexBlockInPersonSettings;
 }
 
 export interface SettingsContextType {
@@ -88,6 +104,23 @@ export const defaultState: SettingsType = {
         },
     },
     flexSettings: {},
+    inPerson: false,
+    inPersonDays: [
+        {
+            monday: false,
+            tuesday: false,
+            wednesday: false,
+            thursday: false,
+            friday: false,
+        },
+        {
+            monday: false,
+            tuesday: false,
+            wednesday: false,
+            thursday: false,
+            friday: false,
+        },
+    ],
 };
 
 const SettingsContext = React.createContext<SettingsContextType>({
@@ -128,7 +161,10 @@ export function SettingsProvider(props: any) {
     // Memoized just in case
     const resetSettings = React.useMemo(() => {
         return () => {
-            setSettings(defaultState);
+            setSettings({
+                ...defaultState,
+                ready: true,
+            });
         };
     }, [setSettings]);
 

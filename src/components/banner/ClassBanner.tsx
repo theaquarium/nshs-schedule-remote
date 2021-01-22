@@ -13,11 +13,13 @@ export function ClassBanner({
     block,
     blockSettings,
     activeLunchBlock,
+    inPerson,
 }: {
     isNow: boolean;
     block: Block;
     blockSettings?: BlockSettings;
     activeLunchBlock?: number;
+    inPerson: boolean;
 }) {
     const dialogState = useDialog();
 
@@ -142,6 +144,19 @@ export function ClassBanner({
                                     &nbsp;({block.length})
                                 </span>
                             </h2>
+                            {inPerson &&
+                            blockSettings?.classroomNumber &&
+                            blockSettings.classroomNumber.length > 0 ? (
+                                <h2 className="subtitle">
+                                    Room {blockSettings.classroomNumber}
+                                    {blockSettings.deskNumber ? (
+                                        <span className="is-italic">
+                                            {' '}
+                                            - Desk {blockSettings.deskNumber}
+                                        </span>
+                                    ) : null}
+                                </h2>
+                            ) : null}
                         </div>
                     </div>
                     {loginLink && !block.async ? (

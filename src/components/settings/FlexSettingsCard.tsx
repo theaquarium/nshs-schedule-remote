@@ -244,7 +244,9 @@ export function FlexSettingsCard({
                     11 numbers at the end of a Zoom link.
                 </p>
                 <div className="field">
-                    <label className="label is-normal">Meeting ID</label>
+                    <label className="label is-normal">
+                        Meeting ID or Link
+                    </label>
                     <div className="control">
                         <input
                             className="input is-rounded is-normal"

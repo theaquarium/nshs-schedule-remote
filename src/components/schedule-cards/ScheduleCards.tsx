@@ -6,7 +6,7 @@ import { useSettings } from '../../state/SettingsContext';
 import { ScheduleCard } from './ScheduleCard';
 
 import { getWeek, getDay } from '../../schedule';
-import { weekdayNameToNum } from '../../utils';
+import { weekdayNameToNum, weekdayNumToName } from '../../utils';
 import { FlexScheduleCard } from './FlexScheduleCard';
 
 export function ScheduleCards() {
@@ -39,6 +39,13 @@ export function ScheduleCards() {
             isPast = false;
         }
 
+        const dayName = weekdayNumToName(weekday);
+        const inPerson =
+            settings.value.inPerson &&
+            appState.value.weekNum !== undefined &&
+            dayName !== undefined &&
+            settings.value.inPersonDays[appState.value.weekNum]?.[dayName];
+
         if (block.blockType === 'flex') {
             return (
                 <FlexScheduleCard
@@ -50,6 +57,10 @@ export function ScheduleCards() {
                         weekday === appState.value.weekday
                     }
                     isPast={isPast}
+                    inPerson={inPerson}
+                    flexBlockInPersonSettings={
+                        settings.value.flexBlockInPersonSettings
+                    }
                 />
             );
         }
@@ -70,6 +81,7 @@ export function ScheduleCards() {
                         : -1
                 }
                 isPast={isPast}
+                inPerson={inPerson}
             />
         );
     });

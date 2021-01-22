@@ -32,8 +32,8 @@ export function Help() {
                             >
                                 Need Help?
                             </span>{' '}
-                            button at the bottom of the page or the life
-                            preserver icon in the header.
+                            button at the bottom of the page or the question
+                            mark icon in the header.
                         </p>
 
                         <h2 id="schedule-page">Schedule Page</h2>
@@ -405,6 +405,40 @@ export function Help() {
                             </span>
                             , which will allow you to enter a meeting link and
                             optionally, a meeting password.
+                        </p>
+
+                        <h3 id="setting-up-hybrid">Setting Up Hybrid</h3>
+                        <p>
+                            If you're attending South in person, you can set up
+                            your in person days on the schedule. Turn on the{' '}
+                            <span
+                                className="has-text-weight-bold"
+                                style={{
+                                    whiteSpace: 'nowrap',
+                                }}
+                            >
+                                Do you attend school in person?
+                            </span>{' '}
+                            setting to activate in person days. You can then
+                            click on the days you will be at school to mark them
+                            as in person days.
+                        </p>
+                        <p>
+                            If you enable hybrid on the schedule, you will have
+                            the option to keep track of your classroom number
+                            and desk number in the schedule. To do this, open a
+                            class card and enter your classroom number on the
+                            left and desk number on the right of the{' '}
+                            <span
+                                className="has-text-weight-bold"
+                                style={{
+                                    whiteSpace: 'nowrap',
+                                }}
+                            >
+                                Classroom and Desk Number
+                            </span>{' '}
+                            field. You can also enter your classroom number for
+                            flex block in the Flex Meetings section.
                         </p>
 
                         <h3 id="configuring-flex-meetings">

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
-import { IoCalendar, IoCog, IoHelpBuoy } from 'react-icons/io5';
+import { IoCalendar, IoCog, IoHelp } from 'react-icons/io5';
 import { WeekButtons } from '../week-buttons/WeekButtons';
 import { InspirationalQuotes } from '../inspirational-quotes/InspirationalQuotes';
 import './Header.scss';
@@ -59,7 +59,7 @@ export function Header() {
                                 className="button is-link is-rounded is-medium is-fullwidth"
                             >
                                 <span className="icon">
-                                    <IoHelpBuoy className="is-size-4" />
+                                    <IoHelp className="is-size-4" />
                                 </span>
                             </Link>
                         </Route>
@@ -69,7 +69,7 @@ export function Header() {
                                 className="button is-link is-outlined is-rounded is-medium is-fullwidth"
                             >
                                 <span className="icon">
-                                    <IoHelpBuoy className="is-size-4" />
+                                    <IoHelp className="is-size-4" />
                                 </span>
                             </Link>
                         </Route>

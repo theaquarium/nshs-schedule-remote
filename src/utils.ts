@@ -71,6 +71,27 @@ export function weekdayNameToNum(weekday?: string): number | undefined {
     }
 }
 
+export function weekdayNumToName(weekday?: number): string | undefined {
+    switch (weekday) {
+        case 0:
+            return 'sunday';
+        case 1:
+            return 'monday';
+        case 2:
+            return 'tuesday';
+        case 3:
+            return 'wednesday';
+        case 4:
+            return 'thursday';
+        case 5:
+            return 'friday';
+        case 6:
+            return 'saturday';
+        default:
+            return;
+    }
+}
+
 // https://stackoverflow.com/a/30810322/8005366
 function fallbackCopyTextToClipboard(text: string) {
     const textArea = document.createElement('textarea');

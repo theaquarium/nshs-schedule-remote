@@ -85,7 +85,7 @@ export function SidebarMenu() {
     return (
         <MenuContext.Provider value={contextValue}>
             <aside className="menu sticky-aside">
-                <h1 className="title">Help Page</h1>
+                <h1 className="title">Contents</h1>
                 <ul className="menu-list">
                     <li>
                         <SidebarLink linkedId="accessing-this-page">
@@ -168,6 +168,11 @@ export function SidebarMenu() {
                                 </ul>
                             </li>
                         </ul>
+                    </li>
+                    <li>
+                        <SidebarLink linkedId="setting-up-hybrid">
+                            Setting Up Hybrid
+                        </SidebarLink>
                     </li>
                     <li>
                         <SidebarLink linkedId="configuring-flex-meetings">

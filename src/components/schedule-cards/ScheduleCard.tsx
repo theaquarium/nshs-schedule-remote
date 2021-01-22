@@ -14,12 +14,14 @@ export function ScheduleCard({
     isActive,
     activeLunchBlock,
     isPast,
+    inPerson,
 }: {
     block: Block;
     blockSettings: BlockSettings;
     isActive: boolean;
     activeLunchBlock?: number;
     isPast?: boolean;
+    inPerson: boolean;
 }) {
     const dialogState = useDialog();
 
@@ -156,6 +158,24 @@ export function ScheduleCard({
                                             &nbsp;({block.length})
                                         </span>
                                     </p>
+                                    {inPerson &&
+                                    blockSettings?.classroomNumber &&
+                                    blockSettings.classroomNumber.length > 0 ? (
+                                        <p
+                                            className={`subtitle ${
+                                                isPast ? 'has-text-grey' : ''
+                                            }`}
+                                        >
+                                            Room {blockSettings.classroomNumber}
+                                            {blockSettings.deskNumber ? (
+                                                <span className="is-italic">
+                                                    {' '}
+                                                    - Desk{' '}
+                                                    {blockSettings.deskNumber}
+                                                </span>
+                                            ) : null}
+                                        </p>
+                                    ) : null}
                                 </div>
                             </div>
                             {loginLink && !block.async ? (

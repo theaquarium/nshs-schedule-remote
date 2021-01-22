@@ -67,37 +67,36 @@ export default function App() {
                                 <Dialog>
                                     <Header />
 
-                                    <Switch>
-                                        <Route path="/help">
-                                            <Help />
-                                        </Route>
-                                        <Route path="/privacypolicy">
-                                            <PrivacyPolicy />
-                                        </Route>
-                                        <Route path="/settings">
-                                            <Settings />
-                                        </Route>
-                                        <Route
-                                            path={[
-                                                '/monday',
-                                                '/tuesday',
-                                                '/wednesday',
-                                                '/thursday',
-                                                '/friday',
-                                                '/weekend',
-                                            ]}
-                                        >
-                                            <Schedule />
-                                        </Route>
-                                        {weekdayName ? (
+                                    {weekdayName ? (
+                                        <Switch>
+                                            <Route path="/help">
+                                                <Help />
+                                            </Route>
+                                            <Route path="/privacypolicy">
+                                                <PrivacyPolicy />
+                                            </Route>
+                                            <Route path="/settings">
+                                                <Settings />
+                                            </Route>
+                                            <Route
+                                                path={[
+                                                    '/monday',
+                                                    '/tuesday',
+                                                    '/wednesday',
+                                                    '/thursday',
+                                                    '/friday',
+                                                    '/weekend',
+                                                ]}
+                                            >
+                                                <Schedule />
+                                            </Route>
                                             <Redirect to={`/${weekdayName}`} />
-                                        ) : (
-                                            <h1 className="title has-text-centered">
-                                                Loading...
-                                            </h1>
-                                        )}
-                                    </Switch>
-
+                                        </Switch>
+                                    ) : (
+                                        <h1 className="title has-text-centered">
+                                            Loading...
+                                        </h1>
+                                    )}
                                     <Footer />
                                 </Dialog>
                             </Route>

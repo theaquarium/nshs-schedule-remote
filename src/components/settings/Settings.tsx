@@ -6,6 +6,7 @@ import { useAppState } from '../../state/AppStateContext';
 
 import { useSettings } from '../../state/SettingsContext';
 import { BlockSettingsCard } from './BlockSettingsCard';
+import { FlexBlockInPersonSettings } from './FlexBlockInPersonSettings';
 import { FlexSettingsCard } from './FlexSettingsCard';
 
 import { MainSettings } from './MainSettings';
@@ -58,7 +59,10 @@ export function Settings() {
                     <h1 className="title">Settings</h1>
                     <MainSettings />
 
-                    <div className="divider">Class Blocks</div>
+                    <div className="divider mb-2">Class Blocks</div>
+                    <p className="is-size-5 px-3 mb-4">
+                        Click on a class card to open it.
+                    </p>
                     <BlockSettingsCard blockType="a" isOpenDefault />
                     <BlockSettingsCard blockType="b" />
                     <BlockSettingsCard blockType="c" />
@@ -68,6 +72,12 @@ export function Settings() {
                     <BlockSettingsCard blockType="g" />
                     <BlockSettingsCard blockType="community" />
                     <div className="divider">Flex Block</div>
+                    {settings.value.inPerson ? (
+                        <React.Fragment>
+                            <FlexBlockInPersonSettings />
+                            <br />
+                        </React.Fragment>
+                    ) : null}
                     {flexMeetings}
                     <button
                         type="button"

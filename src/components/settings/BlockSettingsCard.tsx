@@ -255,7 +255,9 @@ export function BlockSettingsCard({
                     11 numbers at the end of a Zoom link.
                 </p>
                 <div className="field">
-                    <label className="label is-normal">Meeting ID</label>
+                    <label className="label is-normal">
+                        Meeting ID or Link
+                    </label>
                     <div className="control">
                         <input
                             className="input is-rounded is-normal"
@@ -499,6 +501,43 @@ export function BlockSettingsCard({
                                     />
                                 </div>
                             </div>
+                            {settings.value.inPerson ? (
+                                <React.Fragment>
+                                    <label className="label is-normal">
+                                        Classroom and Desk Number (Optional)
+                                    </label>
+                                    <div className="field has-addons">
+                                        <div className="control is-expanded">
+                                            <input
+                                                className="input is-rounded is-normal"
+                                                type="text"
+                                                placeholder="e.x. 2314"
+                                                name="classroomNumber"
+                                                onChange={handleChange}
+                                                value={
+                                                    state.classroomNumber || ''
+                                                }
+                                            />
+                                        </div>
+                                        <div className="control">
+                                            <input
+                                                className="input is-rounded is-normal"
+                                                type="text"
+                                                placeholder="e.x. 9"
+                                                name="deskNumber"
+                                                onChange={handleChange}
+                                                value={state.deskNumber || ''}
+                                            />
+                                        </div>
+                                    </div>
+                                    {/* <div className="field">
+                                        <label className="label is-normal">
+                                            Desk Number (Optional)
+                                        </label>
+                                    </div> */}
+                                </React.Fragment>
+                            ) : null}
+
                             {
                                 // login type selection buttons
                             }
