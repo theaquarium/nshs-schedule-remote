@@ -236,12 +236,8 @@ export function FlexSettingsCard({
                 <p className="my-2">
                     Automatic login mode will automatically generate you a Zoom
                     link with the password embedded. This is the recommended
-                    method.
-                </p>
-                <p className="my-2">
-                    You can usually find your meeting ID in the email from your
-                    teacher with the meeting information or by copying the 10 or
-                    11 numbers at the end of a Zoom link.
+                    method. However, this may not work on Chromebooks. If you
+                    experience any issues, you should use manual mode.
                 </p>
                 <div className="field">
                     <label className="label is-normal">
@@ -385,9 +381,9 @@ export function FlexSettingsCard({
             <React.Fragment>
                 <p className="my-2">
                     Manual login mode lets you join a Zoom link you already
-                    have. You should probably use Automatic mode except in
-                    special circumstances or if you have issues with Automatic
-                    mode.
+                    have. Automatic mode is recommended because it will
+                    automatically generate a link with the password embedded,
+                    but it may not work on all devices.
                 </p>
                 <div className="field">
                     <label className="label is-normal">Link</label>
@@ -509,7 +505,7 @@ export function FlexSettingsCard({
                                     });
                                 }}
                             >
-                                Automatic (Recommended)
+                                Automatic (Recommended for most)
                             </button>
                             <button
                                 type="button"
@@ -529,7 +525,7 @@ export function FlexSettingsCard({
                                     });
                                 }}
                             >
-                                Manual
+                                Manual (Recommended for Chromebooks)
                             </button>
                         </div>
                     </div>

@@ -356,6 +356,12 @@ export function Help() {
                         </p>
 
                         <p>
+                            However, Automatic mode may not work on all devices.
+                            If you experience any issues, please use Manual
+                            mode.
+                        </p>
+
+                        <p>
                             By default, the schedule assumes that Automatic mode
                             meetings are NPS meetings, but if you would like to
                             use automatic mode to join a meeting outside the NPS
