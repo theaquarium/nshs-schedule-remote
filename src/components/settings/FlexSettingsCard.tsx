@@ -116,33 +116,35 @@ export function FlexSettingsCard({
 
             // Strip non-numbers from meeting ID or parse it if it's a link
             if (name === 'meetingId' && typeof value === 'string') {
+                value = value.toLowerCase();
+
                 setIsAutomaticLinkOpen(false);
                 setAutomaticLink('');
 
-                const linkRegex = /https:\/\/.*zoom.us\/j\/[\d]{9,11}/;
+                const linkRegex = /https:\/\/(?:(.*?)\.)?zoom.us\/j\/([\d]{9,11})/;
 
                 if (linkRegex.test(value)) {
-                    const meetingIdRegex = /(?<=https:\/\/(.)*zoom.us\/j\/)[\d]{9,11}/;
-                    const domainRegex = /(?<=https:\/\/).*(?=.zoom.us\/j\/[\d]{9,11})/;
+                    const matches = value.match(linkRegex);
 
-                    const meetingIdList = value.match(meetingIdRegex);
-                    const domainList = value.match(domainRegex);
+                    if (matches !== null && matches.length > 0) {
+                        const meetingId = matches[2];
+                        if (meetingId) {
+                            currentAutomaticLoginSettings.meetingId = meetingId;
+                        }
 
-                    if (meetingIdList !== null && meetingIdList.length > 0) {
-                        currentAutomaticLoginSettings.meetingId =
-                            meetingIdList[0];
-                    }
-                    if (domainList !== null && domainList.length > 0) {
-                        const domain = domainList[0];
-                        if (domain === 'newton-k12-ma-us') {
-                            currentAutomaticLoginSettings.inNewtonDomain = true;
-                            currentAutomaticLoginSettings.customDomain = '';
+                        const domain = matches[1];
+                        if (domain) {
+                            if (domain === 'newton-k12-ma-us') {
+                                currentAutomaticLoginSettings.inNewtonDomain = true;
+                                currentAutomaticLoginSettings.customDomain = '';
+                            } else {
+                                currentAutomaticLoginSettings.inNewtonDomain = false;
+                                currentAutomaticLoginSettings.customDomain = domain;
+                            }
                         } else {
                             currentAutomaticLoginSettings.inNewtonDomain = false;
-                            currentAutomaticLoginSettings.customDomain = domain;
+                            currentAutomaticLoginSettings.customDomain = '';
                         }
-                    } else {
-                        currentAutomaticLoginSettings.inNewtonDomain = false;
                     }
 
                     setState({
@@ -180,6 +182,7 @@ export function FlexSettingsCard({
             const target = event.target;
 
             let value = target.value;
+            value = value.toLowerCase();
 
             setAutomaticLink(value);
 
@@ -192,29 +195,30 @@ export function FlexSettingsCard({
                           inNewtonDomain: true,
                       };
 
-            const linkRegex = /https:\/\/.*zoom.us\/j\/[\d]{9,11}/;
+            const linkRegex = /https:\/\/(?:(.*?)\.)?zoom.us\/j\/([\d]{9,11})/;
 
             if (linkRegex.test(value)) {
-                const meetingIdRegex = /(?<=https:\/\/(.)*zoom.us\/j\/)[\d]{9,11}/;
-                const domainRegex = /(?<=https:\/\/).*(?=.zoom.us\/j\/[\d]{9,11})/;
+                const matches = value.match(linkRegex);
 
-                const meetingIdList = value.match(meetingIdRegex);
-                const domainList = value.match(domainRegex);
+                if (matches !== null && matches.length > 0) {
+                    const meetingId = matches[2];
+                    if (meetingId) {
+                        automaticLoginSettings.meetingId = meetingId;
+                    }
 
-                if (meetingIdList !== null && meetingIdList.length > 0) {
-                    automaticLoginSettings.meetingId = meetingIdList[0];
-                }
-                if (domainList !== null && domainList.length > 0) {
-                    const domain = domainList[0];
-                    if (domain === 'newton-k12-ma-us') {
-                        automaticLoginSettings.inNewtonDomain = true;
-                        automaticLoginSettings.customDomain = '';
+                    const domain = matches[1];
+                    if (domain) {
+                        if (domain === 'newton-k12-ma-us') {
+                            automaticLoginSettings.inNewtonDomain = true;
+                            automaticLoginSettings.customDomain = '';
+                        } else {
+                            automaticLoginSettings.inNewtonDomain = false;
+                            automaticLoginSettings.customDomain = domain;
+                        }
                     } else {
                         automaticLoginSettings.inNewtonDomain = false;
-                        automaticLoginSettings.customDomain = domain;
+                        automaticLoginSettings.customDomain = '';
                     }
-                } else {
-                    automaticLoginSettings.inNewtonDomain = false;
                 }
 
                 setState({
