@@ -23,6 +23,13 @@ export interface BlockSettings {
     deskNumber?: string;
 }
 
+export interface FlexAvailability {
+    [index: string]: boolean;
+    flex1: boolean;
+    flex2: boolean;
+    flex3: boolean;
+}
+
 export interface FlexSettings {
     id: string;
     nickname: string;
@@ -30,6 +37,7 @@ export interface FlexSettings {
         automatic?: AutomaticLogin;
         manual?: ManualLogin;
     };
+    availability?: FlexAvailability;
 }
 
 export interface FlexBlockInPersonSettings {

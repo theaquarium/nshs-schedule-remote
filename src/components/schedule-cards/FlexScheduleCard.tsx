@@ -26,6 +26,52 @@ export function FlexScheduleCard({
 
     const openLinksDialog = () => {
         const flexLinks = Object.values(flexSettings).map((setting) => {
+            let availableThisBlock;
+
+            switch (block.blockNumber) {
+                case 1:
+                    availableThisBlock =
+                        setting.availability?.flex1 !== undefined
+                            ? setting.availability.flex1
+                            : true;
+                    break;
+                case 2:
+                    availableThisBlock =
+                        setting.availability?.flex2 !== undefined
+                            ? setting.availability.flex2
+                            : true;
+                    break;
+                case 3:
+                    availableThisBlock =
+                        setting.availability?.flex3 !== undefined
+                            ? setting.availability.flex3
+                            : true;
+                    break;
+                default:
+                    availableThisBlock = true;
+                    break;
+            }
+
+            if (!availableThisBlock)
+                return (
+                    <div className="card my-4" key={setting.id}>
+                        <div className="card-content">
+                            <div className="level">
+                                <div className="level-left">
+                                    <div className="is-flex is-flex-direction-column is-justify-content-center">
+                                        <p className="title">
+                                            {setting.nickname}
+                                        </p>
+                                        <p className="subtitle">
+                                            Does not meet today.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                );
+
             return <FlexBlockDialogCard key={setting.id} setting={setting} />;
         });
 

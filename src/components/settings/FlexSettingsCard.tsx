@@ -427,6 +427,34 @@ export function FlexSettingsCard({
         );
     }
 
+    const toggleAvailablity = (event: any) => {
+        const target = event.target;
+        if (!target) return;
+        if (!(target instanceof HTMLElement)) return;
+
+        const meetingNum = target.dataset.meeting;
+        if (!meetingNum) return;
+
+        const availability =
+            state.availability !== undefined
+                ? state.availability
+                : {
+                      flex1: true,
+                      flex2: true,
+                      flex3: true,
+                  };
+
+        availability[meetingNum] =
+            availability[meetingNum] !== undefined
+                ? !availability[meetingNum]
+                : false;
+
+        setState({
+            ...state,
+            availability,
+        });
+    };
+
     return (
         <div className="card my-3">
             <header
@@ -461,6 +489,73 @@ export function FlexSettingsCard({
                             />
                         </div>
                     </div>
+                    <br />
+                    <div className="my-4">
+                        <label className="label is-normal mb-2">
+                            When does this Flex Meeting meet?
+                        </label>
+                        <span>Click on a day to activate it.</span>
+                        <div className="my-4">
+                            <span
+                                className={
+                                    'tag is-medium is-rounded mx-1 ' +
+                                    ((
+                                        state.availability?.flex1 === undefined
+                                            ? true
+                                            : state.availability?.flex1
+                                    )
+                                        ? 'is-link'
+                                        : 'is-black')
+                                }
+                                onClick={toggleAvailablity}
+                                style={{
+                                    cursor: 'pointer',
+                                }}
+                                data-meeting="flex1"
+                            >
+                                Flex 1 (Tuesday)
+                            </span>
+                            <span
+                                className={
+                                    'tag is-medium is-rounded mx-1 ' +
+                                    ((
+                                        state.availability?.flex2 === undefined
+                                            ? true
+                                            : state.availability?.flex2
+                                    )
+                                        ? 'is-link'
+                                        : 'is-black')
+                                }
+                                onClick={toggleAvailablity}
+                                style={{
+                                    cursor: 'pointer',
+                                }}
+                                data-meeting="flex2"
+                            >
+                                Flex 2 (Wednesday)
+                            </span>
+                            <span
+                                className={
+                                    'tag is-medium is-rounded mx-1 ' +
+                                    ((
+                                        state.availability?.flex3 === undefined
+                                            ? true
+                                            : state.availability?.flex3
+                                    )
+                                        ? 'is-link'
+                                        : 'is-black')
+                                }
+                                onClick={toggleAvailablity}
+                                style={{
+                                    cursor: 'pointer',
+                                }}
+                                data-meeting="flex3"
+                            >
+                                Flex 3 (Friday)
+                            </span>
+                        </div>
+                    </div>
+
                     {
                         // login type selection buttons
                     }

@@ -16,6 +16,7 @@ export interface Block {
     isLunch: boolean;
     async: boolean;
     length: string;
+    blockNumber: number;
 }
 
 export interface ScheduleWeek {
@@ -65,6 +66,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: false,
                 async: false,
                 length: '80 minutes',
+                blockNumber: 1,
             },
             {
                 name: 'B Block',
@@ -74,6 +76,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: true,
                 async: false,
                 length: '80 minutes',
+                blockNumber: 1,
             },
             {
                 name: 'C Block',
@@ -83,6 +86,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: false,
                 async: false,
                 length: '80 minutes',
+                blockNumber: 1,
             },
             {
                 name: 'D Block',
@@ -92,6 +96,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: false,
                 async: false,
                 length: '80 minutes',
+                blockNumber: 1,
             },
         ],
         tuesday: [
@@ -103,6 +108,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: false,
                 async: false,
                 length: '80 minutes',
+                blockNumber: 1,
             },
             {
                 name: 'F Block',
@@ -112,6 +118,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: true,
                 async: false,
                 length: '80 minutes',
+                blockNumber: 1,
             },
             {
                 name: 'G Block',
@@ -121,6 +128,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: false,
                 async: false,
                 length: '80 minutes',
+                blockNumber: 1,
             },
             {
                 name: 'Community',
@@ -130,6 +138,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: false,
                 async: false,
                 length: '30 minutes',
+                blockNumber: 1,
             },
             {
                 name: 'Flex Block',
@@ -139,6 +148,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: false,
                 async: false,
                 length: '45 minutes',
+                blockNumber: 1,
             },
         ],
         wednesday: [
@@ -150,6 +160,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: false,
                 async: false,
                 length: '35 minutes',
+                blockNumber: 2,
             },
             {
                 name: 'B Block',
@@ -159,6 +170,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: false,
                 async: false,
                 length: '35 minutes',
+                blockNumber: 2,
             },
             {
                 name: 'C Block',
@@ -168,6 +180,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: false,
                 async: false,
                 length: '35 minutes',
+                blockNumber: 2,
             },
             {
                 name: 'Flex',
@@ -177,6 +190,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: false,
                 async: false,
                 length: '50 minutes',
+                blockNumber: 2,
             },
             {
                 name: 'Lunch',
@@ -186,6 +200,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: false,
                 async: false,
                 length: '35 minutes',
+                blockNumber: 2,
             },
             {
                 name: 'D Block',
@@ -195,6 +210,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: false,
                 async: true,
                 length: '35 minutes',
+                blockNumber: 2,
             },
             {
                 name: 'E Block',
@@ -204,6 +220,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: false,
                 async: true,
                 length: '35 minutes',
+                blockNumber: 2,
             },
             {
                 name: 'F Block',
@@ -213,6 +230,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: false,
                 async: true,
                 length: '25 minutes',
+                blockNumber: 2,
             },
             {
                 name: 'G Block',
@@ -222,6 +240,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: false,
                 async: true,
                 length: '35 minutes',
+                blockNumber: 2,
             },
         ],
         thursday: [
@@ -233,6 +252,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: false,
                 async: false,
                 length: '80 minutes',
+                blockNumber: 3,
             },
             {
                 name: 'B Block',
@@ -242,6 +262,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: true,
                 async: false,
                 length: '80 minutes',
+                blockNumber: 3,
             },
             {
                 name: 'C Block',
@@ -251,6 +272,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: false,
                 async: false,
                 length: '80 minutes',
+                blockNumber: 3,
             },
             {
                 name: 'D Block',
@@ -260,6 +282,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: false,
                 async: false,
                 length: '80 minutes',
+                blockNumber: 3,
             },
         ],
         friday: [
@@ -271,6 +294,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: false,
                 async: false,
                 length: '80 minutes',
+                blockNumber: 3,
             },
             {
                 name: 'F Block',
@@ -280,6 +304,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: true,
                 async: false,
                 length: '80 minutes',
+                blockNumber: 3,
             },
             {
                 name: 'G Block',
@@ -289,6 +314,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: false,
                 async: false,
                 length: '80 minutes',
+                blockNumber: 3,
             },
             {
                 name: 'Flex Block',
@@ -298,6 +324,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: false,
                 async: false,
                 length: '80 minutes',
+                blockNumber: 3,
             },
         ],
     },
@@ -311,6 +338,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: false,
                 async: false,
                 length: '80 minutes',
+                blockNumber: 1,
             },
             {
                 name: 'B Block',
@@ -320,6 +348,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: true,
                 async: false,
                 length: '80 minutes',
+                blockNumber: 1,
             },
             {
                 name: 'C Block',
@@ -329,6 +358,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: false,
                 async: false,
                 length: '80 minutes',
+                blockNumber: 1,
             },
             {
                 name: 'D Block',
@@ -338,6 +368,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: false,
                 async: false,
                 length: '80 minutes',
+                blockNumber: 1,
             },
         ],
         tuesday: [
@@ -349,6 +380,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: false,
                 async: false,
                 length: '80 minutes',
+                blockNumber: 1,
             },
             {
                 name: 'F Block',
@@ -358,6 +390,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: true,
                 async: false,
                 length: '80 minutes',
+                blockNumber: 1,
             },
             {
                 name: 'G Block',
@@ -367,6 +400,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: false,
                 async: false,
                 length: '80 minutes',
+                blockNumber: 1,
             },
             {
                 name: 'Community',
@@ -376,6 +410,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: false,
                 async: false,
                 length: '80 minutes',
+                blockNumber: 1,
             },
             {
                 name: 'Flex Block',
@@ -385,6 +420,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: false,
                 async: false,
                 length: '80 minutes',
+                blockNumber: 1,
             },
         ],
         wednesday: [
@@ -396,6 +432,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: false,
                 async: true,
                 length: '35 minutes',
+                blockNumber: 2,
             },
             {
                 name: 'B Block',
@@ -405,6 +442,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: false,
                 async: true,
                 length: '35 minutes',
+                blockNumber: 2,
             },
             {
                 name: 'C Block',
@@ -414,6 +452,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: false,
                 async: true,
                 length: '35 minutes',
+                blockNumber: 2,
             },
             {
                 name: 'Flex',
@@ -423,6 +462,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: false,
                 async: false,
                 length: '50 minutes',
+                blockNumber: 2,
             },
             {
                 name: 'Lunch',
@@ -432,6 +472,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: false,
                 async: false,
                 length: '35 minutes',
+                blockNumber: 2,
             },
             {
                 name: 'D Block',
@@ -441,6 +482,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: false,
                 async: false,
                 length: '35 minutes',
+                blockNumber: 2,
             },
             {
                 name: 'E Block',
@@ -450,6 +492,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: false,
                 async: false,
                 length: '35 minutes',
+                blockNumber: 2,
             },
             {
                 name: 'F Block',
@@ -459,6 +502,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: false,
                 async: false,
                 length: '35 minutes',
+                blockNumber: 2,
             },
             {
                 name: 'G Block',
@@ -468,6 +512,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: false,
                 async: false,
                 length: '35 minutes',
+                blockNumber: 2,
             },
         ],
         thursday: [
@@ -479,6 +524,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: false,
                 async: false,
                 length: '80 minutes',
+                blockNumber: 3,
             },
             {
                 name: 'B Block',
@@ -488,6 +534,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: true,
                 async: false,
                 length: '80 minutes',
+                blockNumber: 3,
             },
             {
                 name: 'C Block',
@@ -497,6 +544,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: false,
                 async: false,
                 length: '80 minutes',
+                blockNumber: 3,
             },
             {
                 name: 'D Block',
@@ -506,6 +554,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: false,
                 async: false,
                 length: '80 minutes',
+                blockNumber: 3,
             },
         ],
         friday: [
@@ -517,6 +566,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: false,
                 async: false,
                 length: '80 minutes',
+                blockNumber: 3,
             },
             {
                 name: 'F Block',
@@ -526,6 +576,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: true,
                 async: false,
                 length: '80 minutes',
+                blockNumber: 3,
             },
             {
                 name: 'G Block',
@@ -535,6 +586,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: false,
                 async: false,
                 length: '80 minutes',
+                blockNumber: 3,
             },
             {
                 name: 'Flex Block',
@@ -544,6 +596,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: false,
                 async: false,
                 length: '80 minutes',
+                blockNumber: 3,
             },
         ],
     },
