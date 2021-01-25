@@ -27,8 +27,8 @@ export function AppStateUpdater(props: any) {
             // Run the actual update
             setAppState((appState: AppStateType) => {
                 // Update app state
-                const now = new Date(2021, 0, 25, 13, 25, 15);
-                // const now = new Date();
+                // const now = new Date(2021, 0, 25, 13, 25, 15);
+                const now = new Date();
 
                 const stateChanges: Partial<AppStateType> = {
                     ...appState,
