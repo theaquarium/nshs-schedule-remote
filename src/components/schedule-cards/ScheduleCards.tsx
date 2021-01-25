@@ -27,7 +27,9 @@ export function ScheduleCards() {
     }
 
     // Don't render blocks as past if it's not on today's page
-    let isPast = weekday === appState.value.weekday;
+    let isPast =
+        weekday === appState.value.weekday &&
+        weeknum === appState.value.weekNum;
 
     const cards = day.map((block) => {
         let blockSettings = settings.value.blockSettings[block.blockType];
@@ -57,6 +59,7 @@ export function ScheduleCards() {
                     flexSettings={settings.value.flexSettings}
                     isActive={
                         block.blockType === appState.value.activeBlock &&
+                        weeknum === appState.value.weekNum &&
                         weekday === appState.value.weekday
                     }
                     isPast={isPast}
@@ -75,6 +78,7 @@ export function ScheduleCards() {
                 blockSettings={blockSettings}
                 isActive={
                     block.blockType === appState.value.activeBlock &&
+                    weeknum === appState.value.weekNum &&
                     weekday === appState.value.weekday
                 }
                 activeLunchBlock={
