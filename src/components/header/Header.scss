@@ -1,3 +1,13 @@
+.page-header {
+    position: -webkit-sticky;
+    position: sticky;
+
+    top: 0;
+
+    z-index: 9999;
+    background: #000000;
+}
+
 .settings-button-container {
     position: relative;
 }

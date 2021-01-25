@@ -62,52 +62,6 @@ export function Help() {
                             the current block.
                         </p>
 
-                        <h4 id="week-buttons">Week Buttons</h4>
-
-                        <p>
-                            The only thing that you have to select manually is
-                            the current schedule week. You can select the
-                            current week by using the week buttons at the top of
-                            the screen. Press{' '}
-                            <span
-                                className="has-text-weight-bold"
-                                style={{
-                                    whiteSpace: 'nowrap',
-                                }}
-                            >
-                                Week 1
-                            </span>{' '}
-                            to set week 1 as the current week and press{' '}
-                            <span
-                                className="has-text-weight-bold"
-                                style={{
-                                    whiteSpace: 'nowrap',
-                                }}
-                            >
-                                Week 2
-                            </span>{' '}
-                            to set week 2 as the current week.
-                        </p>
-
-                        <p>
-                            The schedule will try to guess the current week
-                            number based on what you've set in the past.
-                            However, this will not always be accurate. At the
-                            start of every week, please check the week buttons
-                            to ensure that they are set correctly. If the
-                            current week number is a guess, the schedule will
-                            show the phrase&nbsp;
-                            <span
-                                className="has-text-weight-bold has-text-grey-light"
-                                style={{
-                                    whiteSpace: 'nowrap',
-                                }}
-                            >
-                                What week is it?
-                            </span>
-                            &nbsp;to prompt you to set the week.
-                        </p>
-
                         <h4 id="schedule-banner">Schedule Banner</h4>
 
                         <p>

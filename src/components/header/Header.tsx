@@ -11,15 +11,7 @@ export function Header() {
     const appState = useAppState();
 
     return (
-        <header
-            className="level mb-0"
-            style={{
-                position: 'sticky',
-                top: 0,
-                zIndex: 9999,
-                background: '#000000',
-            }}
-        >
+        <header className="page-header level mb-0">
             <div
                 className="p-4 level-left level my-0"
                 style={{

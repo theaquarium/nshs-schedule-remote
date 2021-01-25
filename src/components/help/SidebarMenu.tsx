@@ -73,12 +73,20 @@ export function SidebarMenu() {
             if (topElement) {
                 setActiveElement(topElement.id);
 
-                // Scroll to menu item
-                const element = document.getElementById(
-                    `link-to-${topElement.id}`,
-                );
+                setTimeout(() => {
+                    // Scroll to menu item
+                    const aside = document.getElementsByClassName(
+                        'sticky-aside',
+                    )[0];
 
-                if (element) element.scrollIntoView({ block: 'nearest' });
+                    const element = topElement
+                        ? document.getElementById(`link-to-${topElement.id}`)
+                        : null;
+
+                    if (element && aside) {
+                        aside.scrollTop = element.offsetTop;
+                    }
+                }, 500);
             }
         };
 
@@ -110,11 +118,6 @@ export function SidebarMenu() {
                             Using the Schedule
                         </SidebarLink>
                         <ul>
-                            <li>
-                                <SidebarLink linkedId="week-buttons">
-                                    Week Buttons
-                                </SidebarLink>
-                            </li>
                             <li>
                                 <SidebarLink linkedId="schedule-banner">
                                     Schedule Banner
