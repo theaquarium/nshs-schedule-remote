@@ -1,10 +1,12 @@
 import React, { ChangeEvent } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import { useSettings } from '../../state/SettingsContext';
 import { InPersonButton } from './InPersonButton';
 
 export function MainSettings() {
     const settings = useSettings();
+    const history = useHistory();
     const setSettings = settings.setSettings;
 
     const [state, setState] = React.useState({
@@ -14,6 +16,7 @@ export function MainSettings() {
         inPersonDays: settings.value.inPersonDays,
         showClock: settings.value.showClock,
         use24HourClock: settings.value.use24HourClock,
+        theme: settings.value.theme,
     });
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -60,6 +63,52 @@ export function MainSettings() {
                         value={state.userNickname}
                     />
                 </div>
+            </div>
+            <br />
+            <div className="my-4">
+                <span className="is-size-5 mr-3">Color Theme</span>
+                <span
+                    className={
+                        'tag is-medium is-rounded mx-1 ' +
+                        (state.theme === 'dark' ? 'is-link' : 'is-dark')
+                    }
+                    onClick={() => {
+                        setState({
+                            ...state,
+                            theme: 'dark',
+                        });
+                        // Yeah, this ain't great
+                        setTimeout(() => {
+                            history.go(0);
+                        }, 750);
+                    }}
+                    style={{
+                        cursor: 'pointer',
+                    }}
+                >
+                    Dark
+                </span>
+                <span
+                    className={
+                        'tag is-medium is-rounded mx-1 ' +
+                        (state.theme === 'light' ? 'is-link' : 'is-dark')
+                    }
+                    onClick={() => {
+                        setState({
+                            ...state,
+                            theme: 'light',
+                        });
+                        // Yeah, this ain't great
+                        setTimeout(() => {
+                            history.go(0);
+                        }, 750);
+                    }}
+                    style={{
+                        cursor: 'pointer',
+                    }}
+                >
+                    Light
+                </span>
             </div>
             <br />
             <div className="field">

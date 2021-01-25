@@ -5,7 +5,14 @@
     top: 0;
 
     z-index: 9999;
+}
+
+html[data-theme='dark'] .page-header {
     background: #000000;
+}
+
+html[data-theme='light'] .page-header {
+    background: #ffffff;
 }
 
 .settings-button-container {

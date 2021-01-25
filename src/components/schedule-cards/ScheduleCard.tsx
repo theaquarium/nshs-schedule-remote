@@ -1,6 +1,6 @@
 import React from 'react';
 import { Block, LunchBlocks } from '../../schedule';
-import { BlockSettings } from '../../state/SettingsContext';
+import { BlockSettings, useSettings } from '../../state/SettingsContext';
 import {
     copyTextToClipboard,
     generateNormalLink,
@@ -24,6 +24,7 @@ export function ScheduleCard({
     inPerson: boolean;
 }) {
     const dialogState = useDialog();
+    const settings = useSettings();
 
     let loginLink: string | undefined;
     let password: string | undefined;
@@ -44,10 +45,18 @@ export function ScheduleCard({
 
     let cardColor;
 
-    if (isActive) {
-        cardColor = '#2a9fd6';
-    } else if (isPast) {
-        cardColor = '#2a2a2a';
+    if (settings.value.theme === 'dark') {
+        if (isActive) {
+            cardColor = '#2a9fd6';
+        } else if (isPast) {
+            cardColor = '#2a2a2a';
+        }
+    } else {
+        if (isActive) {
+            cardColor = '#00D1B2';
+        } else if (isPast) {
+            cardColor = '#d7d7d7';
+        }
     }
 
     const openPasswordDialog = () => {
@@ -210,7 +219,10 @@ export function ScheduleCard({
                                         style={{
                                             background:
                                                 activeLunchBlock === 0
-                                                    ? '#237fa9'
+                                                    ? settings.value.theme ===
+                                                      'dark'
+                                                        ? '#237fa9'
+                                                        : '#00ab90'
                                                     : cardColor,
                                         }}
                                     >
@@ -232,7 +244,10 @@ export function ScheduleCard({
                                         style={{
                                             background:
                                                 activeLunchBlock === 1
-                                                    ? '#237fa9'
+                                                    ? settings.value.theme ===
+                                                      'dark'
+                                                        ? '#237fa9'
+                                                        : '#00ab90'
                                                     : cardColor,
                                         }}
                                     >
@@ -254,7 +269,10 @@ export function ScheduleCard({
                                         style={{
                                             background:
                                                 activeLunchBlock === 2
-                                                    ? '#237fa9'
+                                                    ? settings.value.theme ===
+                                                      'dark'
+                                                        ? '#237fa9'
+                                                        : '#00ab90'
                                                     : cardColor,
                                         }}
                                     >

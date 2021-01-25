@@ -1,6 +1,6 @@
 import React from 'react';
 import { Block, LunchBlocks } from '../../schedule';
-import { BlockSettings } from '../../state/SettingsContext';
+import { BlockSettings, useSettings } from '../../state/SettingsContext';
 import {
     copyTextToClipboard,
     generateNormalLink,
@@ -22,6 +22,7 @@ export function ClassBanner({
     inPerson: boolean;
 }) {
     const dialogState = useDialog();
+    const settings = useSettings();
 
     let loginLink: string | undefined;
     let password: string | undefined;
@@ -188,10 +189,21 @@ export function ClassBanner({
                         <div className="columns is-vcentered">
                             <div className="column">
                                 <div
-                                    className="notification"
+                                    className={
+                                        'notification' +
+                                        (settings.value.theme === 'light'
+                                            ? ' has-text-dark'
+                                            : '')
+                                    }
                                     style={
                                         activeLunchBlock === 0
-                                            ? { background: '#237fa9' }
+                                            ? {
+                                                  background:
+                                                      settings.value.theme ===
+                                                      'dark'
+                                                          ? '#237fa9'
+                                                          : '#00ab90',
+                                              }
                                             : {}
                                     }
                                 >
@@ -209,10 +221,21 @@ export function ClassBanner({
                             </div>
                             <div className="column">
                                 <div
-                                    className="notification"
+                                    className={
+                                        'notification' +
+                                        (settings.value.theme === 'light'
+                                            ? ' has-text-dark'
+                                            : '')
+                                    }
                                     style={
                                         activeLunchBlock === 1
-                                            ? { background: '#237fa9' }
+                                            ? {
+                                                  background:
+                                                      settings.value.theme ===
+                                                      'dark'
+                                                          ? '#237fa9'
+                                                          : '#00ab90',
+                                              }
                                             : {}
                                     }
                                 >
@@ -230,10 +253,21 @@ export function ClassBanner({
                             </div>
                             <div className="column">
                                 <div
-                                    className="notification"
+                                    className={
+                                        'notification' +
+                                        (settings.value.theme === 'light'
+                                            ? ' has-text-dark'
+                                            : '')
+                                    }
                                     style={
                                         activeLunchBlock === 2
-                                            ? { background: '#237fa9' }
+                                            ? {
+                                                  background:
+                                                      settings.value.theme ===
+                                                      'dark'
+                                                          ? '#237fa9'
+                                                          : '#00ab90',
+                                              }
                                             : {}
                                     }
                                 >

@@ -1,0 +1,17 @@
+html,
+body {
+    margin: 0;
+}
+
+.theme-loader {
+    width: 100%;
+    height: 100vh;
+
+    background: #000;
+}
+
+@media (prefers-color-scheme: light) {
+    .theme-loader {
+        background: #fff;
+    }
+}

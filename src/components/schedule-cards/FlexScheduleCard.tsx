@@ -3,6 +3,7 @@ import { Block } from '../../schedule';
 import {
     FlexBlockInPersonSettings,
     FlexSettings,
+    useSettings,
 } from '../../state/SettingsContext';
 import { useDialog } from '../dialog/Dialog';
 import { FlexBlockDialogCard } from '../dialog/FlexBlockDialogCard';
@@ -23,6 +24,7 @@ export function FlexScheduleCard({
     flexBlockInPersonSettings?: FlexBlockInPersonSettings;
 }) {
     const dialogState = useDialog();
+    const settings = useSettings();
 
     const openLinksDialog = () => {
         const flexLinks = Object.values(flexSettings).map((setting) => {
@@ -107,10 +109,18 @@ export function FlexScheduleCard({
 
     let cardColor;
 
-    if (isActive) {
-        cardColor = '#2a9fd6';
-    } else if (isPast) {
-        cardColor = '#2a2a2a';
+    if (settings.value.theme === 'dark') {
+        if (isActive) {
+            cardColor = '#2a9fd6';
+        } else if (isPast) {
+            cardColor = '#2a2a2a';
+        }
+    } else {
+        if (isActive) {
+            cardColor = '#00D1B2';
+        } else if (isPast) {
+            cardColor = '#d7d7d7';
+        }
     }
 
     return (

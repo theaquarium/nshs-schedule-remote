@@ -46,6 +46,7 @@ export interface FlexBlockInPersonSettings {
 
 export interface SettingsType {
     ready: boolean;
+    theme: 'dark' | 'light';
     userNickname: string;
     showQuotes: boolean;
     showClock: boolean;
@@ -85,6 +86,7 @@ export interface SettingsContextType {
 
 export const defaultState: SettingsType = {
     ready: false,
+    theme: 'dark',
     userNickname: '',
     showQuotes: true,
     showClock: true,
@@ -155,8 +157,19 @@ export function SettingsProvider(props: any) {
             // Read state
             const savedSettingsString = window.localStorage.getItem('settings');
             if (savedSettingsString) {
-                const savedSettings = JSON.parse(savedSettingsString);
-                setSettings({ ...defaultState, ...savedSettings, ready: true });
+                let savedSettings;
+
+                try {
+                    savedSettings = JSON.parse(savedSettingsString);
+                } catch (e) {
+                    savedSettings = {};
+                }
+
+                setSettings({
+                    ...defaultState,
+                    ...savedSettings,
+                    ready: true,
+                });
             } else {
                 setSettings({
                     ...defaultState,

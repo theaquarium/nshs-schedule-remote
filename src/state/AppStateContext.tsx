@@ -53,7 +53,14 @@ export function AppStateProvider(props: any) {
             // Read state
             const savedAppStateString = window.localStorage.getItem('appstate');
             if (savedAppStateString) {
-                const savedState = JSON.parse(savedAppStateString);
+                let savedState;
+
+                try {
+                    savedState = JSON.parse(savedAppStateString);
+                } catch (e) {
+                    savedState = {};
+                }
+
                 setAppState({
                     ...defaultState,
                     ...savedState,
