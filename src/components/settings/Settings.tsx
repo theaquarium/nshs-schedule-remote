@@ -1,5 +1,6 @@
 import React from 'react';
-import { IoAdd } from 'react-icons/io5';
+import { IoAdd, IoSave } from 'react-icons/io5';
+import { Link } from 'react-router-dom';
 
 import { v4 as uuidv4 } from 'uuid';
 import { useAppState } from '../../state/AppStateContext';
@@ -56,7 +57,23 @@ export function Settings() {
         <div className="container px-3 my-3">
             {settings.value.ready ? (
                 <React.Fragment>
-                    <h1 className="title">Settings</h1>
+                    <div className="level">
+                        <div className="level-left">
+                            <h1 className="title">Settings</h1>
+                        </div>
+                        <div className="level-right">
+                            <Link
+                                to="/"
+                                className="button is-link is-rounded is-medium is-fullwidth"
+                            >
+                                <span className="icon mr-1">
+                                    <IoSave className="is-size-4" />
+                                </span>
+                                Save Settings
+                            </Link>
+                        </div>
+                    </div>
+
                     <MainSettings />
 
                     <div className="divider mb-2">Class Blocks</div>
@@ -90,10 +107,20 @@ export function Settings() {
                         Add New Flex Meeting
                     </button>
 
-                    <div className="divider">Save/Load Settings</div>
+                    <div className="divider">Download/Upload Settings</div>
                     <SerializationSettings />
                     <div className="divider">Reset</div>
                     <ResetButtons />
+                    <div className="divider">Save Settings</div>
+                    <Link
+                        to="/"
+                        className="button is-link is-rounded is-medium is-fullwidth"
+                    >
+                        <span className="icon mr-1">
+                            <IoSave className="is-size-4" />
+                        </span>
+                        Save Settings
+                    </Link>
                 </React.Fragment>
             ) : (
                 <h1 className="has-text-centered">Loading...</h1>

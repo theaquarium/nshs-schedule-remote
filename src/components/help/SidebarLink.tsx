@@ -27,6 +27,7 @@ export function SidebarLink({
 
     return (
         <HashLink
+            id={`link-to-${linkedId}`}
             to={'#' + linkedId}
             children={children}
             smooth

@@ -160,10 +160,6 @@ export function FlexSettingsCard({
                 value = value.replace(/\D/g, '');
             }
 
-            if (typeof value === 'string') {
-                value = value.trim();
-            }
-
             setState({
                 ...state,
                 login: {
@@ -360,10 +356,6 @@ export function FlexSettingsCard({
                           link: '',
                           password: '',
                       };
-
-            if (typeof value === 'string') {
-                value = value.trim();
-            }
 
             setState({
                 ...state,

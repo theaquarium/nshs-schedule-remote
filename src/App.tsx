@@ -21,33 +21,6 @@ import { Help } from './components/help/Help';
 
 export default function App() {
     const appState = useAppState();
-    let weekdayName;
-
-    // Redirect away from /
-    switch (appState.value.weekday) {
-        case 0:
-            weekdayName = 'weekend';
-            break;
-        case 1:
-            weekdayName = 'monday';
-            break;
-        case 2:
-            weekdayName = 'tuesday';
-            break;
-        case 3:
-            weekdayName = 'wednesday';
-            break;
-        case 4:
-            weekdayName = 'thursday';
-            break;
-        case 5:
-            weekdayName = 'friday';
-            break;
-        case 6:
-            weekdayName = 'weekend';
-            break;
-    }
-
     return (
         <Router>
             <AppStateUpdater>
@@ -67,36 +40,20 @@ export default function App() {
                                 <Dialog>
                                     <Header />
 
-                                    {weekdayName ? (
-                                        <Switch>
-                                            <Route path="/help">
-                                                <Help />
-                                            </Route>
-                                            <Route path="/privacypolicy">
-                                                <PrivacyPolicy />
-                                            </Route>
-                                            <Route path="/settings">
-                                                <Settings />
-                                            </Route>
-                                            <Route
-                                                path={[
-                                                    '/monday',
-                                                    '/tuesday',
-                                                    '/wednesday',
-                                                    '/thursday',
-                                                    '/friday',
-                                                    '/weekend',
-                                                ]}
-                                            >
-                                                <Schedule />
-                                            </Route>
-                                            <Redirect to={`/${weekdayName}`} />
-                                        </Switch>
-                                    ) : (
-                                        <h1 className="title has-text-centered">
-                                            Loading...
-                                        </h1>
-                                    )}
+                                    <Switch>
+                                        <Route path="/help">
+                                            <Help />
+                                        </Route>
+                                        <Route path="/privacypolicy">
+                                            <PrivacyPolicy />
+                                        </Route>
+                                        <Route path="/settings">
+                                            <Settings />
+                                        </Route>
+                                        <Route>
+                                            <Schedule />
+                                        </Route>
+                                    </Switch>
                                     <Footer />
                                 </Dialog>
                             </Route>

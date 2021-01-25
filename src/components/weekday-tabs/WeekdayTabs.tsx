@@ -1,20 +1,15 @@
 import React from 'react';
 import { IoHomeOutline, IoPersonOutline } from 'react-icons/io5';
-import { Link, Route } from 'react-router-dom';
+import { Link, Route, useRouteMatch } from 'react-router-dom';
 
 import { useAppState } from '../../state/AppStateContext';
 import { useSettings } from '../../state/SettingsContext';
 
-function ListItemLink({ to, ...rest }: any) {
+function ListItemLink({ to, currentWeekday, currentWeeknum, ...rest }: any) {
     return (
-        <Route
-            path={to}
-            children={({ match }) => (
-                <li className={match ? 'is-active' : ''}>
-                    <Link to={to} replace {...rest} />
-                </li>
-            )}
-        />
+        <li className={to === currentWeekday ? 'is-active' : ''}>
+            <Link to={`/${currentWeeknum}/${to}`} replace {...rest} />
+        </li>
     );
 }
 
@@ -22,20 +17,39 @@ export function WeekdayTabs() {
     const appState = useAppState();
     const settings = useSettings();
 
-    const weekNum = appState.value.weekNum;
+    const routeMatch = useRouteMatch<{ weeknum: string; weekday: string }>(
+        '/:weeknum/:weekday',
+    );
+
+    const backupWeeknum =
+        appState.value.weekNum !== -1
+            ? appState.value.weekNum === 0
+                ? 'w1'
+                : 'w2'
+            : 'w1';
+    const weeknum = routeMatch?.params?.weeknum || backupWeeknum;
+    const weekday = routeMatch?.params?.weekday;
+
+    // I'm good at variable names shh
+    const weekNumber = weeknum === 'w1' ? 0 : 1;
     const weekInPersonSettings =
-        weekNum !== undefined &&
+        (routeMatch?.params?.weeknum === 'w1' ||
+            routeMatch?.params?.weeknum === 'w2') &&
         settings.value.inPerson &&
         settings.value.inPersonDays
-            ? settings.value.inPersonDays[weekNum]
+            ? settings.value.inPersonDays[weekNumber]
             : undefined;
 
     return (
-        <div className="tabs is-centered is-fullwidth">
+        <div className="tabs is-centered is-fullwidth is-boxed">
             <ul>
-                <ListItemLink to="/monday">
-                    {settings.value.inPerson ? (
-                        weekInPersonSettings && weekInPersonSettings.monday ? (
+                <ListItemLink
+                    to="monday"
+                    currentWeeknum={weeknum}
+                    currentWeekday={weekday}
+                >
+                    {settings.value.inPerson && weekInPersonSettings ? (
+                        weekInPersonSettings.monday ? (
                             <span className="icon is-size-4">
                                 <IoPersonOutline />
                             </span>
@@ -48,9 +62,13 @@ export function WeekdayTabs() {
                     Monday
                     {appState.value.weekday === 1 ? ' (Today)' : ''}
                 </ListItemLink>
-                <ListItemLink to="/tuesday">
-                    {settings.value.inPerson ? (
-                        weekInPersonSettings && weekInPersonSettings.tuesday ? (
+                <ListItemLink
+                    to="tuesday"
+                    currentWeeknum={weeknum}
+                    currentWeekday={weekday}
+                >
+                    {settings.value.inPerson && weekInPersonSettings ? (
+                        weekInPersonSettings.tuesday ? (
                             <span className="icon is-size-4">
                                 <IoPersonOutline />
                             </span>
@@ -63,9 +81,12 @@ export function WeekdayTabs() {
                     Tuesday
                     {appState.value.weekday === 2 ? ' (Today)' : ''}
                 </ListItemLink>
-                <ListItemLink to="/wednesday">
-                    {settings.value.inPerson ? (
-                        weekInPersonSettings &&
+                <ListItemLink
+                    to="wednesday"
+                    currentWeeknum={weeknum}
+                    currentWeekday={weekday}
+                >
+                    {settings.value.inPerson && weekInPersonSettings ? (
                         weekInPersonSettings.wednesday ? (
                             <span className="icon is-size-4">
                                 <IoPersonOutline />
@@ -79,9 +100,12 @@ export function WeekdayTabs() {
                     Wednesday
                     {appState.value.weekday === 3 ? ' (Today)' : ''}
                 </ListItemLink>
-                <ListItemLink to="/thursday">
-                    {settings.value.inPerson ? (
-                        weekInPersonSettings &&
+                <ListItemLink
+                    to="thursday"
+                    currentWeeknum={weeknum}
+                    currentWeekday={weekday}
+                >
+                    {settings.value.inPerson && weekInPersonSettings ? (
                         weekInPersonSettings.thursday ? (
                             <span className="icon is-size-4">
                                 <IoPersonOutline />
@@ -95,9 +119,13 @@ export function WeekdayTabs() {
                     Thursday
                     {appState.value.weekday === 4 ? ' (Today)' : ''}
                 </ListItemLink>
-                <ListItemLink to="/friday">
-                    {settings.value.inPerson ? (
-                        weekInPersonSettings && weekInPersonSettings.friday ? (
+                <ListItemLink
+                    to="friday"
+                    currentWeeknum={weeknum}
+                    currentWeekday={weekday}
+                >
+                    {settings.value.inPerson && weekInPersonSettings ? (
+                        weekInPersonSettings.friday ? (
                             <span className="icon is-size-4">
                                 <IoPersonOutline />
                             </span>

@@ -74,7 +74,7 @@ export function weekdayNameToNum(weekday?: string): number | undefined {
 export function weekdayNumToName(weekday?: number): string | undefined {
     switch (weekday) {
         case 0:
-            return 'sunday';
+            return 'monday';
         case 1:
             return 'monday';
         case 2:
@@ -86,7 +86,7 @@ export function weekdayNumToName(weekday?: number): string | undefined {
         case 5:
             return 'friday';
         case 6:
-            return 'saturday';
+            return 'monday';
         default:
             return;
     }

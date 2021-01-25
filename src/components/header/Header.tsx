@@ -1,16 +1,25 @@
 import React from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
 import { IoCalendar, IoCog, IoHelp } from 'react-icons/io5';
-import { WeekButtons } from '../week-buttons/WeekButtons';
+// import { WeekButtons } from '../week-buttons/WeekButtons';
 import { InspirationalQuotes } from '../inspirational-quotes/InspirationalQuotes';
 import './Header.scss';
 import { useAppState } from '../../state/AppStateContext';
+import { Clock } from '../clock/Clock';
 
 export function Header() {
     const appState = useAppState();
 
     return (
-        <header className="level mb-0">
+        <header
+            className="level mb-0"
+            style={{
+                position: 'sticky',
+                top: 0,
+                zIndex: 9999,
+                background: '#000000',
+            }}
+        >
             <div
                 className="p-4 level-left level my-0"
                 style={{
@@ -18,15 +27,30 @@ export function Header() {
                 }}
             >
                 <div className="level-left">
-                    <Link
-                        to="/"
-                        className="button is-rounded is-medium has-text-weight-bold is-fullwidth"
-                    >
-                        <span className="icon mr-1">
-                            <IoCalendar />
-                        </span>
-                        NSHS Schedule
-                    </Link>
+                    <Switch>
+                        <Route path={['/', '/:weeknum/:weekday']} exact>
+                            <Link
+                                to="/"
+                                className="button is-rounded is-link is-medium has-text-weight-bold is-fullwidth"
+                            >
+                                <span className="icon mr-1">
+                                    <IoCalendar className="is-size-4" />
+                                </span>
+                                NSHS Schedule
+                            </Link>
+                        </Route>
+                        <Route>
+                            <Link
+                                to="/"
+                                className="button is-rounded is-link is-outlined is-medium has-text-weight-bold is-fullwidth"
+                            >
+                                <span className="icon mr-1">
+                                    <IoCalendar className="is-size-4" />
+                                </span>
+                                NSHS Schedule
+                            </Link>
+                        </Route>
+                    </Switch>
                 </div>
                 <div
                     className="level-right is-flex is-justify-content-center"
@@ -43,24 +67,20 @@ export function Header() {
                     flexShrink: 1,
                 }}
             >
-                <div
-                    className="level-left my-3"
-                    style={{
-                        flexShrink: 1,
-                    }}
-                >
-                    <WeekButtons />
+                <div className="level-item">
+                    <Clock />
                 </div>
                 <div className="level-item">
                     <Switch>
                         <Route path="/help">
                             <Link
-                                to="/"
+                                to="/help"
                                 className="button is-link is-rounded is-medium is-fullwidth"
                             >
-                                <span className="icon">
+                                <span className="icon mr-1">
                                     <IoHelp className="is-size-4" />
                                 </span>
+                                Help
                             </Link>
                         </Route>
                         <Route path="/">
@@ -68,22 +88,23 @@ export function Header() {
                                 to="/help"
                                 className="button is-link is-outlined is-rounded is-medium is-fullwidth"
                             >
-                                <span className="icon">
+                                <span className="icon mr-1">
                                     <IoHelp className="is-size-4" />
                                 </span>
+                                Help
                             </Link>
                         </Route>
                     </Switch>
                 </div>
-                <div className="level-right settings-button-container">
+                <div className="level-item settings-button-container">
                     <Switch>
                         <Route path="/settings">
                             <Link
-                                to="/"
+                                to="/settings"
                                 className="button is-link is-rounded is-medium is-fullwidth"
                             >
                                 <span className="icon mr-1">
-                                    <IoCog />
+                                    <IoCog className="is-size-4" />
                                 </span>
                                 Settings
                             </Link>
@@ -94,7 +115,7 @@ export function Header() {
                                 className="button is-link is-outlined is-rounded is-medium is-fullwidth"
                             >
                                 <span className="icon mr-1">
-                                    <IoCog />
+                                    <IoCog className="is-size-4" />
                                 </span>
                                 Settings
                             </Link>

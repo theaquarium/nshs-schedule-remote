@@ -72,8 +72,18 @@ export function SidebarMenu() {
 
             if (topElement) {
                 setActiveElement(topElement.id);
+
+                // Scroll to menu item
+                const element = document.getElementById(
+                    `link-to-${topElement.id}`,
+                );
+
+                if (element) element.scrollIntoView({ block: 'nearest' });
             }
         };
+
+        // Run listener initially
+        listener();
 
         window.addEventListener('scroll', listener);
 
@@ -185,8 +195,8 @@ export function SidebarMenu() {
                         </SidebarLink>
                     </li>
                     <li>
-                        <SidebarLink linkedId="save-load-settings">
-                            Save/Load Settings
+                        <SidebarLink linkedId="download-upload-settings">
+                            Download/Upload Settings
                         </SidebarLink>
                     </li>
                     <li>

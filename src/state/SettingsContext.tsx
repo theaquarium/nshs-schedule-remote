@@ -48,6 +48,8 @@ export interface SettingsType {
     ready: boolean;
     userNickname: string;
     showQuotes: boolean;
+    showClock: boolean;
+    use24HourClock: boolean;
     blockSettings: {
         [index: string]: BlockSettings;
         a: BlockSettings;
@@ -85,6 +87,8 @@ export const defaultState: SettingsType = {
     ready: false,
     userNickname: '',
     showQuotes: true,
+    showClock: true,
+    use24HourClock: false,
     blockSettings: {
         a: {
             hasClass: true,

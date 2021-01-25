@@ -1,6 +1,6 @@
 @media screen and (min-width: 769px), print {
     .sticky-aside {
-        --menu-top-offset: 1.5rem;
+        --menu-top-offset: 5.5rem;
         --menu-bottom-offset: 1.5rem;
 
         position: -webkit-sticky;

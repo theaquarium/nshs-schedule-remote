@@ -12,6 +12,8 @@ export function MainSettings() {
         showQuotes: settings.value.showQuotes,
         inPerson: settings.value.inPerson,
         inPersonDays: settings.value.inPersonDays,
+        showClock: settings.value.showClock,
+        use24HourClock: settings.value.use24HourClock,
     });
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -74,6 +76,37 @@ export function MainSettings() {
                     Show Motivational Phrases?
                 </label>
             </div>
+            <br />
+            <div className="field">
+                <input
+                    id="showClockCheckbox"
+                    type="checkbox"
+                    name="showClock"
+                    className="switch is-normal is-link is-rounded is-medium"
+                    title="Show Clock?"
+                    checked={state.showClock}
+                    onChange={handleChange}
+                />
+                <label htmlFor="showClockCheckbox">Show Clock?</label>
+            </div>
+            {state.showClock ? (
+                <div className="px-5 my-5">
+                    <div className="field">
+                        <input
+                            id="use24HourClockCheckbox"
+                            type="checkbox"
+                            name="use24HourClock"
+                            className="switch is-normal is-link is-rounded is-medium"
+                            title="Use 24 Hour Time?"
+                            checked={state.use24HourClock}
+                            onChange={handleChange}
+                        />
+                        <label htmlFor="use24HourClockCheckbox">
+                            Use 24 Hour Time?
+                        </label>
+                    </div>
+                </div>
+            ) : null}
             <br />
             <div className="field">
                 <input

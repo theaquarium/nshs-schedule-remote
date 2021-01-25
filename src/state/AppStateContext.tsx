@@ -4,10 +4,10 @@ export interface AppStateType {
     isOnboarded: boolean;
     hasViewedSettings: boolean;
     ready: boolean;
+    hasSchoolToday?: boolean;
     weekNum?: number;
-    lastUpdateTime?: number;
-    lastWeekSetTime?: number;
     weekday?: number;
+    lastUpdateTime?: number;
     activeBlock?: string;
     nextBlock?: string;
     activeLunch?: number;

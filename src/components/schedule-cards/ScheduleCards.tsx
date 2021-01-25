@@ -13,10 +13,13 @@ export function ScheduleCards() {
     const appState = useAppState();
     const settings = useSettings();
 
-    const path = useRouteMatch<{ weekday: string }>('/:weekday');
+    const routeMatch = useRouteMatch<{ weeknum: string; weekday: string }>(
+        '/:weeknum/:weekday',
+    );
 
-    const weekday = weekdayNameToNum(path?.params?.weekday);
-    const scheduleWeek = getWeek(appState.value.weekNum);
+    const weeknum = routeMatch?.params?.weeknum === 'w1' ? 0 : 1;
+    const weekday = weekdayNameToNum(routeMatch?.params?.weekday);
+    const scheduleWeek = getWeek(weeknum);
     const day = getDay(scheduleWeek, weekday);
 
     if (!day) {

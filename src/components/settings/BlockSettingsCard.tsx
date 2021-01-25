@@ -171,10 +171,6 @@ export function BlockSettingsCard({
                 value = value.replace(/\D/g, '');
             }
 
-            if (typeof value === 'string') {
-                value = value.trim();
-            }
-
             setState({
                 ...state,
                 login: {
@@ -370,10 +366,6 @@ export function BlockSettingsCard({
                           link: '',
                           password: '',
                       };
-
-            if (typeof value === 'string') {
-                value = value.trim();
-            }
 
             setState({
                 ...state,

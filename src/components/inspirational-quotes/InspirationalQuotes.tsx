@@ -54,6 +54,6 @@ export function InspirationalQuotes() {
     }
 
     return settings.value.showQuotes ? (
-        <span className="has-text-grey-light mx-4 is-size-5">{quoteText}</span>
+        <span className="mx-4 is-size-5">{quoteText}</span>
     ) : null;
 }

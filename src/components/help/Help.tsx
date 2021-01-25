@@ -519,7 +519,9 @@ export function Help() {
                             option on the settings page.
                         </p>
 
-                        <h3 id="save-load-settings">Save/Load Settings</h3>
+                        <h3 id="download-upload-settings">
+                            Download/Upload Settings
+                        </h3>
                         <p>
                             If you need to move your settings to a new device,
                             you can export your current settings to a file and

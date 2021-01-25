@@ -1,20 +1,16 @@
 import React from 'react';
 
-export function EndOfDayBanner({ isWeekend }: any) {
+export function EndOfDayBanner({ isEndOfDay }: any) {
     return (
         <section className="hero is-medium is-bold is-dark">
             <div className="hero-body">
                 <div className="container">
                     <h1 className="title">
-                        {isWeekend
-                            ? "You're all done for the week!"
-                            : "You're all done for today!"}
+                        {isEndOfDay
+                            ? "You're all done for today!"
+                            : 'No school today!'}
                     </h1>
-                    <h2 className="subtitle">
-                        {isWeekend
-                            ? 'Have a great weekend!'
-                            : 'Have a great day!'}
-                    </h2>
+                    <h2 className="subtitle">Have a great day!</h2>
                 </div>
             </div>
         </section>

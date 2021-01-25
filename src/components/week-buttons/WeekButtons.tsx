@@ -1,69 +1,56 @@
 import React from 'react';
-import { isSameWeek } from 'date-fns';
 
 import { useAppState } from '../../state/AppStateContext';
+import { Link, useRouteMatch } from 'react-router-dom';
+import { weekdayNumToName } from '../../utils';
 
 export function WeekButtons() {
     const appState = useAppState();
+    const routeMatch = useRouteMatch<{ weeknum: string; weekday: string }>(
+        '/:weeknum/:weekday',
+    );
+
+    const backupWeekday =
+        appState.value.weekday !== 0 && appState.value.weekday !== 6
+            ? weekdayNumToName(appState.value.weekday)
+            : 'monday';
+    const weeknum = routeMatch?.params?.weeknum;
+    const weekday = routeMatch?.params?.weekday || 'monday';
 
     return (
-        <div className="mx-3 is-flex is-flex-wrap-wrap is-justify-content-center is-align-content-center is-align-items-center">
-            {
-                // If week was last set not this week, tell user it's a guess
-            }
-            {appState.value.lastUpdateTime &&
-            appState.value.lastWeekSetTime &&
-            isSameWeek(
-                appState.value.lastUpdateTime,
-                appState.value.lastWeekSetTime,
-            ) ? (
-                false
-            ) : (
-                <span className="has-text-grey-light mx-2 is-size-5">
-                    What week is it?
-                </span>
-            )}
-
-            <div className="buttons has-addons my-0">
-                <button
-                    type="button"
-                    className={
-                        'button is-rounded is-normal my-0 ' +
-                        (!appState.value.weekNum || appState.value.weekNum === 0
-                            ? 'is-link'
-                            : '')
-                    }
-                    onClick={() => {
-                        const now = Date.now();
-                        appState.setAppStateDirect({
-                            lastWeekSetTime: now,
-                            weekNum: 0,
-                        });
-                        // appState.setLastWeekSetTime(now);
-                        // appState.setWeekNum(0);
-                    }}
-                >
-                    Week 1
-                </button>
-                <button
-                    type="button"
-                    className={
-                        'button is-rounded is-normal my-0 ' +
-                        (appState.value.weekNum === 1 ? 'is-link' : '')
-                    }
-                    onClick={() => {
-                        const now = Date.now();
-                        appState.setAppStateDirect({
-                            lastWeekSetTime: now,
-                            weekNum: 1,
-                        });
-                        // appState.setLastWeekSetTime(now);
-                        // appState.setWeekNum(1);
-                    }}
-                >
-                    Week 2
-                </button>
-            </div>
+        <div className="tabs is-centered is-fullwidth is-boxed">
+            <ul>
+                <li className={weeknum === 'w1' ? 'is-active' : ''}>
+                    <Link to={`/w1/${weekday}`} replace>
+                        <span>
+                            View Week 1
+                            {appState.value.weekNum === 0 ? (
+                                <span>
+                                    {appState.value.weekday === 0 ||
+                                    appState.value.weekday === 6
+                                        ? ' (Starting Monday)'
+                                        : ' (Current)'}
+                                </span>
+                            ) : null}
+                        </span>
+                    </Link>
+                </li>
+                <li className={weeknum === 'w2' ? 'is-active' : ''}>
+                    <Link to={`/w2/${weekday}`} replace>
+                        <span>
+                            View Week 2
+                            {appState.value.weekNum === 1 ? (
+                                <span>
+                                    {appState.value.weekday === 0 ||
+                                    appState.value.weekday === 6
+                                        ? ' (Starting Monday)'
+                                        : ' (Current)'}
+                                </span>
+                            ) : null}
+                        </span>
+                    </Link>
+                </li>
+            </ul>
         </div>
     );
 }

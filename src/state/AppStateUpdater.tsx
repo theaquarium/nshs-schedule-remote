@@ -1,15 +1,10 @@
 import React from 'react';
 import { AppStateType, useAppState } from './AppStateContext';
+import { getCurrentWeekNumber, isVacationDay } from '../NPSSchedule';
 
-import {
-    getDay,
-    startOfWeek,
-    differenceInWeeks,
-    isBefore,
-    isAfter,
-} from 'date-fns';
+import { getDay, isBefore, isAfter, isWeekend } from 'date-fns';
 
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 import {
     getWeek as getScheduleWeek,
@@ -21,16 +16,19 @@ import { todayFromTimeString } from '../utils';
 export function AppStateUpdater(props: any) {
     const setAppState = useAppState().setAppState;
     const history = useHistory();
+    const location = useLocation();
 
+    // Create updater effect
     React.useEffect(() => {
+        // Update function
         const update = () => {
             let shouldUpdateURL = false;
 
+            // Run the actual update
             setAppState((appState: AppStateType) => {
                 // Update app state
-                // const now = new Date(2021, 0, 14, 9, 25, 15);
+                // const now = new Date(2021, 0, 25, 9, 25, 15);
                 const now = new Date();
-                const lastUpdate = new Date(appState.lastUpdateTime || now);
 
                 const stateChanges: Partial<AppStateType> = {
                     ...appState,
@@ -40,26 +38,46 @@ export function AppStateUpdater(props: any) {
 
                 // Update weekday
                 const weekdayNum = getDay(now);
-                if (weekdayNum !== stateChanges.weekday) {
+
+                // Update week number
+                const weekNum = getCurrentWeekNumber(now);
+
+                if (
+                    weekdayNum !== stateChanges.weekday ||
+                    weekNum !== stateChanges.weekNum
+                ) {
                     stateChanges.weekday = weekdayNum;
+                    stateChanges.weekNum = weekNum;
 
                     // Yeah, it's impure, I know
                     // Impurity is better than performance hit imo
                     shouldUpdateURL = true;
                 }
 
-                // Update week number
-                const startLastUpdate = startOfWeek(lastUpdate);
-                const startNow = startOfWeek(now);
-                const weekDiff = differenceInWeeks(startNow, startLastUpdate);
-                if (stateChanges.weekNum === undefined) {
-                    // Set last update to 0 (1970), so it'll show as a guess
-                    stateChanges.lastWeekSetTime = 0;
-                    stateChanges.weekNum = 0;
-                } else {
-                    stateChanges.weekNum =
-                        (stateChanges.weekNum + weekDiff) % 2;
+                // Set if there's school today
+                // If there's supposed to be or was school before
+                const shouldBeSchool = (stateChanges.hasSchoolToday =
+                    !isVacationDay(now) &&
+                    !isWeekend(now) &&
+                    stateChanges.weekNum !== -1);
+                if (stateChanges.hasSchoolToday !== shouldBeSchool) {
+                    stateChanges.hasSchoolToday = shouldBeSchool;
+
+                    shouldUpdateURL = true;
                 }
+
+                // Old Manual Week Updating
+                // const startLastUpdate = startOfWeek(lastUpdate);
+                // const startNow = startOfWeek(now);
+                // const weekDiff = differenceInWeeks(startNow, startLastUpdate);
+                // if (stateChanges.weekNum === undefined) {
+                //     // Set last update to 0 (1970), so it'll show as a guess
+                //     stateChanges.lastWeekSetTime = 0;
+                //     stateChanges.weekNum = 0;
+                // } else {
+                //     stateChanges.weekNum =
+                //         (stateChanges.weekNum + weekDiff) % 2;
+                // }
 
                 // Update active block
                 const scheduleWeek = getScheduleWeek(stateChanges.weekNum);
@@ -123,16 +141,9 @@ export function AppStateUpdater(props: any) {
             });
 
             // Redirect to page if on homepage
-            const goUrls = [
-                '/',
-                '/monday',
-                '/tuesday',
-                '/wednesday',
-                '/thursday',
-                '/friday',
-                '/weekend',
-            ];
-            if (shouldUpdateURL && goUrls.includes(history.location.pathname)) {
+            const goRegex = /^\/(?:(?:w1|w2)\/(?:monday|tuesday|wednesday|thursday|friday)\/?)?$/;
+
+            if (shouldUpdateURL && goRegex.test(location.pathname)) {
                 history.replace('/');
             }
         };
@@ -143,7 +154,7 @@ export function AppStateUpdater(props: any) {
         const interval = setInterval(update, 15 * 1000);
 
         return () => clearInterval(interval);
-    }, [history, setAppState]);
+    }, [history, location, setAppState]);
 
     return <React.Fragment>{props.children}</React.Fragment>;
 }

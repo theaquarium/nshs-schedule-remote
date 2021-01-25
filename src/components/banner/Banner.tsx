@@ -19,6 +19,10 @@ export function Banner() {
     if (!appState.value.ready) {
         return <LoadingBanner />;
     } else {
+        if (!appState.value.hasSchoolToday) {
+            return <EndOfDayBanner isEndOfDay={false} />;
+        }
+
         const weekday = appState.value.weekday;
         const scheduleWeek = getWeek(appState.value.weekNum);
         const day = getDay(scheduleWeek, weekday);
@@ -29,15 +33,7 @@ export function Banner() {
         // If the current block is none but there's a block coming up, show it as next
         if (appState.value.activeBlock === 'none') {
             if (appState.value.nextBlock === 'none') {
-                return (
-                    <EndOfDayBanner
-                        isWeekend={
-                            appState.value.weekday === 5 ||
-                            appState.value.weekday === 6 ||
-                            appState.value.weekday === 0
-                        }
-                    />
-                );
+                return <EndOfDayBanner isEndOfDay={true} />;
             }
 
             currentBlock = day?.find(
