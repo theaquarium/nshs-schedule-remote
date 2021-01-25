@@ -1,6 +1,6 @@
 import React from 'react';
 import { IoHomeOutline, IoPersonOutline } from 'react-icons/io5';
-import { Link, Route, useRouteMatch } from 'react-router-dom';
+import { Link, useRouteMatch } from 'react-router-dom';
 
 import { useAppState } from '../../state/AppStateContext';
 import { useSettings } from '../../state/SettingsContext';

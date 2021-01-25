@@ -15,7 +15,7 @@ export function WeekButtons() {
             ? weekdayNumToName(appState.value.weekday)
             : 'monday';
     const weeknum = routeMatch?.params?.weeknum;
-    const weekday = routeMatch?.params?.weekday || 'monday';
+    const weekday = routeMatch?.params?.weekday || backupWeekday;
 
     return (
         <div className="tabs is-centered is-fullwidth is-boxed">
