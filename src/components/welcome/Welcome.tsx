@@ -75,8 +75,10 @@ export function Welcome() {
                     If you have any issues, questions, or requests, please feel
                     free to send me an email at{' '}
                     <a href="mailto:peter@vashevko.com">peter@vashevko.com</a>{' '}
-                    or message me on Discord at{' '}
-                    <span className="is-family-monospace">aquarium#9352</span>{' '}
+                    or{' '}
+                    <a href="https://discord.gg/KXxZt2BPUF">
+                        join the Discord server
+                    </a>{' '}
                     to let me know what you think.
                 </p>
 

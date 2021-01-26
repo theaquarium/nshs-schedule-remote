@@ -556,10 +556,10 @@ export function Help() {
                             <a href="mailto:peter@vashevko.com">
                                 peter@vashevko.com
                             </a>
-                            &nbsp;or message me on Discord at&nbsp;
-                            <span className="is-family-monospace">
-                                aquarium#9352
-                            </span>
+                            &nbsp;or{' '}
+                            <a href="https://discord.gg/KXxZt2BPUF">
+                                join the Discord server
+                            </a>
                             .
                         </p>
                     </div>
