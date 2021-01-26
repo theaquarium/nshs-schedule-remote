@@ -40,6 +40,15 @@ export interface FlexSettings {
     availability?: FlexAvailability;
 }
 
+export interface AdditionalMeetingSettings {
+    id: string;
+    nickname: string;
+    login?: {
+        automatic?: AutomaticLogin;
+        manual?: ManualLogin;
+    };
+}
+
 export interface FlexBlockInPersonSettings {
     flexClassroomNumber: string;
 }
@@ -73,6 +82,7 @@ export interface SettingsType {
         friday: boolean;
     }[];
     flexBlockInPersonSettings?: FlexBlockInPersonSettings;
+    additionalMeetings: Record<string, AdditionalMeetingSettings>;
 }
 
 export interface SettingsContextType {
@@ -135,6 +145,7 @@ export const defaultState: SettingsType = {
             friday: false,
         },
     ],
+    additionalMeetings: {},
 };
 
 const SettingsContext = React.createContext<SettingsContextType>({

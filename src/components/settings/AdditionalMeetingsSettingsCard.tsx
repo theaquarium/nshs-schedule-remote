@@ -13,18 +13,18 @@ import {
     useSettings,
 } from '../../state/SettingsContext';
 
-export function FlexSettingsCard({
-    flexSettingId,
+export function AdditionalMeetingsSettingsCard({
+    additionalSettingId,
     isOpenDefault,
 }: {
-    flexSettingId: string;
+    additionalSettingId: string;
     isOpenDefault?: boolean;
 }) {
     const settings = useSettings();
     const setSettings = settings.setSettings;
 
     const [state, setState] = React.useState(
-        settings.value.flexSettings[flexSettingId],
+        settings.value.additionalMeetings[additionalSettingId],
     );
 
     const [isOpen, setIsOpen] = React.useState(isOpenDefault);
@@ -54,14 +54,14 @@ export function FlexSettingsCard({
             setSettings((settings) => {
                 return {
                     ...settings,
-                    flexSettings: {
-                        ...settings.flexSettings,
-                        [flexSettingId]: state,
+                    additionalMeetings: {
+                        ...settings.additionalMeetings,
+                        [additionalSettingId]: state,
                     },
                 };
             });
         }, 500);
-    }, [state, setSettings, flexSettingId]);
+    }, [state, setSettings, additionalSettingId]);
 
     const toggleCard = () => {
         setIsOpen(!isOpen);
@@ -75,14 +75,14 @@ export function FlexSettingsCard({
         setIsAutomaticLinkOpen(!isAutomaticLinkOpen);
     };
 
-    const deleteFlexMeeting = () => {
+    const deleteAdditionalMeeting = () => {
         setSettings((settings) => {
-            const newFlexSettings = { ...settings.flexSettings };
-            delete newFlexSettings[flexSettingId];
+            const newAdditionalSettings = { ...settings.additionalMeetings };
+            delete newAdditionalSettings[additionalSettingId];
 
             return {
                 ...settings,
-                flexSettings: newFlexSettings,
+                additionalMeetings: newAdditionalSettings,
             };
         });
     };
@@ -308,7 +308,7 @@ export function FlexSettingsCard({
                 </div>
                 <div className="field">
                     <input
-                        id={flexSettingId + 'inNewtonDomainCheckbox'}
+                        id={additionalSettingId + 'inNewtonDomainCheckbox'}
                         type="checkbox"
                         name="inNewtonDomain"
                         className="switch is-normal is-link is-rounded is-normal"
@@ -316,7 +316,9 @@ export function FlexSettingsCard({
                         checked={state.login?.automatic?.inNewtonDomain}
                         onChange={handleLoginChange}
                     />
-                    <label htmlFor={flexSettingId + 'inNewtonDomainCheckbox'}>
+                    <label
+                        htmlFor={additionalSettingId + 'inNewtonDomainCheckbox'}
+                    >
                         Is this an NPS meeting?
                     </label>
                 </div>
@@ -437,34 +439,6 @@ export function FlexSettingsCard({
         );
     }
 
-    const toggleAvailablity = (event: any) => {
-        const target = event.target;
-        if (!target) return;
-        if (!(target instanceof HTMLElement)) return;
-
-        const meetingNum = target.dataset.meeting;
-        if (!meetingNum) return;
-
-        const availability =
-            state.availability !== undefined
-                ? state.availability
-                : {
-                      flex1: true,
-                      flex2: true,
-                      flex3: true,
-                  };
-
-        availability[meetingNum] =
-            availability[meetingNum] !== undefined
-                ? !availability[meetingNum]
-                : false;
-
-        setState({
-            ...state,
-            availability,
-        });
-    };
-
     return (
         <div className="card my-3">
             <header
@@ -486,83 +460,17 @@ export function FlexSettingsCard({
                 <div className="card-content">
                     <div className="field">
                         <label className="label is-normal">
-                            Flex Meeting Name
+                            Additional Meeting Name
                         </label>
                         <div className="control">
                             <input
                                 className="input is-rounded is-normal"
                                 type="text"
-                                placeholder="e.x. History Flex, DECA, GSA, etc."
+                                placeholder="e.x. Mock Trial, Dance, Tutoring, etc."
                                 name="nickname"
                                 onChange={handleChange}
                                 value={state.nickname || ''}
                             />
-                        </div>
-                    </div>
-                    <br />
-                    <div className="my-4">
-                        <label className="label is-normal mb-2">
-                            When does this Flex Meeting meet?
-                        </label>
-                        <span>Click on a day to activate it.</span>
-                        <div className="my-4">
-                            <span
-                                className={
-                                    'tag is-medium is-rounded mx-1 ' +
-                                    ((
-                                        state.availability?.flex1 === undefined
-                                            ? true
-                                            : state.availability?.flex1
-                                    )
-                                        ? 'is-link'
-                                        : 'is-black')
-                                }
-                                onClick={toggleAvailablity}
-                                style={{
-                                    cursor: 'pointer',
-                                }}
-                                data-meeting="flex1"
-                            >
-                                Flex 1 (Tuesday)
-                            </span>
-                            <span
-                                className={
-                                    'tag is-medium is-rounded mx-1 ' +
-                                    ((
-                                        state.availability?.flex2 === undefined
-                                            ? true
-                                            : state.availability?.flex2
-                                    )
-                                        ? 'is-link'
-                                        : 'is-black')
-                                }
-                                onClick={toggleAvailablity}
-                                style={{
-                                    cursor: 'pointer',
-                                }}
-                                data-meeting="flex2"
-                            >
-                                Flex 2 (Wednesday)
-                            </span>
-                            <span
-                                className={
-                                    'tag is-medium is-rounded mx-1 ' +
-                                    ((
-                                        state.availability?.flex3 === undefined
-                                            ? true
-                                            : state.availability?.flex3
-                                    )
-                                        ? 'is-link'
-                                        : 'is-black')
-                                }
-                                onClick={toggleAvailablity}
-                                style={{
-                                    cursor: 'pointer',
-                                }}
-                                data-meeting="flex3"
-                            >
-                                Flex 3 (Friday)
-                            </span>
                         </div>
                     </div>
 
@@ -642,12 +550,12 @@ export function FlexSettingsCard({
                     <button
                         type="button"
                         className="button is-danger is-fullwidth is-rounded is-outlined"
-                        onClick={deleteFlexMeeting}
+                        onClick={deleteAdditionalMeeting}
                     >
                         <span className="icon mr-1">
                             <IoTrash />
                         </span>
-                        Delete Flex Meeting
+                        Delete Additional Meeting
                     </button>
                 </div>
             ) : null}

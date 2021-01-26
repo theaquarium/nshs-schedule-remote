@@ -6,6 +6,7 @@ import { InspirationalQuotes } from '../inspirational-quotes/InspirationalQuotes
 import './Header.scss';
 import { useAppState } from '../../state/AppStateContext';
 import { Clock } from '../clock/Clock';
+import { AdditionalMeetingsButton } from '../additional-meetings/AdditionalMeetingsButton';
 
 export function Header() {
     const appState = useAppState();
@@ -87,6 +88,9 @@ export function Header() {
                             </Link>
                         </Route>
                     </Switch>
+                </div>
+                <div className="level-item">
+                    <AdditionalMeetingsButton />
                 </div>
                 <div className="level-item settings-button-container">
                     <Switch>

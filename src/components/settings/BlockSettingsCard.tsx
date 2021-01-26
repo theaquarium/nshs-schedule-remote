@@ -427,6 +427,24 @@ export function BlockSettingsCard({
                 </div>
             </React.Fragment>
         );
+    } else if (loginType === 'none') {
+        loginOptions = (
+            <React.Fragment>
+                <p className="my-2 mt-4">
+                    Configure your meeting login settings here.
+                </p>
+                <p className="my-2">
+                    Choose None if you don't want to store login information for
+                    this class in the schedule.
+                    <br />
+                    Automatic mode is the recommended method for adding login
+                    information for your class.
+                    <br />
+                    You should choose Manual mode if you experience issues with
+                    automatic mode (which may occur if on a Chromebook).
+                </p>
+            </React.Fragment>
+        );
     }
 
     return (

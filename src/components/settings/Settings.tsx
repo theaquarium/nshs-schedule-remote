@@ -1,11 +1,13 @@
 import React from 'react';
-import { IoAdd, IoSave } from 'react-icons/io5';
+import { IoAdd, IoApps, IoSave } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
 
 import { v4 as uuidv4 } from 'uuid';
 import { useAppState } from '../../state/AppStateContext';
 
 import { useSettings } from '../../state/SettingsContext';
+import { AdditionalMeetingsDialogCard } from '../additional-meetings/AdditionalMeetingsDialogCard';
+import { AdditionalMeetingsSettingsCard } from './AdditionalMeetingsSettingsCard';
 import { BlockSettingsCard } from './BlockSettingsCard';
 import { FlexBlockInPersonSettings } from './FlexBlockInPersonSettings';
 import { FlexSettingsCard } from './FlexSettingsCard';
@@ -47,9 +49,47 @@ export function Settings() {
         });
     };
 
+    const newAdditionalMeeting = () => {
+        const additionalMeetingsCount = Object.keys(
+            settings.value.additionalMeetings,
+        ).length;
+        let id = uuidv4();
+
+        // Create unique ID
+        while (settings.value.additionalMeetings[id] !== undefined) {
+            id = uuidv4();
+        }
+
+        settings.setSettings((settings) => {
+            return {
+                ...settings,
+                additionalMeetings: {
+                    ...settings.additionalMeetings,
+                    [id]: {
+                        id,
+                        nickname: `Additional Meeting ${
+                            additionalMeetingsCount + 1
+                        }`,
+                    },
+                },
+            };
+        });
+    };
+
     const flexMeetings = Object.keys(settings.value.flexSettings).map((id) => {
         return (
             <FlexSettingsCard flexSettingId={id} key={`flexmeeting-${id}`} />
+        );
+    });
+
+    const additionalMeetings = Object.keys(
+        settings.value.additionalMeetings,
+    ).map((id) => {
+        return (
+            <AdditionalMeetingsSettingsCard
+                additionalSettingId={id}
+                key={`additionalmeeting-${id}`}
+            />
         );
     });
 
@@ -105,6 +145,31 @@ export function Settings() {
                             <IoAdd />
                         </span>
                         Add New Flex Meeting
+                    </button>
+
+                    <div className="divider">Additional Meetings</div>
+                    <p className="is-size-5 px-3 mb-4">
+                        Use Additional Meetings to keep track of your non-school
+                        meetings.
+                    </p>
+                    <p className="is-size-5 px-3 mb-4">
+                        Press the{' '}
+                        <span className="icon">
+                            <IoApps />
+                        </span>{' '}
+                        icon in the header in the header to view your Additional
+                        Meetings.
+                    </p>
+                    {additionalMeetings}
+                    <button
+                        type="button"
+                        className="button is-fullwidth is-rounded is-link"
+                        onClick={newAdditionalMeeting}
+                    >
+                        <span className="icon mr-1">
+                            <IoAdd />
+                        </span>
+                        Add New Additional Meeting
                     </button>
 
                     <div className="divider">Download/Upload Settings</div>
