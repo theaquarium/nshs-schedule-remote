@@ -409,7 +409,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 endTime: '3:05',
                 isLunch: false,
                 async: false,
-                length: '80 minutes',
+                length: '30 minutes',
                 blockNumber: 1,
             },
             {
@@ -419,7 +419,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 endTime: '3:55',
                 isLunch: false,
                 async: false,
-                length: '80 minutes',
+                length: '45 minutes',
                 blockNumber: 1,
             },
         ],
