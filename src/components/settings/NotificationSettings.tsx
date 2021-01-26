@@ -29,7 +29,7 @@ export function NotificationSettings() {
         // Request permissions if activated
         const callback = () => {
             // Rerender component
-            setState(state);
+            setState((state) => state);
         };
 
         try {
@@ -75,7 +75,7 @@ export function NotificationSettings() {
     const requestPermissions = () => {
         const callback = () => {
             // Rerender component
-            setState(state);
+            setState((state) => state);
         };
 
         try {
