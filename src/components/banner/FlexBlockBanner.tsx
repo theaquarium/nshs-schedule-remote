@@ -1,9 +1,12 @@
+import { formatDistance } from 'date-fns';
 import React from 'react';
 import { Block } from '../../schedule';
+import { useAppState } from '../../state/AppStateContext';
 import {
     FlexBlockInPersonSettings,
     FlexSettings,
 } from '../../state/SettingsContext';
+import { todayFromTimeString } from '../../utils';
 import { useDialog } from '../dialog/Dialog';
 import { FlexBlockDialogCard } from '../dialog/FlexBlockDialogCard';
 
@@ -21,6 +24,7 @@ export function FlexBlockBanner({
     flexBlockInPersonSettings?: FlexBlockInPersonSettings;
 }) {
     const dialogState = useDialog();
+    const appState = useAppState();
 
     const openLinksDialog = () => {
         const flexLinks = Object.values(flexSettings).map((setting) => {
@@ -103,12 +107,22 @@ export function FlexBlockBanner({
         );
     };
 
+    const now = new Date(appState.value.lastUpdateTime || 0);
+
+    const classStartTime =
+        todayFromTimeString(now, block.startTime) || new Date(0);
+
+    const differenceString = formatDistance(classStartTime, now, {
+        addSuffix: true,
+        includeSeconds: false,
+    });
+
     return (
         <section className="hero is-medium is-bold is-primary">
             <div className="hero-head">
                 <div className="pl-4 pt-3">
                     <h3 className="subtitle is-3 is-italic">
-                        {isNow ? 'Now' : 'Coming Up'}
+                        {isNow ? 'Now' : `Coming Up ${differenceString}`}
                     </h3>
                 </div>
             </div>
