@@ -6,7 +6,6 @@ import { v4 as uuidv4 } from 'uuid';
 import { useAppState } from '../../state/AppStateContext';
 
 import { useSettings } from '../../state/SettingsContext';
-import { AdditionalMeetingsDialogCard } from '../additional-meetings/AdditionalMeetingsDialogCard';
 import { AdditionalMeetingsSettingsCard } from './AdditionalMeetingsSettingsCard';
 import { BlockSettingsCard } from './BlockSettingsCard';
 import { FlexBlockInPersonSettings } from './FlexBlockInPersonSettings';
