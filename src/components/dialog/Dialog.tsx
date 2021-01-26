@@ -15,7 +15,7 @@ const defaultState: DialogContextType = {
     state: {
         isOpen: false,
     },
-    open: (children: JSX.Element) => {},
+    open: () => {},
     close: () => {},
 };
 
@@ -74,10 +74,16 @@ export function Dialog(props: any) {
     return (
         <DialogContext.Provider {...props} value={contextValue}>
             {props.children}
-            <div className={`modal ${state.isOpen ? 'is-active' : ''}`}>
+            <div
+                className={`modal ${state.isOpen ? 'is-active' : ''}`}
+                style={{
+                    zIndex: 1000,
+                }}
+            >
                 <div className="modal-background" onClick={close}></div>
                 {state.children}
                 <button
+                    type="button"
                     className="modal-close is-large"
                     aria-label="close"
                     onClick={close}
