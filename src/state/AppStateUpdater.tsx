@@ -2,7 +2,7 @@ import React from 'react';
 import { AppStateType, useAppState } from './AppStateContext';
 import { getCurrentWeekNumber, isVacationDay } from '../NPSSchedule';
 
-import { getDay, isBefore, isAfter, isWeekend } from 'date-fns';
+import { getDay, isBefore, isAfter, isWeekend, isEqual } from 'date-fns';
 
 import { useHistory, useLocation } from 'react-router-dom';
 
@@ -10,25 +10,57 @@ import {
     getWeek as getScheduleWeek,
     getDay as getScheduleDay,
     LunchBlocks,
+    LunchBlock,
+    Block,
 } from '../schedule';
 import { todayFromTimeString } from '../utils';
+import { useSettings } from './SettingsContext';
 
 export function AppStateUpdater(props: any) {
     const setAppState = useAppState().setAppState;
     const history = useHistory();
     const location = useLocation();
+    const settings = useSettings();
+
+    const debugStartTime = React.useRef(Date.now());
 
     // Create updater effect
     React.useEffect(() => {
         // Update function
         const update = () => {
             let shouldUpdateURL = false;
+            let shouldNotify = false;
+            let newBlock: Block | undefined;
+            let shouldNotifyLunch = false;
+            let newLunch: LunchBlock | undefined;
 
             // Run the actual update
             setAppState((appState: AppStateType) => {
                 // Update app state
-                // const now = new Date(2021, 0, 25, 10, 44, 15);
-                const now = new Date();
+                let now: Date;
+
+                // Debug mode allows you to start the clock at a certain time
+                const debug = false;
+                if (!debug) {
+                    now = new Date();
+                } else {
+                    const startDate = new Date(
+                        2021,
+                        0,
+                        26,
+                        11,
+                        29,
+                        30,
+                    ).getTime();
+
+                    const timeSinceStart = Date.now() - debugStartTime.current;
+
+                    now = new Date(startDate + timeSinceStart);
+
+                    console.log(
+                        `App state updating now with time: ${now.toString()}`,
+                    );
+                }
 
                 const stateChanges: Partial<AppStateType> = {
                     ...appState,
@@ -93,10 +125,19 @@ export function AppStateUpdater(props: any) {
                     // If either is malformed, skip
                     if (!startTime || !endTime) return false;
 
-                    return isBefore(startTime, now) && isAfter(endTime, now);
+                    return (
+                        (isBefore(startTime, now) || isEqual(startTime, now)) &&
+                        isAfter(endTime, now)
+                    );
                 });
 
                 if (currentBlock) {
+                    // Send notification if new class block found
+                    if (stateChanges.activeBlock !== currentBlock.blockType) {
+                        shouldNotify = true;
+                        newBlock = currentBlock;
+                    }
+
                     stateChanges.activeBlock = currentBlock.blockType;
                 } else {
                     stateChanges.activeBlock = 'none';
@@ -128,17 +169,47 @@ export function AppStateUpdater(props: any) {
                     // If either is malformed, skip
                     if (!startTime || !endTime) return false;
 
-                    return isBefore(startTime, now) && isAfter(endTime, now);
+                    return (
+                        (isBefore(startTime, now) || isEqual(startTime, now)) &&
+                        isAfter(endTime, now)
+                    );
                 });
                 const activeLunch =
                     activeLunchBlock === undefined
                         ? -1
                         : LunchBlocks.indexOf(activeLunchBlock);
 
+                if (
+                    activeLunch !== -1 &&
+                    activeLunchBlock &&
+                    activeLunch !== stateChanges.activeLunch
+                ) {
+                    shouldNotifyLunch = true;
+                    newLunch = activeLunchBlock;
+                }
+
                 stateChanges.activeLunch = activeLunch;
 
                 return stateChanges;
             });
+
+            if (settings.value.notificationsEnabled) {
+                if (shouldNotify && newBlock) {
+                    new Notification(`${newBlock.name} Starting Now`, {
+                        body: `(${newBlock.startTime}-${newBlock.endTime})`,
+                        icon: '/favicons/notification-icon-192x192.png',
+                    });
+                } else if (
+                    shouldNotifyLunch &&
+                    newLunch &&
+                    settings.value.sendLunchNotifications
+                ) {
+                    new Notification(`${newLunch.name} Starting Now`, {
+                        body: `(${newLunch.startTime}-${newLunch.endTime})`,
+                        icon: '/favicons/notification-icon-192x192.png',
+                    });
+                }
+            }
 
             // Redirect to page if on homepage
             const goRegex = /^\/(?:(?:w1|w2)\/(?:monday|tuesday|wednesday|thursday|friday)\/?)?$/;
@@ -154,7 +225,13 @@ export function AppStateUpdater(props: any) {
         const interval = setInterval(update, 15 * 1000);
 
         return () => clearInterval(interval);
-    }, [history, location, setAppState]);
+    }, [
+        history,
+        location,
+        setAppState,
+        settings.value.notificationsEnabled,
+        settings.value.sendLunchNotifications,
+    ]);
 
     return <React.Fragment>{props.children}</React.Fragment>;
 }

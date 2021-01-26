@@ -12,6 +12,7 @@ import { FlexBlockInPersonSettings } from './FlexBlockInPersonSettings';
 import { FlexSettingsCard } from './FlexSettingsCard';
 
 import { MainSettings } from './MainSettings';
+import { NotificationSettings } from './NotificationSettings';
 import { ResetButtons } from './ResetButtons';
 import { SerializationSettings } from './SerializationSettings';
 
@@ -114,6 +115,8 @@ export function Settings() {
                     </div>
 
                     <MainSettings />
+                    <br />
+                    <NotificationSettings />
 
                     <div className="divider mb-2">Class Blocks</div>
                     <p className="is-size-5 px-3 mb-4">

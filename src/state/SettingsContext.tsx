@@ -83,6 +83,8 @@ export interface SettingsType {
     }[];
     flexBlockInPersonSettings?: FlexBlockInPersonSettings;
     additionalMeetings: Record<string, AdditionalMeetingSettings>;
+    notificationsEnabled: boolean;
+    sendLunchNotifications: boolean;
 }
 
 export interface SettingsContextType {
@@ -146,6 +148,8 @@ export const defaultState: SettingsType = {
         },
     ],
     additionalMeetings: {},
+    notificationsEnabled: false,
+    sendLunchNotifications: true,
 };
 
 const SettingsContext = React.createContext<SettingsContextType>({
