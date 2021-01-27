@@ -149,7 +149,6 @@ export function ScheduleCard({
                                         }`}
                                     >
                                         {block.name}
-                                        {block.async ? ' Async' : ''}
                                         {blockSettings.nickname ? (
                                             <span className="is-italic">
                                                 &nbsp;(
@@ -295,7 +294,6 @@ export function ScheduleCard({
                     <React.Fragment>
                         <p className={`title ${isPast ? 'has-text-grey' : ''}`}>
                             {block.name}
-                            {block.async ? ' Async' : ''}
                             <span className="is-italic">&nbsp;(No Class)</span>
                         </p>
                         <p

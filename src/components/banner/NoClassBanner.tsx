@@ -14,7 +14,6 @@ export function NoClassBanner({ block, isNow, nextClassStart }: any) {
                 <div className="container">
                     <h1 className="title">
                         {block.name}
-                        {block.async ? ' Async' : ''}
                         <span className="is-italic">&nbsp;(No Class)</span>
                     </h1>
                     {nextClassStart ? (

@@ -203,7 +203,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 blockNumber: 2,
             },
             {
-                name: 'D Block',
+                name: 'D Block Async',
                 blockType: 'd',
                 startTime: '12:40',
                 endTime: '1:15',
@@ -213,7 +213,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 blockNumber: 2,
             },
             {
-                name: 'E Block',
+                name: 'E Block Async',
                 blockType: 'e',
                 startTime: '1:20',
                 endTime: '1:55',
@@ -223,7 +223,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 blockNumber: 2,
             },
             {
-                name: 'F Block',
+                name: 'F Block Async',
                 blockType: 'f',
                 startTime: '2:00',
                 endTime: '2:35',
@@ -233,7 +233,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 blockNumber: 2,
             },
             {
-                name: 'G Block',
+                name: 'G Block Async',
                 blockType: 'g',
                 startTime: '2:40',
                 endTime: '3:15',
@@ -425,7 +425,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
         ],
         wednesday: [
             {
-                name: 'A Block',
+                name: 'A Block Async',
                 blockType: 'a',
                 startTime: '9:15',
                 endTime: '9:50',
@@ -435,7 +435,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 blockNumber: 2,
             },
             {
-                name: 'B Block',
+                name: 'B Block Async',
                 blockType: 'b',
                 startTime: '9:55',
                 endTime: '10:30',
@@ -445,7 +445,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 blockNumber: 2,
             },
             {
-                name: 'C Block',
+                name: 'C Block Async',
                 blockType: 'c',
                 startTime: '10:35',
                 endTime: '11:10',

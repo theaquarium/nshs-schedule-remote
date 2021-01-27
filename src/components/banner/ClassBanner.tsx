@@ -147,7 +147,6 @@ export function ClassBanner({
                         <div className="is-flex is-flex-direction-column is-justify-content-center">
                             <h1 className="title">
                                 {block.name}
-                                {block.async ? ' Async' : ''}
                                 {blockSettings?.nickname ? (
                                     <span className="is-italic">
                                         &nbsp;({blockSettings.nickname})
