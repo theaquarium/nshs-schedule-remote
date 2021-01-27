@@ -175,7 +175,8 @@ export function AppStateUpdater(props: any) {
                     );
                 });
                 const activeLunch =
-                    activeLunchBlock === undefined
+                    activeLunchBlock === undefined ||
+                    currentBlock?.isLunch !== true
                         ? -1
                         : LunchBlocks.indexOf(activeLunchBlock);
 
