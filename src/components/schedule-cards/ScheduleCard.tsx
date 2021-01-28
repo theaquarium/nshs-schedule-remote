@@ -240,7 +240,7 @@ export function ScheduleCard({
                                         ] === 0 ? (
                                             <p>
                                                 <br />
-                                                You have this lunch.
+                                                This is your lunch.
                                             </p>
                                         ) : null}
                                     </div>
@@ -273,7 +273,7 @@ export function ScheduleCard({
                                         ] === 1 ? (
                                             <p>
                                                 <br />
-                                                You have this lunch.
+                                                This is your lunch.
                                             </p>
                                         ) : null}
                                     </div>
@@ -306,7 +306,7 @@ export function ScheduleCard({
                                         ] === 2 ? (
                                             <p>
                                                 <br />
-                                                You have this lunch.
+                                                This is your lunch.
                                             </p>
                                         ) : null}
                                     </div>

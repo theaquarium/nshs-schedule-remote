@@ -230,7 +230,7 @@ export function AppStateUpdater(props: any) {
                         body: `(${newLunch.startTime}-${newLunch.endTime})${
                             settings.value.lunches[newBlock.blockType] ===
                             newLunch.lunchId
-                                ? '\nYou have lunch now.'
+                                ? '\nThis is your lunch.'
                                 : ''
                         }`,
                         icon: '/favicons/notification-icon-192x192.png',

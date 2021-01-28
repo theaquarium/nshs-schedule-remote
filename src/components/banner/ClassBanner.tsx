@@ -235,7 +235,7 @@ export function ClassBanner({
                                     0 ? (
                                         <p>
                                             <br />
-                                            You have this lunch.
+                                            This is your lunch.
                                         </p>
                                     ) : null}
                                 </div>
@@ -274,7 +274,7 @@ export function ClassBanner({
                                     1 ? (
                                         <p>
                                             <br />
-                                            You have this lunch.
+                                            This is your lunch.
                                         </p>
                                     ) : null}
                                 </div>
@@ -313,7 +313,7 @@ export function ClassBanner({
                                     2 ? (
                                         <p>
                                             <br />
-                                            You have this lunch.
+                                            This is your lunch.
                                         </p>
                                     ) : null}
                                 </div>
