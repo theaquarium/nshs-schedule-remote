@@ -85,6 +85,11 @@ export interface SettingsType {
     additionalMeetings: Record<string, AdditionalMeetingSettings>;
     notificationsEnabled: boolean;
     sendLunchNotifications: boolean;
+    lunches: {
+        [index: string]: number;
+        b: number;
+        f: number;
+    };
 }
 
 export interface SettingsContextType {
@@ -150,6 +155,10 @@ export const defaultState: SettingsType = {
     additionalMeetings: {},
     notificationsEnabled: false,
     sendLunchNotifications: true,
+    lunches: {
+        b: -1,
+        f: -1,
+    },
 };
 
 const SettingsContext = React.createContext<SettingsContextType>({

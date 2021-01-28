@@ -183,10 +183,12 @@ export function AppStateUpdater(props: any) {
                 if (
                     activeLunch !== -1 &&
                     activeLunchBlock &&
+                    currentBlock &&
                     activeLunch !== stateChanges.activeLunch
                 ) {
                     shouldNotifyLunch = true;
                     newLunch = activeLunchBlock;
+                    newBlock = currentBlock;
                 }
 
                 stateChanges.activeLunch = activeLunch;
@@ -196,17 +198,41 @@ export function AppStateUpdater(props: any) {
 
             if (settings.value.notificationsEnabled) {
                 if (shouldNotify && newBlock) {
+                    let lunchStr = '';
+
+                    if (newBlock.isLunch) {
+                        switch (settings.value.lunches[newBlock.blockType]) {
+                            case 0:
+                                lunchStr = '1st Lunch';
+                                break;
+                            case 1:
+                                lunchStr = '2nd Lunch';
+                                break;
+                            case 2:
+                                lunchStr = '3rd Lunch';
+                                break;
+                        }
+                    }
+
                     new Notification(`${newBlock.name} Starting Now`, {
-                        body: `(${newBlock.startTime}-${newBlock.endTime})`,
+                        body: `(${newBlock.startTime}-${newBlock.endTime})${
+                            lunchStr !== '' ? `\nYou have ${lunchStr}.` : ''
+                        }`,
                         icon: '/favicons/notification-icon-192x192.png',
                     });
                 } else if (
                     shouldNotifyLunch &&
                     newLunch &&
+                    newBlock &&
                     settings.value.sendLunchNotifications
                 ) {
                     new Notification(`${newLunch.name} Starting Now`, {
-                        body: `(${newLunch.startTime}-${newLunch.endTime})`,
+                        body: `(${newLunch.startTime}-${newLunch.endTime})${
+                            settings.value.lunches[newBlock.blockType] ===
+                            newLunch.lunchId
+                                ? '\nYou have lunch now.'
+                                : ''
+                        }`,
                         icon: '/favicons/notification-icon-192x192.png',
                     });
                 }
@@ -232,6 +258,7 @@ export function AppStateUpdater(props: any) {
         setAppState,
         settings.value.notificationsEnabled,
         settings.value.sendLunchNotifications,
+        settings.value.lunches,
     ]);
 
     return <React.Fragment>{props.children}</React.Fragment>;

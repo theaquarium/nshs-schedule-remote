@@ -32,6 +32,7 @@ export interface LunchBlock {
     startTime: string;
     endTime: string;
     length: string;
+    lunchId: number;
 }
 
 export const LunchBlocks: LunchBlock[] = [
@@ -40,18 +41,21 @@ export const LunchBlocks: LunchBlock[] = [
         startTime: '10:45',
         endTime: '11:20',
         length: '35 minutes',
+        lunchId: 0,
     },
     {
         name: '2nd Lunch',
         startTime: '11:30',
         endTime: '12:05',
         length: '35 minutes',
+        lunchId: 1,
     },
     {
         name: '3rd Lunch',
         startTime: '12:20',
         endTime: '12:55',
         length: '35 minutes',
+        lunchId: 2,
     },
 ];
 

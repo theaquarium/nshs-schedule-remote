@@ -10,6 +10,7 @@ import { AdditionalMeetingsSettingsCard } from './AdditionalMeetingsSettingsCard
 import { BlockSettingsCard } from './BlockSettingsCard';
 import { FlexBlockInPersonSettings } from './FlexBlockInPersonSettings';
 import { FlexSettingsCard } from './FlexSettingsCard';
+import { LunchButtons } from './LunchButtons';
 
 import { MainSettings } from './MainSettings';
 import { NotificationSettings } from './NotificationSettings';
@@ -117,6 +118,9 @@ export function Settings() {
                     <MainSettings />
                     <br />
                     <NotificationSettings />
+
+                    <div className="divider mb-2">Lunches</div>
+                    <LunchButtons />
 
                     <div className="divider mb-2">Class Blocks</div>
                     <p className="is-size-5 px-3 mb-4">

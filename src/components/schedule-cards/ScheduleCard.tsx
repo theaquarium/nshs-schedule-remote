@@ -211,7 +211,7 @@ export function ScheduleCard({
                             ) : null}
                         </div>
                         {block.isLunch ? (
-                            <div className="columns is-vcentered">
+                            <div className="columns">
                                 <div className="column">
                                     <div
                                         className="notification"
@@ -235,6 +235,14 @@ export function ScheduleCard({
                                                 &nbsp;({LunchBlocks[0].length})
                                             </span>
                                         </p>
+                                        {settings.value.lunches[
+                                            block.blockType
+                                        ] === 0 ? (
+                                            <p>
+                                                <br />
+                                                You have this lunch.
+                                            </p>
+                                        ) : null}
                                     </div>
                                 </div>
                                 <div className="column">
@@ -260,6 +268,14 @@ export function ScheduleCard({
                                                 &nbsp;({LunchBlocks[1].length})
                                             </span>
                                         </p>
+                                        {settings.value.lunches[
+                                            block.blockType
+                                        ] === 1 ? (
+                                            <p>
+                                                <br />
+                                                You have this lunch.
+                                            </p>
+                                        ) : null}
                                     </div>
                                 </div>
                                 <div className="column">
@@ -285,6 +301,14 @@ export function ScheduleCard({
                                                 &nbsp;({LunchBlocks[2].length})
                                             </span>
                                         </p>
+                                        {settings.value.lunches[
+                                            block.blockType
+                                        ] === 2 ? (
+                                            <p>
+                                                <br />
+                                                You have this lunch.
+                                            </p>
+                                        ) : null}
                                     </div>
                                 </div>
                             </div>
