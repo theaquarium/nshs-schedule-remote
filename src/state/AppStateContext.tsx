@@ -44,12 +44,8 @@ export function AppStateProvider(props: any) {
     const [appState, setAppState] = React.useState<AppStateType>(defaultState);
 
     // Save and read state
-    const isInitialMount = React.useRef(true);
-
     React.useEffect(() => {
-        if (isInitialMount.current) {
-            isInitialMount.current = false;
-
+        if (!appState.ready) {
             // Read state
             const savedAppStateString = window.localStorage.getItem('appstate');
             if (savedAppStateString) {
@@ -70,6 +66,7 @@ export function AppStateProvider(props: any) {
                 setAppState({
                     ...defaultState,
                     isOnboarded: false,
+                    ready: true,
                 });
             }
         } else {

@@ -172,12 +172,8 @@ export function SettingsProvider(props: any) {
     const [settings, setSettings] = React.useState<SettingsType>(defaultState);
 
     // Save and read state
-    const isInitialMount = React.useRef(true);
-
     React.useEffect(() => {
-        if (isInitialMount.current) {
-            isInitialMount.current = false;
-
+        if (!settings.ready) {
             // Read state
             const savedSettingsString = window.localStorage.getItem('settings');
             if (savedSettingsString) {
