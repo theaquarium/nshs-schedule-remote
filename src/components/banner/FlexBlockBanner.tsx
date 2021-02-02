@@ -153,6 +153,7 @@ export function FlexBlockBanner({
                     </div>
                     <div className="level-right is-flex is-flex-direction-column is-justify-content-center">
                         <button
+                            type="button"
                             className="button is-black is-large is-rounded is-fullwidth"
                             onClick={openLinksDialog}
                         >

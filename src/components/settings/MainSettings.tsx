@@ -17,6 +17,7 @@ export function MainSettings() {
         showClock: settings.value.showClock,
         use24HourClock: settings.value.use24HourClock,
         theme: settings.value.theme,
+        useHttpLinks: settings.value.useHttpLinks,
     });
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -110,6 +111,27 @@ export function MainSettings() {
                     Light
                 </span>
             </div>
+            <br />
+            <div className="field">
+                <input
+                    id="useHttpLinksCheckbox"
+                    type="checkbox"
+                    name="useHttpLinks"
+                    className="switch is-normal is-link is-rounded is-medium"
+                    title="Are you on a Chromebook or mobile device?"
+                    checked={state.useHttpLinks}
+                    onChange={handleChange}
+                />
+                <label htmlFor="useHttpLinksCheckbox">
+                    Turn on this option if you are using a Chromebook or a
+                    mobile device:
+                </label>
+            </div>
+            <span>
+                If you have issues signing into meetings and this option is off,
+                try turning it on.
+            </span>
+            <br />
             <br />
             <div className="field">
                 <input

@@ -1,28 +1,28 @@
-import { AutomaticLogin } from './state/SettingsContext';
+import { LoginSettings } from './state/SettingsContext';
 
-export function generateZoomLink(loginInfo: AutomaticLogin): string {
-    const domain = loginInfo.inNewtonDomain
-        ? 'newton-k12-ma-us'
-        : loginInfo.customDomain || '';
+// export function generateZoomLink(loginInfo: AutomaticLogin): string {
+//     const domain = loginInfo.inNewtonDomain
+//         ? 'newton-k12-ma-us'
+//         : loginInfo.customDomain || '';
 
-    return `zoommtg://${
-        domain.length > 0 ? `${domain}.` : ''
-    }zoom.us/join?confno=${loginInfo.meetingId}${
-        loginInfo.password !== undefined && loginInfo.password.length > 0
-            ? `&pwd=${loginInfo.password}`
-            : ''
-    }`;
-}
+//     return `zoommtg://${
+//         domain.length > 0 ? `${domain}.` : ''
+//     }zoom.us/join?confno=${loginInfo.meetingId}${
+//         loginInfo.password !== undefined && loginInfo.password.length > 0
+//             ? `&pwd=${loginInfo.password}`
+//             : ''
+//     }`;
+// }
 
-export function generateNormalLink(loginInfo: AutomaticLogin): string {
-    const domain = loginInfo.inNewtonDomain
-        ? 'newton-k12-ma-us'
-        : loginInfo.customDomain || '';
+// export function generateNormalLink(loginInfo: AutomaticLogin): string {
+//     const domain = loginInfo.inNewtonDomain
+//         ? 'newton-k12-ma-us'
+//         : loginInfo.customDomain || '';
 
-    return `https://${domain.length > 0 ? `${domain}.` : ''}zoom.us/j/${
-        loginInfo.meetingId
-    }`;
-}
+//     return `https://${domain.length > 0 ? `${domain}.` : ''}zoom.us/j/${
+//         loginInfo.meetingId
+//     }`;
+// }
 
 export function todayFromTimeString(
     now: Date,
@@ -130,4 +130,62 @@ export function copyTextToClipboard(text: string) {
             console.error('Async: Could not copy text: ', err);
         },
     );
+}
+
+export function blockTypeToName(blockType: string): string {
+    switch (blockType) {
+        case 'a':
+            return 'A Block';
+        case 'b':
+            return 'B Block';
+        case 'c':
+            return 'C Block';
+        case 'd':
+            return 'D Block';
+        case 'e':
+            return 'E Block';
+        case 'f':
+            return 'F Block';
+        case 'g':
+            return 'G Block';
+        case 'community':
+            return 'Community';
+        default:
+            return '';
+    }
+}
+
+export const ZoomLinkRegex = /^https:\/\/(?:(.*?)\.)?zoom.us\/j\/([\d]{9,11})\/?\??(?:(?:.*?&)*?(?:pwd=([A-Za-z0-9]*))?(?:&.*?)*)?(?:#.*)?$/;
+
+export function generateLoginLink(
+    loginSettings: LoginSettings,
+    useHttpLink: boolean,
+): string {
+    const linkMatches = loginSettings.link.match(ZoomLinkRegex);
+
+    if (linkMatches === null || linkMatches.length === 0) return '';
+
+    const domain = linkMatches[1];
+    const meetingId = linkMatches[2];
+    const password = linkMatches[3];
+
+    if (meetingId === undefined) return '';
+
+    if (useHttpLink) {
+        return `https://${
+            domain && domain.length > 0 ? `${domain}.` : ''
+        }zoom.us/j/${meetingId}${
+            password && password.length > 0 ? `?pwd=${password}` : ''
+        }`;
+    }
+
+    return `zoommtg://${
+        domain && domain.length > 0 ? `${domain}.` : ''
+    }zoom.us/join?confno=${meetingId}${
+        password && password.length > 0
+            ? `&pwd=${password}`
+            : loginSettings.password && loginSettings.password.length > 0
+            ? `&pwd=${loginSettings.password}`
+            : ''
+    }`;
 }

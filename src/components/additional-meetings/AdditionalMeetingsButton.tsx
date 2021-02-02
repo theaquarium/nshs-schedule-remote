@@ -3,7 +3,7 @@ import { IoApps } from 'react-icons/io5';
 
 import { useSettings } from '../../state/SettingsContext';
 import { useDialog } from '../dialog/Dialog';
-import { AdditionalMeetingsDialogCard } from './AdditionalMeetingsDialogCard';
+import { AdditionalMeetingsDialogCard } from '../dialog/AdditionalMeetingsDialogCard';
 export function AdditionalMeetingsButton() {
     const settings = useSettings();
     const dialogState = useDialog();

@@ -1,10 +1,17 @@
 import React from 'react';
-import { FlexSettings, useSettings } from '../../state/SettingsContext';
+import {
+    AdditionalMeetingSettings,
+    useSettings,
+} from '../../state/SettingsContext';
 import { generateLoginLink } from '../../utils';
 import { useDialog } from './Dialog';
 import { MeetingInfoDialog } from './MeetingInfoDialog';
 
-export function FlexBlockDialogCard({ setting }: { setting: FlexSettings }) {
+export function AdditionalMeetingsDialogCard({
+    setting,
+}: {
+    setting: AdditionalMeetingSettings;
+}) {
     const dialogState = useDialog();
     const settings = useSettings();
 

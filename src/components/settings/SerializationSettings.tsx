@@ -4,6 +4,7 @@ import { saveAs } from 'file-saver';
 
 import {
     defaultState as defaultSettings,
+    settingsTransformer,
     useSettings,
 } from '../../state/SettingsContext';
 import { useHistory } from 'react-router-dom';
@@ -30,9 +31,10 @@ export function SerializationSettings() {
                 'Are you sure you would like to overwrite your current settings with the ones in this file?',
             );
             if (result) {
+                const transformedSettings = settingsTransformer(settingsJSON);
                 settings.setSettingsDirect({
                     ...defaultSettings,
-                    ...settingsJSON,
+                    ...transformedSettings,
                 });
                 history.replace('/');
             }
