@@ -104,7 +104,7 @@ export function NotificationSettings() {
                 </label>
             </div>
             {state.notificationsEnabled ? (
-                <div className="px-5 my-5 is-flex is-align-items-center">
+                <div className="px-5 my-5">
                     <div className="field">
                         <input
                             id="sendLunchNotificationsCheckbox"
@@ -120,7 +120,7 @@ export function NotificationSettings() {
                         </label>
                     </div>
                     {window.Notification.permission !== 'granted' ? (
-                        <React.Fragment>
+                        <div>
                             <span className="is-size-5 mr-3">
                                 Notification permission has not been granted.
                             </span>
@@ -131,7 +131,7 @@ export function NotificationSettings() {
                             >
                                 Grant Permission
                             </button>
-                        </React.Fragment>
+                        </div>
                     ) : null}
                 </div>
             ) : null}

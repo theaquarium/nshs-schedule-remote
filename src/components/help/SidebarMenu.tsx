@@ -106,8 +106,18 @@ export function SidebarMenu() {
                 <h1 className="title">Contents</h1>
                 <ul className="menu-list">
                     <li>
+                        <SidebarLink linkedId="nshs-site">
+                            NSHS.site
+                        </SidebarLink>
+                    </li>
+                    <li>
                         <SidebarLink linkedId="accessing-this-page">
                             Accessing This Page
+                        </SidebarLink>
+                    </li>
+                    <li>
+                        <SidebarLink linkedId="your-data">
+                            Your Data
                         </SidebarLink>
                     </li>
                 </ul>
@@ -119,8 +129,13 @@ export function SidebarMenu() {
                         </SidebarLink>
                         <ul>
                             <li>
-                                <SidebarLink linkedId="schedule-banner">
-                                    Schedule Banner
+                                <SidebarLink linkedId="class-banner">
+                                    Class Banner
+                                </SidebarLink>
+                            </li>
+                            <li>
+                                <SidebarLink linkedId="week-day-tabs">
+                                    Week/Day Tabs
                                 </SidebarLink>
                             </li>
                             <li>
@@ -134,11 +149,24 @@ export function SidebarMenu() {
                                 </SidebarLink>
                             </li>
                             <li>
+                                <SidebarLink linkedId="notifications">
+                                    Notifications
+                                </SidebarLink>
+                            </li>
+                            <li>
                                 <SidebarLink linkedId="joining-meetings">
                                     Joining Meetings
                                 </SidebarLink>
                             </li>
                         </ul>
+                    </li>
+                </ul>
+                <p className="menu-label">Additional Meetings</p>
+                <ul className="menu-list">
+                    <li>
+                        <SidebarLink linkedId="additional-meetings">
+                            Additional Meetings
+                        </SidebarLink>
                     </li>
                 </ul>
                 <p className="menu-label">Settings</p>
@@ -169,13 +197,8 @@ export function SidebarMenu() {
                                         </SidebarLink>
                                     </li>
                                     <li>
-                                        <SidebarLink linkedId="automatic-login-mode">
-                                            Automatic Login Mode
-                                        </SidebarLink>
-                                    </li>
-                                    <li>
-                                        <SidebarLink linkedId="manual-login-mode">
-                                            Manual Login Mode
+                                        <SidebarLink linkedId="entering-login-information">
+                                            Entering Login Information
                                         </SidebarLink>
                                     </li>
                                 </ul>
@@ -193,13 +216,39 @@ export function SidebarMenu() {
                         </SidebarLink>
                     </li>
                     <li>
+                        <SidebarLink linkedId="configuring-additional-meetings">
+                            Configuring Additional Meetings
+                        </SidebarLink>
+                    </li>
+                    <li>
+                        <SidebarLink linkedId="configuring-lunches">
+                            Configuring Lunches
+                        </SidebarLink>
+                    </li>
+                    <li>
+                        <SidebarLink linkedId="configuring-notifications">
+                            Configuring Notifications
+                        </SidebarLink>
+                    </li>
+                    <li>
                         <SidebarLink linkedId="motivational-phrases">
                             Motivational Phrases
                         </SidebarLink>
                     </li>
+
                     <li>
                         <SidebarLink linkedId="download-upload-settings">
                             Download/Upload Settings
+                        </SidebarLink>
+                    </li>
+                    <li>
+                        <SidebarLink linkedId="chromebooks-mobile-devices">
+                            Chromebooks/Mobile Devices
+                        </SidebarLink>
+                    </li>
+                    <li>
+                        <SidebarLink linkedId="color-theme">
+                            Color Theme
                         </SidebarLink>
                     </li>
                     <li>

@@ -1,12 +1,15 @@
 import React from 'react';
 import {
     IoAdd,
+    IoApps,
     IoCalendar,
     IoCloudDownload,
     IoCloudUpload,
     IoCog,
     IoTrash,
 } from 'react-icons/io5';
+import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 import './Help.css';
 
 import { SidebarMenu } from './SidebarMenu';
@@ -20,8 +23,19 @@ export function Help() {
                         <SidebarMenu />
                     </div>
                     <div className="column content mx-3 is-size-5">
+                        <h2 id="nshs-site">NSHS.site</h2>
+                        <p>
+                            Welcome to nshs.site, a tool to keep track of the
+                            new NSHS schedule and help you manage your Zoom
+                            links. This page is an extensive guide on how to set
+                            up and use the website. If you have any other
+                            questions, please feel free to{' '}
+                            <HashLink to="#contact-me" smooth>
+                                contact me
+                            </HashLink>
+                            .
+                        </p>
                         <h2 id="accessing-this-page">Accessing This Page</h2>
-
                         <p>
                             You can access this page at any time with the{' '}
                             <span
@@ -35,13 +49,32 @@ export function Help() {
                             button at the bottom of the page or the question
                             mark icon in the header.
                         </p>
-
+                        <h2 id="your-data">Your Data</h2>
+                        <p>
+                            Your privacy is important, so that's why your
+                            settings and meeting information will{' '}
+                            <strong>never</strong> be sent anywhere. Your
+                            settings are stored only on your device, and nobody
+                            else (including me) can see them. Take a look at the{' '}
+                            <Link to="/privacypolicy">Privacy Policy</Link> for
+                            more information.
+                        </p>
+                        <p>
+                            Since your data is stored only on your device, if
+                            your settings are lost, there is no way to get them
+                            back. For this reason, I recommend making a backup
+                            of your settings as described in the{' '}
+                            <HashLink to="#download-upload-settings" smooth>
+                                Download/Upload Settings
+                            </HashLink>{' '}
+                            section.
+                        </p>
                         <h2 id="schedule-page">Schedule Page</h2>
                         <h3 id="using-the-schedule">Using the Schedule</h3>
                         <p>
-                            The main function of this site is to manage the
-                            South schedule for you. You can get to the schedule
-                            page at any time by pressing the{' '}
+                            The main thing this website does is keep track of
+                            the South schedule. You can get to the schedule page
+                            at any time by pressing the{' '}
                             <span
                                 className="has-text-weight-bold"
                                 style={{
@@ -55,41 +88,81 @@ export function Help() {
                             </span>{' '}
                             button at the top left of the screen.
                         </p>
-
+                        <p>
+                            On the schedule page, you will see the{' '}
+                            <HashLink to="#class-banner" smooth>
+                                Class Banner
+                            </HashLink>
+                            ,{' '}
+                            <HashLink to="#week-day-tabs" smooth>
+                                Week/Day Tabs
+                            </HashLink>
+                            , and{' '}
+                            <HashLink to="#block-schedule" smooth>
+                                Block Schedule
+                            </HashLink>
+                        </p>
                         <p>
                             Using this schedule is mostly automatic. The site
-                            will automatically keep track of what time it is and
-                            the current block.
+                            will automatically keep track of what time it is,
+                            the current day, week number, and block.
                         </p>
-
-                        <h4 id="schedule-banner">Schedule Banner</h4>
-
+                        <h4 id="class-banner">Class Banner</h4>
                         <p>
-                            The schedule will show the current active or
-                            upcoming block on the banner on the schedule page.
-                            It will show some information about the block and
-                            provide buttons to join the meeting if you have
-                            configured login information for the class.
+                            The Class Banner shows information about the current
+                            or upcoming class. If you have a class set up, it
+                            may show buttons to join the meeting or view login
+                            information.
                         </p>
-
+                        <p>
+                            If you have a free block or there is no school, the
+                            banner will appear gray.
+                        </p>
+                        <h4 id="week-day-tabs">Week/Day Tabs</h4>
+                        <p>
+                            The week and day tabs allow you to select the day to
+                            show on the{' '}
+                            <HashLink to="#block-schedule" smooth>
+                                Block Schedule
+                            </HashLink>
+                            . The current week and day will be marked.
+                        </p>
+                        <p>
+                            The schedule will automatically switch to the
+                            current week and day at the end of the day.
+                        </p>
                         <h4 id="block-schedule">Block Schedule</h4>
-
                         <p>
-                            You can view all of the blocks of the day underneath
-                            the banner. The active class will be highlighted in
-                            blue, and previous classes will be greyed out. You
-                            can view the blocks of any other day by selecting
-                            the weekday with the weekday tabs.
+                            The block schedule allows you to view all of the
+                            blocks in a certain day. You can select which day to
+                            view using the{' '}
+                            <HashLink to="#week-day-tabs" smooth>
+                                Week/Day Tabs
+                            </HashLink>
+                            .
                         </p>
-
+                        <p>
+                            The active class will be highlighted, and previous
+                            classes will be grayed out.
+                        </p>
                         <h4 id="lunches">Lunches</h4>
-
                         <p>
-                            Lunch blocks will show information about lunches on
-                            the banner and day schedule cards, and will
-                            highlight the current lunch period in dark blue.
+                            During lunch blocks (B and F), you will see
+                            information about lunches on the Class Banner and
+                            Block Schedule. The current lunch period will be
+                            highlighted. If you select the period when you eat
+                            lunch in Settings, your lunch period will be marked.
                         </p>
-
+                        <h4 id="notifications">Notifications</h4>
+                        <p>
+                            If you enable notifications in Settings, the
+                            schedule will send notifications to let you know
+                            when classes start. Learn more in the{' '}
+                            <HashLink to="#configuring-notifications" smooth>
+                                Configuring Notifications
+                            </HashLink>{' '}
+                            section.
+                        </p>
                         <h4 id="joining-meetings">Joining Meetings</h4>
                         <p>
                             If you've set up your meeting links in the schedule,
@@ -106,7 +179,6 @@ export function Help() {
                             </span>{' '}
                             button.
                         </p>
-
                         <p>
                             You can also join meetings from the Block Schedule
                             by pressing the{' '}
@@ -120,7 +192,6 @@ export function Help() {
                             </span>{' '}
                             button on a class card.
                         </p>
-
                         <p>
                             You can view the meeting password and link by
                             pressing the{' '}
@@ -134,7 +205,6 @@ export function Help() {
                             </span>{' '}
                             button on the Class Banner or on a class card.
                         </p>
-
                         <p>
                             You can join Flex Meetings by pressing the{' '}
                             <span
@@ -167,19 +237,45 @@ export function Help() {
                             </span>{' '}
                             button.
                         </p>
-
+                        <h2 id="additional-meetings">Additional Meetings</h2>
+                        <p>
+                            You can also use nshs.site to keep track of your
+                            personal non-school meetings. To view your
+                            additional meetings, press the{' '}
+                            <span
+                                className="has-text-weight-bold"
+                                style={{
+                                    whiteSpace: 'nowrap',
+                                }}
+                            >
+                                <span className="icon">
+                                    <IoApps />
+                                </span>
+                            </span>{' '}
+                            button in the header.
+                        </p>
+                        <p>
+                            Learn more about setting up Additional Meetings in
+                            the{' '}
+                            <HashLink
+                                to="#configuring-additional-meetings"
+                                smooth
+                            >
+                                Configuring Additional Meetings
+                            </HashLink>{' '}
+                            section.
+                        </p>
                         <h2 id="settings">Settings</h2>
                         <h3 id="settings-page">Settings Page</h3>
                         <p>
                             The settings page allows you to configure the
                             schedule and set it up as you wish. Configuring the
-                            schedule is optional but will allow you to use
-                            features such as keeping track of your Zoom meeting
-                            links.
+                            schedule is completely optional but will allow you
+                            to use features such as keeping track of your Zoom
+                            meeting links.
                         </p>
-
                         <p>
-                            You can access the settings page at any time by
+                            You can access the Settings page at any time by
                             pressing the{' '}
                             <span
                                 className="has-text-weight-bold"
@@ -194,20 +290,18 @@ export function Help() {
                             </span>{' '}
                             button at the top right of the screen.
                         </p>
-
                         <h3 id="configuring-your-classes">
                             Configuring Your Classes
                         </h3>
                         <p>
                             In addition to keeping track of the schedule, this
-                            site can also keep track of the Zoom meeting
-                            information for all of your classes. You can set
-                            this up on the settings page.
+                            site can also store the Zoom meeting information for
+                            all of your classes. You can set this up on the
+                            settings page.
                         </p>
-
                         <p>
-                            To set up your classes, navigate to the settings
-                            page and scroll down to the{' '}
+                            To set up your classes, go to the settings page and
+                            scroll down to the{' '}
                             <span
                                 className="has-text-weight-bold"
                                 style={{
@@ -219,9 +313,7 @@ export function Help() {
                             section. From here, click on a class card to open
                             it.
                         </p>
-
                         <h4 id="setting-class-info">Setting Class Info</h4>
-
                         <p>
                             If you have a free block during a certain period,
                             you can uncheck the{' '}
@@ -248,6 +340,20 @@ export function Help() {
                             </span>{' '}
                             field.
                         </p>
+                        <p>
+                            If you have enabled In Person mode on the schedule,
+                            you can enter your classroom number and desk number
+                            into the{' '}
+                            <span
+                                className="has-text-weight-bold"
+                                style={{
+                                    whiteSpace: 'nowrap',
+                                }}
+                            >
+                                Classroom and Desk Number
+                            </span>{' '}
+                            field.
+                        </p>
                         <h4 id="configuring-login-information">
                             Configuring Login Information
                         </h4>
@@ -266,6 +372,23 @@ export function Help() {
                             will allow you to join your Zoom meetings directly
                             from the schedule page.
                         </p>
+                        <p>
+                            If you are using a Chromebook or a mobile device,
+                            make sure you turn on the{' '}
+                            <span
+                                className="has-text-weight-bold"
+                                style={{
+                                    whiteSpace: 'nowrap',
+                                }}
+                            >
+                                Turn on this option if you are using a
+                                Chromebook or a mobile device
+                            </span>{' '}
+                            setting. You will not be able to sign in to meetings
+                            without it. If you are having issues signing into
+                            meeting but are not on a Chromebook, you can still
+                            turn this on.
+                        </p>
                         <h5 id="no-login">No Login</h5>
                         <p>
                             If you would not like to store the login information
@@ -276,97 +399,51 @@ export function Help() {
                                     whiteSpace: 'nowrap',
                                 }}
                             >
-                                Login Type
+                                Store login info for this meeting?
                             </span>{' '}
-                            field to{' '}
+                            setting to off.
+                        </p>
+                        <h5 id="entering-login-information">
+                            Entering Login Information
+                        </h5>
+                        <p>
+                            If you would like to store login information in the
+                            schedule, set the{' '}
                             <span
                                 className="has-text-weight-bold"
                                 style={{
                                     whiteSpace: 'nowrap',
                                 }}
                             >
-                                None
-                            </span>
-                            .
-                        </p>
-                        <h5 id="automatic-login-mode">Automatic Login Mode</h5>
-                        <p>
-                            The recommended method of adding meeting login
-                            information is by setting the login type to{' '}
-                            <span
-                                className="has-text-weight-bold"
-                                style={{
-                                    whiteSpace: 'nowrap',
-                                }}
-                            >
-                                Automatic
-                            </span>
-                            . In Automatic mode, you will need to enter the the
-                            Meeting ID of your Zoom meeting and optionally, the
-                            meeting password. If you enter the meeting password,
-                            it will be automatically entered and you will not
-                            need to enter the password when you join the
-                            meeting.
-                        </p>
-
-                        <p>
-                            However, Automatic mode may not work on all devices.
-                            If you experience any issues, please use Manual
-                            mode.
-                        </p>
-
-                        <p>
-                            By default, the schedule assumes that Automatic mode
-                            meetings are NPS meetings, but if you would like to
-                            use automatic mode to join a meeting outside the NPS
-                            domain (meetings where the link doesn't start with{' '}
-                            <span className="is-family-monospace">
-                                newton-k12-ma-us
-                            </span>
-                            ), you can uncheck the{' '}
-                            <span
-                                className="has-text-weight-bold"
-                                style={{
-                                    whiteSpace: 'nowrap',
-                                }}
-                            >
-                                Is this an NPS meeting?
+                                Store login info for this meeting?
                             </span>{' '}
-                            field. If you uncheck this, you can optionally enter
-                            a custom meeting domain.
+                            setting to on.
                         </p>
-
                         <p>
-                            If you need help configuring automatic mode, press
-                            the{' '}
+                            Paste your meeting link into the{' '}
                             <span
                                 className="has-text-weight-bold"
                                 style={{
                                     whiteSpace: 'nowrap',
                                 }}
                             >
-                                Need help?
+                                Meeting Link
                             </span>{' '}
-                            button and paste the Zoom link you got from your
-                            teacher into the Meeting Link field that appears.
+                            field.
                         </p>
-
-                        <h5 id="manual-login-mode">Manual Login Mode</h5>
                         <p>
-                            If you would not like to use Automatic mode, you can
-                            set the login type to{' '}
+                            If your meeting has a password, enter the password
+                            into the{' '}
                             <span
                                 className="has-text-weight-bold"
                                 style={{
                                     whiteSpace: 'nowrap',
                                 }}
                             >
-                                Manual
-                            </span>
-                            , which will allow you to enter a meeting link and
-                            optionally, a meeting password.
+                                Password
+                            </span>{' '}
+                            field.
                         </p>
-
                         <h3 id="setting-up-hybrid">Setting Up Hybrid</h3>
                         <p>
                             If you're attending South in person, you can set up
@@ -400,7 +477,6 @@ export function Help() {
                             field. You can also enter your classroom number for
                             flex block in the Flex Meetings section.
                         </p>
-
                         <h3 id="configuring-flex-meetings">
                             Configuring Flex Meetings
                         </h3>
@@ -420,25 +496,21 @@ export function Help() {
                             </span>{' '}
                             button to add a flex meeting.
                         </p>
-
                         <p>
                             Click on the card of the Flex Meeting you just
                             created to open its settings. You should give your
                             Flex Meeting a name so that you can recognize it.
                         </p>
                         <p>
-                            You can also configure meeting login information for
-                            a Flex Meeting with the same methods as a class,
-                            which is described on the{' '}
-                            <span
-                                className="has-text-weight-bold"
-                                style={{
-                                    whiteSpace: 'nowrap',
-                                }}
+                            You can put in the meeting information for your Flex
+                            Meeting as described in the{' '}
+                            <HashLink
+                                to="#configuring-login-information"
+                                smooth
                             >
                                 Configuring Login Information
-                            </span>{' '}
-                            section of this page.
+                            </HashLink>{' '}
+                            section.
                         </p>
                         <p>
                             You can delete a Flex Meeting by pressing the{' '}
@@ -456,7 +528,122 @@ export function Help() {
                             button at the bottom of a Flex Meeting settings
                             card.
                         </p>
-
+                        <h3 id="configuring-additional-meetings">
+                            Configuring Additional Meetings
+                        </h3>
+                        <p>
+                            You can configure Additional Meetings on the
+                            settings page. To add a new Additional Meeting,
+                            click the{' '}
+                            <span
+                                className="has-text-weight-bold"
+                                style={{
+                                    whiteSpace: 'nowrap',
+                                }}
+                            >
+                                <span className="icon mr-1">
+                                    <IoAdd />
+                                </span>
+                                Add Additional Meeting
+                            </span>{' '}
+                            button.
+                        </p>
+                        <p>
+                            Click on the card of the Additional Meeting you just
+                            created to open its settings. You should give your
+                            Additional Meeting a name so that you can recognize
+                            it.
+                        </p>
+                        <p>
+                            You can put in the meeting information for your
+                            Additional Meeting as described in the{' '}
+                            <HashLink
+                                to="#configuring-login-information"
+                                smooth
+                            >
+                                Configuring Login Information
+                            </HashLink>{' '}
+                            section.
+                        </p>
+                        <p>
+                            You can delete a Additional Meeting by pressing the{' '}
+                            <span
+                                className="has-text-weight-bold"
+                                style={{
+                                    whiteSpace: 'nowrap',
+                                }}
+                            >
+                                <span className="icon mr-1">
+                                    <IoTrash />
+                                </span>
+                                Delete Additional Meeting
+                            </span>{' '}
+                            button at the bottom of a Additional Meeting
+                            settings card.
+                        </p>
+                        <h3 id="configuring-lunches">Configuring Lunches</h3>
+                        <p>
+                            You can select which period you eat lunch during in
+                            the Lunches section of the settings page. For each
+                            lunch block, click on 1st, 2nd, or 3rd to select it.
+                        </p>
+                        <h3 id="configuring-notifications">
+                            Configuring Notifications
+                        </h3>
+                        <p>
+                            You can set up the schedule to send you
+                            notifications when classes or lunches start. To
+                            enable notifications, turn on the{' '}
+                            <span
+                                className="has-text-weight-bold"
+                                style={{
+                                    whiteSpace: 'nowrap',
+                                }}
+                            >
+                                Enable Class Notifications?
+                            </span>{' '}
+                            setting. If you would like to receive notifications
+                            for when lunches start, turn on the{' '}
+                            <span
+                                className="has-text-weight-bold"
+                                style={{
+                                    whiteSpace: 'nowrap',
+                                }}
+                            >
+                                Send Notifications for Lunch Blocks?
+                            </span>{' '}
+                            setting.
+                        </p>
+                        <p>
+                            In order to receive notifications, you will need to
+                            grant nshs.site the permission to send
+                            notifications. When you enable notifications, a
+                            popup should appear near the URL bar of your browser
+                            to ask if you would like to allow notifications.
+                            Select Allow to turn on notifications.
+                        </p>
+                        <p>
+                            If the site detects that it does not have the
+                            permission, it will show a button to{' '}
+                            <span
+                                className="has-text-weight-bold"
+                                style={{
+                                    whiteSpace: 'nowrap',
+                                }}
+                            >
+                                Grant Permission
+                            </span>
+                            . This permission must be granted to send
+                            notifications.
+                        </p>
+                        <p>
+                            If you need any help enabling this, please feel free
+                            to{' '}
+                            <HashLink to="#contact-me" smooth>
+                                contact me
+                            </HashLink>
+                            .
+                        </p>
                         <h3 id="motivational-phrases">Motivational Phrases</h3>
                         <p>
                             The schedule will show short motivational phrases at
@@ -472,14 +659,14 @@ export function Help() {
                             </span>{' '}
                             option on the settings page.
                         </p>
-
                         <h3 id="download-upload-settings">
                             Download/Upload Settings
                         </h3>
                         <p>
-                            If you need to move your settings to a new device,
-                            you can export your current settings to a file and
-                            import them on a new device.
+                            If you need to move your settings to a new device or
+                            would like to back up your settings, you can export
+                            your current settings to a file and import them on a
+                            new device.
                         </p>
                         <p>
                             To save your settings to a file, click the{' '}
@@ -496,7 +683,6 @@ export function Help() {
                             </span>{' '}
                             button and a settings file will be downloaded.
                         </p>
-
                         <p>
                             To import a settings file, click the{' '}
                             <span
@@ -515,7 +701,30 @@ export function Help() {
                             overwritten if you choose to import settings from a
                             file.
                         </p>
-
+                        <h3 id="chromebooks-mobile-devices">
+                            Chromebooks/Mobile Devices
+                        </h3>
+                        <p>
+                            If you're using a Chromebook or a mobile device,
+                            make sure that the{' '}
+                            <span
+                                className="has-text-weight-bold"
+                                style={{
+                                    whiteSpace: 'nowrap',
+                                }}
+                            >
+                                Turn on this option if you are using a
+                                Chromebook or a mobile device
+                            </span>{' '}
+                            setting is enabled. You will not be able to sign in
+                            to meetings if it is off.
+                        </p>
+                        <h3 id="color-theme">Color Theme</h3>
+                        <p>
+                            By default, the schedule uses dark mode. However,
+                            you can switch to a light version of the site on the
+                            settings page.
+                        </p>
                         <h3 id="resetting">Resetting</h3>
                         <p>
                             You can reset your settings to their default values
@@ -547,7 +756,6 @@ export function Help() {
                             will not clear any of your settings and will only
                             reload the schedule.
                         </p>
-
                         <h2 id="other-info">Other Info</h2>
                         <h3 id="contact-me">Contact Me</h3>
                         <p>
