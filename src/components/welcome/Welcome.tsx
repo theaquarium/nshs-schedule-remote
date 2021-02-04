@@ -87,7 +87,7 @@ export function Welcome() {
 
                 <button
                     type="button"
-                    className="button is-link is-rounded is-medium mr-3"
+                    className="button is-link is-rounded is-medium mr-3 mb-3"
                     onClick={finishOnboarding}
                 >
                     Get Started
@@ -96,7 +96,7 @@ export function Welcome() {
                 <Link
                     to="/wizard"
                     onClick={finishOnboarding}
-                    className="button is-link is-rounded is-medium"
+                    className="button is-link is-rounded is-medium mb-3"
                 >
                     <span className="icon mr-1">
                         <IoColorWand className="is-size-4" />
