@@ -1,5 +1,6 @@
 import React from 'react';
-import { IoCog } from 'react-icons/io5';
+import { IoCog, IoColorWand } from 'react-icons/io5';
+import { Link } from 'react-router-dom';
 import { useAppState } from '../../state/AppStateContext';
 
 export function Welcome() {
@@ -86,11 +87,22 @@ export function Welcome() {
 
                 <button
                     type="button"
-                    className="button is-link is-rounded is-medium"
+                    className="button is-link is-rounded is-medium mr-3"
                     onClick={finishOnboarding}
                 >
                     Get Started
                 </button>
+
+                <Link
+                    to="/wizard"
+                    onClick={finishOnboarding}
+                    className="button is-link is-rounded is-medium"
+                >
+                    <span className="icon mr-1">
+                        <IoColorWand className="is-size-4" />
+                    </span>
+                    Set up your schedule
+                </Link>
             </div>
         </div>
     );

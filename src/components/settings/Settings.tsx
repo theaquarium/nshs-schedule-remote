@@ -1,5 +1,5 @@
 import React from 'react';
-import { IoAdd, IoApps, IoSave } from 'react-icons/io5';
+import { IoAdd, IoApps, IoColorWand, IoSave } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
 
 import { v4 as uuidv4 } from 'uuid';
@@ -103,15 +103,30 @@ export function Settings() {
                             <h1 className="title">Settings</h1>
                         </div>
                         <div className="level-right">
-                            <Link
-                                to="/"
-                                className="button is-link is-rounded is-medium is-fullwidth"
-                            >
-                                <span className="icon mr-1">
-                                    <IoSave className="is-size-4" />
-                                </span>
-                                Save Settings
-                            </Link>
+                            <div className="level">
+                                <div className="level-item">
+                                    <Link
+                                        to="/wizard"
+                                        className="button is-warning is-rounded is-medium is-fullwidth"
+                                    >
+                                        <span className="icon mr-1">
+                                            <IoColorWand className="is-size-4" />
+                                        </span>
+                                        Try the Setup Wizard
+                                    </Link>
+                                </div>
+                                <div className="level-item">
+                                    <Link
+                                        to="/"
+                                        className="button is-link is-rounded is-medium is-fullwidth"
+                                    >
+                                        <span className="icon mr-1">
+                                            <IoSave className="is-size-4" />
+                                        </span>
+                                        Save Settings
+                                    </Link>
+                                </div>
+                            </div>
                         </div>
                     </div>
 

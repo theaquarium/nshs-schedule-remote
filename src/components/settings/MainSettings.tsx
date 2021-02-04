@@ -13,7 +13,6 @@ export function MainSettings() {
         userNickname: settings.value.userNickname,
         showQuotes: settings.value.showQuotes,
         inPerson: settings.value.inPerson,
-        inPersonDays: settings.value.inPersonDays,
         showClock: settings.value.showClock,
         use24HourClock: settings.value.use24HourClock,
         theme: settings.value.theme,

@@ -18,6 +18,7 @@ import { Welcome } from './components/welcome/Welcome';
 import { Reset } from './components/reset/Reset';
 import { PrivacyPolicy } from './components/privacy-policy/PrivacyPolicy';
 import { Help } from './components/help/Help';
+import { Wizard } from './components/wizard/Wizard';
 
 export default function App() {
     const appState = useAppState();
@@ -35,8 +36,14 @@ export default function App() {
                             ) : null}
                             <Welcome />
                         </Route>
+                        <Route path="/wizard">
+                            {!appState.value.isOnboarded ? (
+                                <Redirect to="/welcome" />
+                            ) : null}
+                            <Wizard />
+                        </Route>
                         {appState.value.isOnboarded ? (
-                            <Route>
+                            <Route path="/">
                                 <Dialog>
                                     <Header />
 
