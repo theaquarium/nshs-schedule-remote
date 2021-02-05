@@ -147,9 +147,18 @@ export function Wizard() {
         );
     }
 
+    const progress = (pageNum / 10) * 100;
+
     return (
         <div className="container my-6">
             <div className="content mx-3 is-size-5">
+                <progress
+                    className="progress is-primary is-medium mb-5"
+                    value={progress}
+                    max="100"
+                >
+                    {progress}%
+                </progress>
                 {pageContent}
                 <br />
                 <div className="level">
