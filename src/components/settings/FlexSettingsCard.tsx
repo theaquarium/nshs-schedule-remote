@@ -140,7 +140,10 @@ export function FlexSettingsCard({
                         <label className="label is-normal mb-2">
                             When does this Flex Meeting meet?
                         </label>
-                        <span>Click on a day to activate it.</span>
+                        <span>
+                            Click on a day to toggle it. The selected days are
+                            highlighted.
+                        </span>
                         <div className="my-4">
                             <span
                                 className={
