@@ -101,7 +101,8 @@ export function PartyPlayer() {
         const volumeNum = parseFloat(value);
 
         if (gainNode.current && !isNaN(volumeNum)) {
-            gainNode.current.gain.value = volumeNum;
+            const gainExpNum = Math.pow(volumeNum, 1.75);
+            gainNode.current.gain.value = gainExpNum;
         }
     };
 
