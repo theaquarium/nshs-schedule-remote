@@ -198,7 +198,7 @@ $disc3-size: 42 * $units;
     right: 5 * $units;
     top: -3 * $units;
     transition: transform 0.5s;
-    z-index: 3;
+    z-index: 500;
 }
 
 .party-player_stylus-pivot {
@@ -211,7 +211,7 @@ $disc3-size: 42 * $units;
     top: 0vmin;
     border: 1 * $units solid #111;
     box-sizing: border-box;
-    z-index: 9;
+    z-index: 505;
 }
 
 .party-player_stylus-arm {
@@ -222,7 +222,7 @@ $disc3-size: 42 * $units;
     right: 3 * $units;
     top: 5 * $units;
     border-radius: 1.5 * $units;
-    z-index: 8;
+    z-index: 504;
 }
 
 .party-player_stylus-bend {
@@ -234,7 +234,7 @@ $disc3-size: 42 * $units;
     right: 7 * $units;
     top: 50 * $units;
     border-radius: 2 * $units;
-    z-index: 8;
+    z-index: 504;
 }
 
 .party-player_stylus-needle {
@@ -245,7 +245,7 @@ $disc3-size: 42 * $units;
     position: absolute;
     top: 57 * $units;
     right: 10.5 * $units;
-    z-index: 9;
+    z-index: 505;
     border: 0.5 * $units solid #4f4c49;
     box-sizing: border-box;
 }

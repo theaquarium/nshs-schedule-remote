@@ -78,7 +78,11 @@ export function PartyPlayer() {
 
     React.useEffect(() => {
         if (player.current !== null) {
-            const audioContext = new window.AudioContext();
+            // @ts-ignore: Nonstandard
+            const AudioContext =
+                // @ts-ignore: Nonstandard
+                window.AudioContext || window.webkitAudioContext;
+            const audioContext = new AudioContext();
             gainNode.current = audioContext.createGain();
 
             gainNode.current.connect(audioContext.destination);
