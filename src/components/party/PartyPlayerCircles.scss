@@ -1,0 +1,87 @@
+.party-player_circles {
+    transition-duration: 0.75s;
+    transition-property: transform;
+    transition-timing-function: ease-in-out;
+}
+
+.party-player__is-on {
+    transform: rotate3d(0, 1, 0, 0deg);
+
+    transition-delay: 0.75s;
+}
+
+.party-player__is-off {
+    transform: rotate3d(0, 1, 0, 90deg);
+}
+
+.party-player_circles0 {
+    .party-player_disc0 {
+        border-color: rgb(255, 59, 91);
+    }
+
+    .party-player_disc1 {
+        border-color: rgb(255, 105, 59);
+    }
+
+    .party-player_disc2 {
+        border-color: rgb(255, 154, 59);
+    }
+
+    .party-player_disc3 {
+        border-color: rgb(255, 219, 59);
+    }
+}
+
+.party-player_circles1 {
+    .party-player_disc0 {
+        border-color: rgb(255, 252, 59);
+    }
+
+    .party-player_disc1 {
+        border-color: rgb(196, 255, 59);
+    }
+
+    .party-player_disc2 {
+        border-color: rgb(131, 255, 59);
+    }
+
+    .party-player_disc3 {
+        border-color: rgb(59, 255, 141);
+    }
+}
+
+.party-player_circles2 {
+    .party-player_disc0 {
+        border-color: rgb(59, 255, 255);
+    }
+
+    .party-player_disc1 {
+        border-color: rgb(59, 160, 255);
+    }
+
+    .party-player_disc2 {
+        border-color: rgb(59, 88, 255);
+    }
+
+    .party-player_disc3 {
+        border-color: rgb(62, 59, 255);
+    }
+}
+
+.party-player_circles3 {
+    .party-player_disc0 {
+        border-color: rgb(111, 59, 255);
+    }
+
+    .party-player_disc1 {
+        border-color: rgb(144, 59, 255);
+    }
+
+    .party-player_disc2 {
+        border-color: rgb(193, 59, 255);
+    }
+
+    .party-player_disc3 {
+        border-color: rgb(232, 59, 255);
+    }
+}

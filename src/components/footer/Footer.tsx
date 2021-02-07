@@ -9,6 +9,8 @@ export function Footer() {
                     <Link to="/help">Need Help?</Link>
                     <br />
                     <Link to="/privacypolicy">Privacy Policy</Link>
+                    <br />
+                    <Link to="/party">Dance Party</Link>
                 </p>
                 <p>
                     Made with ♥ by{' '}
