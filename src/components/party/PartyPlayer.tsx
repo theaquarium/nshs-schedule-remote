@@ -70,7 +70,7 @@ export function PartyPlayer() {
         pauseListener();
         setTimeout(() => {
             const newNum = activeDisc - 1;
-            setActiveDisc(newNum === 0 ? 3 : newNum);
+            setActiveDisc(newNum === -1 ? 3 : newNum);
         }, 250);
     };
 
