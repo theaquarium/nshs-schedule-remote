@@ -6,6 +6,9 @@ export function Footer() {
         <footer className="footer mt-6">
             <div className="content has-text-centered">
                 <p className="is-size-5">
+                    <a href="/nshs_schedule.pdf">Schedule PDF</a>
+                </p>
+                <p className="is-size-5">
                     <Link to="/help">Need Help?</Link>
                     <br />
                     <Link to="/privacypolicy">Privacy Policy</Link>
