@@ -117,6 +117,17 @@ export function FlexBlockBanner({
         includeSeconds: false,
     });
 
+    // Get time to next block
+    let remainingString;
+
+    const blockEndTime = todayFromTimeString(now, block.endTime) || new Date(0);
+
+    const timeToNextString = formatDistance(blockEndTime, now, {
+        includeSeconds: false,
+    });
+
+    remainingString = `This block ends in about ${timeToNextString}.`;
+
     return (
         <section className="hero is-medium is-bold is-primary">
             <div className="hero-head">
@@ -137,6 +148,11 @@ export function FlexBlockBanner({
                                     &nbsp;({block.length})
                                 </span>
                             </h2>
+                            {isNow &&
+                            remainingString &&
+                            remainingString.length > 0 ? (
+                                <h2 className="subtitle">{remainingString}</h2>
+                            ) : null}
                             {inPerson &&
                             flexBlockInPersonSettings &&
                             flexBlockInPersonSettings.flexClassroomNumber &&

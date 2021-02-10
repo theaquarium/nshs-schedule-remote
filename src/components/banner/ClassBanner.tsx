@@ -1,5 +1,11 @@
 import React from 'react';
-import { Block, LunchBlocks } from '../../schedule';
+import {
+    Block,
+    getDay,
+    getWeek,
+    LunchBlock,
+    LunchBlocks,
+} from '../../schedule';
 import { BlockSettings, useSettings } from '../../state/SettingsContext';
 import { generateLoginLink, todayFromTimeString } from '../../utils';
 import { useDialog } from '../dialog/Dialog';
@@ -47,6 +53,99 @@ export function ClassBanner({
         includeSeconds: false,
     });
 
+    // Get time to next block
+    let remainingString;
+
+    if (block.blockType === 'lunch') {
+        if (appState.value.nextBlock && appState.value.nextBlock !== 'none') {
+            const weekday = appState.value.weekday;
+            const scheduleWeek = getWeek(appState.value.weekNum);
+            const day = getDay(scheduleWeek, weekday);
+
+            const nextBlock = day?.find(
+                (block) => block.blockType === appState.value.nextBlock,
+            );
+
+            if (nextBlock) {
+                const nextClassStartTime =
+                    todayFromTimeString(now, nextBlock.startTime) ||
+                    new Date(0);
+
+                const timeToNextString = formatDistance(
+                    nextClassStartTime,
+                    now,
+                    {
+                        includeSeconds: false,
+                    },
+                );
+
+                remainingString = `Your next block starts in about ${timeToNextString}.`;
+            }
+        }
+    } else if (block.isLunch) {
+        const blockLunchSetting = settings.value.lunches[block.blockType];
+
+        const calcRemaining = (block: Block | LunchBlock) => {
+            const nextClassStartTime =
+                todayFromTimeString(now, block.endTime) || new Date(0);
+
+            return formatDistance(nextClassStartTime, now, {
+                includeSeconds: false,
+            });
+        };
+
+        if (blockLunchSetting !== -1) {
+            if (blockLunchSetting === 0) {
+                if (activeLunchBlock === 0) {
+                    remainingString = `Your lunch ends in about ${calcRemaining(
+                        LunchBlocks[0],
+                    )}.`;
+                } else {
+                    remainingString = `This block ends in about ${calcRemaining(
+                        block,
+                    )}.`;
+                }
+            } else if (blockLunchSetting === 1) {
+                if (activeLunchBlock === 0) {
+                    remainingString = `You have lunch in about ${calcRemaining(
+                        LunchBlocks[0],
+                    )}.`;
+                } else if (activeLunchBlock === 1) {
+                    remainingString = `Your lunch ends in about ${calcRemaining(
+                        LunchBlocks[1],
+                    )}.`;
+                } else {
+                    remainingString = `This block ends in about ${calcRemaining(
+                        block,
+                    )}.`;
+                }
+            } else if (blockLunchSetting === 2) {
+                if (activeLunchBlock === 2) {
+                    remainingString = `Your lunch ends in about ${calcRemaining(
+                        block,
+                    )}.`;
+                } else {
+                    remainingString = `You have lunch in about ${calcRemaining(
+                        LunchBlocks[1],
+                    )}.`;
+                }
+            }
+        } else {
+            remainingString = `This block ends in about ${calcRemaining(
+                block,
+            )}.`;
+        }
+    } else {
+        const blockEndTime =
+            todayFromTimeString(now, block.endTime) || new Date(0);
+
+        const timeToNextString = formatDistance(blockEndTime, now, {
+            includeSeconds: false,
+        });
+
+        remainingString = `This block ends in about ${timeToNextString}.`;
+    }
+
     return (
         <section className="hero is-medium is-bold is-primary">
             <div className="hero-head">
@@ -77,6 +176,11 @@ export function ClassBanner({
                                     &nbsp;({block.length})
                                 </span>
                             </h2>
+                            {isNow &&
+                            remainingString &&
+                            remainingString.length > 0 ? (
+                                <h2 className="subtitle">{remainingString}</h2>
+                            ) : null}
                             {inPerson &&
                             blockSettings?.classroomNumber &&
                             blockSettings.classroomNumber.length > 0 ? (
