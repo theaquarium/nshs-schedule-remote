@@ -40,7 +40,7 @@ export function AppStateUpdater(props: any) {
                 let now: Date;
 
                 // Debug mode allows you to start the clock at a certain time
-                const debug = true;
+                const debug = false;
                 if (!debug) {
                     now = new Date();
                 } else {
