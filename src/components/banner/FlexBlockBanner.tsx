@@ -126,10 +126,10 @@ export function FlexBlockBanner({
         includeSeconds: false,
     });
 
-    remainingString = `This block ends in about ${timeToNextString}.`;
+    remainingString = `This block ends in ${timeToNextString}.`;
 
     return (
-        <section className="hero is-medium is-bold is-primary">
+        <section className="hero is-medium is-bold is-success">
             <div className="hero-head">
                 <div className="pl-4 pt-3">
                     <h3 className="subtitle is-3 is-italic">

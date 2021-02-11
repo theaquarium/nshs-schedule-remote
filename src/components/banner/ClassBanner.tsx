@@ -79,7 +79,7 @@ export function ClassBanner({
                     },
                 );
 
-                remainingString = `Your next block starts in about ${timeToNextString}.`;
+                remainingString = `Your next block starts in ${timeToNextString}.`;
             }
         }
     } else if (block.isLunch) {
@@ -97,43 +97,41 @@ export function ClassBanner({
         if (blockLunchSetting !== -1) {
             if (blockLunchSetting === 0) {
                 if (activeLunchBlock === 0) {
-                    remainingString = `Your lunch ends in about ${calcRemaining(
+                    remainingString = `Your lunch ends in ${calcRemaining(
                         LunchBlocks[0],
                     )}.`;
                 } else {
-                    remainingString = `This block ends in about ${calcRemaining(
+                    remainingString = `This block ends in ${calcRemaining(
                         block,
                     )}.`;
                 }
             } else if (blockLunchSetting === 1) {
                 if (activeLunchBlock === 0) {
-                    remainingString = `You have lunch in about ${calcRemaining(
+                    remainingString = `You have lunch in ${calcRemaining(
                         LunchBlocks[0],
                     )}.`;
                 } else if (activeLunchBlock === 1) {
-                    remainingString = `Your lunch ends in about ${calcRemaining(
+                    remainingString = `Your lunch ends in ${calcRemaining(
                         LunchBlocks[1],
                     )}.`;
                 } else {
-                    remainingString = `This block ends in about ${calcRemaining(
+                    remainingString = `This block ends in ${calcRemaining(
                         block,
                     )}.`;
                 }
             } else if (blockLunchSetting === 2) {
                 if (activeLunchBlock === 2) {
-                    remainingString = `Your lunch ends in about ${calcRemaining(
+                    remainingString = `Your lunch ends in ${calcRemaining(
                         block,
                     )}.`;
                 } else {
-                    remainingString = `You have lunch in about ${calcRemaining(
+                    remainingString = `You have lunch in ${calcRemaining(
                         LunchBlocks[1],
                     )}.`;
                 }
             }
         } else {
-            remainingString = `This block ends in about ${calcRemaining(
-                block,
-            )}.`;
+            remainingString = `This block ends in ${calcRemaining(block)}.`;
         }
     } else {
         const blockEndTime =
@@ -143,7 +141,7 @@ export function ClassBanner({
             includeSeconds: false,
         });
 
-        remainingString = `This block ends in about ${timeToNextString}.`;
+        remainingString = `This block ends in ${timeToNextString}.`;
     }
 
     return (
