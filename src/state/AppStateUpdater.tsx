@@ -133,7 +133,10 @@ export function AppStateUpdater(props: any) {
 
                 if (currentBlock) {
                     // Send notification if new class block found
-                    if (stateChanges.activeBlock !== currentBlock.blockType) {
+                    if (
+                        stateChanges.hasSchoolToday &&
+                        stateChanges.activeBlock !== currentBlock.blockType
+                    ) {
                         shouldNotify = true;
                         newBlock = currentBlock;
                     }
@@ -181,6 +184,7 @@ export function AppStateUpdater(props: any) {
                         : LunchBlocks.indexOf(activeLunchBlock);
 
                 if (
+                    stateChanges.hasSchoolToday &&
                     activeLunch !== -1 &&
                     activeLunchBlock &&
                     currentBlock &&
