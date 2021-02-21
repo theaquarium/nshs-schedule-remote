@@ -46,6 +46,7 @@ export const VacationDays = [
     new Date(2021, 1, 17),
     new Date(2021, 1, 18),
     new Date(2021, 1, 19),
+    new Date(2021, 2, 24),
     new Date(2021, 3, 2), // Good Friday
     new Date(2021, 3, 19), // April Break
     new Date(2021, 3, 20),
