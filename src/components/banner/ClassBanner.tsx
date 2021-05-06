@@ -59,7 +59,10 @@ export function ClassBanner({
     if (block.blockType === 'lunch') {
         if (appState.value.nextBlock && appState.value.nextBlock !== 'none') {
             const weekday = appState.value.weekday;
-            const scheduleWeek = getWeek(appState.value.weekNum);
+            const scheduleWeek = getWeek(
+                appState.value.weekNum,
+                appState.value.isMCASTime,
+            );
             const day = getDay(scheduleWeek, weekday);
 
             const nextBlock = day?.find(

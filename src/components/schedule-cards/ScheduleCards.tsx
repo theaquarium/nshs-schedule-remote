@@ -19,7 +19,7 @@ export function ScheduleCards() {
 
     const weeknum = routeMatch?.params?.weeknum === 'w1' ? 0 : 1;
     const weekday = weekdayNameToNum(routeMatch?.params?.weekday);
-    const scheduleWeek = getWeek(weeknum);
+    const scheduleWeek = getWeek(weeknum, appState.value.isMCASTime);
     const day = getDay(scheduleWeek, weekday);
 
     if (!day) {

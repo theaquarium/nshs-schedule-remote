@@ -24,7 +24,10 @@ export function Banner() {
         }
 
         const weekday = appState.value.weekday;
-        const scheduleWeek = getWeek(appState.value.weekNum);
+        const scheduleWeek = getWeek(
+            appState.value.weekNum,
+            appState.value.isMCASTime,
+        );
         const day = getDay(scheduleWeek, weekday);
 
         let currentBlock;

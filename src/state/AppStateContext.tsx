@@ -13,6 +13,7 @@ export interface AppStateType {
     activeLunch?: number;
     lastQuoteUpdate?: number;
     quoteIndex?: number;
+    isMCASTime?: boolean;
 }
 
 export interface AppStateContextType {

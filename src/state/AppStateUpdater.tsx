@@ -15,6 +15,7 @@ import {
 } from '../schedule';
 import { todayFromTimeString } from '../utils';
 import { useSettings } from './SettingsContext';
+import { isMCASTime } from '../MCASSchedule';
 
 export function AppStateUpdater(props: any) {
     const setAppState = useAppState().setAppState;
@@ -46,8 +47,8 @@ export function AppStateUpdater(props: any) {
                 } else {
                     const startDate = new Date(
                         2021,
-                        1,
-                        12,
+                        4,
+                        14,
                         15,
                         50,
                         30,
@@ -67,6 +68,12 @@ export function AppStateUpdater(props: any) {
                     ready: true,
                     lastUpdateTime: now.getTime(),
                 };
+
+                // MCAS
+                const isMCAS = isMCASTime(now);
+                if (isMCAS !== stateChanges.isMCASTime) {
+                    stateChanges.isMCASTime = isMCAS;
+                }
 
                 // Update weekday
                 const weekdayNum = getDay(now);
@@ -112,7 +119,10 @@ export function AppStateUpdater(props: any) {
                 // }
 
                 // Update active block
-                const scheduleWeek = getScheduleWeek(stateChanges.weekNum);
+                const scheduleWeek = getScheduleWeek(
+                    stateChanges.weekNum,
+                    stateChanges.isMCASTime,
+                );
                 const scheduleDay = getScheduleDay(
                     scheduleWeek,
                     stateChanges.weekday,

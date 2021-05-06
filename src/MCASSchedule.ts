@@ -1,74 +1,14 @@
-import { MCASSchedule } from './MCASSchedule';
+import { isAfter, isBefore } from 'date-fns';
+import { ScheduleWeek } from './schedule';
 
-export interface Block {
-    name: string;
-    blockType:
-        | 'a'
-        | 'b'
-        | 'c'
-        | 'd'
-        | 'e'
-        | 'f'
-        | 'g'
-        | 'flex'
-        | 'lunch'
-        | 'community';
-    startTime: string;
-    endTime: string;
-    isLunch: boolean;
-    async: boolean;
-    length: string;
-    blockNumber: number;
-}
-
-export interface ScheduleWeek {
-    monday: Block[];
-    tuesday: Block[];
-    wednesday: Block[];
-    thursday: Block[];
-    friday: Block[];
-}
-
-export interface LunchBlock {
-    name: string;
-    startTime: string;
-    endTime: string;
-    length: string;
-    lunchId: number;
-}
-
-export const LunchBlocks: LunchBlock[] = [
-    {
-        name: '1st Lunch',
-        startTime: '10:45',
-        endTime: '11:20',
-        length: '35 minutes',
-        lunchId: 0,
-    },
-    {
-        name: '2nd Lunch',
-        startTime: '11:30',
-        endTime: '12:05',
-        length: '35 minutes',
-        lunchId: 1,
-    },
-    {
-        name: '3rd Lunch',
-        startTime: '12:20',
-        endTime: '12:55',
-        length: '35 minutes',
-        lunchId: 2,
-    },
-];
-
-export const Schedule: Record<string, ScheduleWeek> = {
+export const MCASSchedule: Record<string, ScheduleWeek> = {
     week1: {
         monday: [
             {
                 name: 'A Block',
                 blockType: 'a',
-                startTime: '9:15',
-                endTime: '10:35',
+                startTime: '1:05',
+                endTime: '2:25',
                 isLunch: false,
                 async: false,
                 length: '80 minutes',
@@ -77,13 +17,15 @@ export const Schedule: Record<string, ScheduleWeek> = {
             {
                 name: 'B Block',
                 blockType: 'b',
-                startTime: '10:45',
-                endTime: '12:55',
-                isLunch: true,
+                startTime: '2:35',
+                endTime: '3:55',
+                isLunch: false,
                 async: false,
                 length: '80 minutes',
                 blockNumber: 1,
             },
+        ],
+        tuesday: [
             {
                 name: 'C Block',
                 blockType: 'c',
@@ -102,58 +44,6 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: false,
                 async: false,
                 length: '80 minutes',
-                blockNumber: 1,
-            },
-        ],
-        tuesday: [
-            {
-                name: 'E Block',
-                blockType: 'e',
-                startTime: '9:15',
-                endTime: '10:35',
-                isLunch: false,
-                async: false,
-                length: '80 minutes',
-                blockNumber: 1,
-            },
-            {
-                name: 'F Block',
-                blockType: 'f',
-                startTime: '10:45',
-                endTime: '12:55',
-                isLunch: true,
-                async: false,
-                length: '80 minutes',
-                blockNumber: 1,
-            },
-            {
-                name: 'G Block',
-                blockType: 'g',
-                startTime: '1:05',
-                endTime: '2:25',
-                isLunch: false,
-                async: false,
-                length: '80 minutes',
-                blockNumber: 1,
-            },
-            {
-                name: 'Community',
-                blockType: 'community',
-                startTime: '2:35',
-                endTime: '3:05',
-                isLunch: false,
-                async: false,
-                length: '30 minutes',
-                blockNumber: 1,
-            },
-            {
-                name: 'Flex Block',
-                blockType: 'flex',
-                startTime: '3:10',
-                endTime: '3:55',
-                isLunch: false,
-                async: false,
-                length: '45 minutes',
                 blockNumber: 1,
             },
         ],
@@ -251,28 +141,8 @@ export const Schedule: Record<string, ScheduleWeek> = {
         ],
         thursday: [
             {
-                name: 'A Block',
-                blockType: 'a',
-                startTime: '9:15',
-                endTime: '10:35',
-                isLunch: false,
-                async: false,
-                length: '80 minutes',
-                blockNumber: 3,
-            },
-            {
-                name: 'B Block',
-                blockType: 'b',
-                startTime: '10:45',
-                endTime: '12:55',
-                isLunch: true,
-                async: false,
-                length: '80 minutes',
-                blockNumber: 3,
-            },
-            {
-                name: 'C Block',
-                blockType: 'c',
+                name: 'E Block',
+                blockType: 'e',
                 startTime: '1:05',
                 endTime: '2:25',
                 isLunch: false,
@@ -281,8 +151,8 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 blockNumber: 3,
             },
             {
-                name: 'D Block',
-                blockType: 'd',
+                name: 'F Block',
+                blockType: 'f',
                 startTime: '2:35',
                 endTime: '3:55',
                 isLunch: false,
@@ -292,26 +162,6 @@ export const Schedule: Record<string, ScheduleWeek> = {
             },
         ],
         friday: [
-            {
-                name: 'E Block',
-                blockType: 'e',
-                startTime: '9:15',
-                endTime: '10:35',
-                isLunch: false,
-                async: false,
-                length: '80 minutes',
-                blockNumber: 3,
-            },
-            {
-                name: 'F Block',
-                blockType: 'f',
-                startTime: '10:45',
-                endTime: '12:55',
-                isLunch: true,
-                async: false,
-                length: '80 minutes',
-                blockNumber: 3,
-            },
             {
                 name: 'G Block',
                 blockType: 'g',
@@ -339,8 +189,8 @@ export const Schedule: Record<string, ScheduleWeek> = {
             {
                 name: 'A Block',
                 blockType: 'a',
-                startTime: '9:15',
-                endTime: '10:35',
+                startTime: '1:05',
+                endTime: '2:25',
                 isLunch: false,
                 async: false,
                 length: '80 minutes',
@@ -349,13 +199,15 @@ export const Schedule: Record<string, ScheduleWeek> = {
             {
                 name: 'B Block',
                 blockType: 'b',
-                startTime: '10:45',
-                endTime: '12:55',
-                isLunch: true,
+                startTime: '2:35',
+                endTime: '3:55',
+                isLunch: false,
                 async: false,
                 length: '80 minutes',
                 blockNumber: 1,
             },
+        ],
+        tuesday: [
             {
                 name: 'C Block',
                 blockType: 'c',
@@ -374,58 +226,6 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 isLunch: false,
                 async: false,
                 length: '80 minutes',
-                blockNumber: 1,
-            },
-        ],
-        tuesday: [
-            {
-                name: 'E Block',
-                blockType: 'e',
-                startTime: '9:15',
-                endTime: '10:35',
-                isLunch: false,
-                async: false,
-                length: '80 minutes',
-                blockNumber: 1,
-            },
-            {
-                name: 'F Block',
-                blockType: 'f',
-                startTime: '10:45',
-                endTime: '12:55',
-                isLunch: true,
-                async: false,
-                length: '80 minutes',
-                blockNumber: 1,
-            },
-            {
-                name: 'G Block',
-                blockType: 'g',
-                startTime: '1:05',
-                endTime: '2:25',
-                isLunch: false,
-                async: false,
-                length: '80 minutes',
-                blockNumber: 1,
-            },
-            {
-                name: 'Community',
-                blockType: 'community',
-                startTime: '2:35',
-                endTime: '3:05',
-                isLunch: false,
-                async: false,
-                length: '30 minutes',
-                blockNumber: 1,
-            },
-            {
-                name: 'Flex Block',
-                blockType: 'flex',
-                startTime: '3:10',
-                endTime: '3:55',
-                isLunch: false,
-                async: false,
-                length: '45 minutes',
                 blockNumber: 1,
             },
         ],
@@ -523,28 +323,8 @@ export const Schedule: Record<string, ScheduleWeek> = {
         ],
         thursday: [
             {
-                name: 'A Block',
-                blockType: 'a',
-                startTime: '9:15',
-                endTime: '10:35',
-                isLunch: false,
-                async: false,
-                length: '80 minutes',
-                blockNumber: 3,
-            },
-            {
-                name: 'B Block',
-                blockType: 'b',
-                startTime: '10:45',
-                endTime: '12:55',
-                isLunch: true,
-                async: false,
-                length: '80 minutes',
-                blockNumber: 3,
-            },
-            {
-                name: 'C Block',
-                blockType: 'c',
+                name: 'E Block',
+                blockType: 'e',
                 startTime: '1:05',
                 endTime: '2:25',
                 isLunch: false,
@@ -553,8 +333,8 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 blockNumber: 3,
             },
             {
-                name: 'D Block',
-                blockType: 'd',
+                name: 'F Block',
+                blockType: 'f',
                 startTime: '2:35',
                 endTime: '3:55',
                 isLunch: false,
@@ -564,26 +344,6 @@ export const Schedule: Record<string, ScheduleWeek> = {
             },
         ],
         friday: [
-            {
-                name: 'E Block',
-                blockType: 'e',
-                startTime: '9:15',
-                endTime: '10:35',
-                isLunch: false,
-                async: false,
-                length: '80 minutes',
-                blockNumber: 3,
-            },
-            {
-                name: 'F Block',
-                blockType: 'f',
-                startTime: '10:45',
-                endTime: '12:55',
-                isLunch: true,
-                async: false,
-                length: '80 minutes',
-                blockNumber: 3,
-            },
             {
                 name: 'G Block',
                 blockType: 'g',
@@ -608,47 +368,9 @@ export const Schedule: Record<string, ScheduleWeek> = {
     },
 };
 
-export function getWeek(weekNum?: number, isMCAS?: boolean): ScheduleWeek {
-    if (isMCAS) {
-        switch (weekNum) {
-            case 0:
-                return MCASSchedule.week1;
-            case 1:
-                return MCASSchedule.week2;
-            default:
-                return MCASSchedule.week1;
-        }
-    } else {
-        switch (weekNum) {
-            case 0:
-                return Schedule.week1;
-            case 1:
-                return Schedule.week2;
-            default:
-                return Schedule.week1;
-        }
-    }
-}
+const MCASStart = new Date(2021, 4, 3);
+const MCASEnd = new Date(2021, 4, 15);
 
-export function getDay(week?: ScheduleWeek, day?: number): Block[] {
-    if (!week || !day) return [];
-
-    switch (day) {
-        case 0:
-            return [];
-        case 1:
-            return week.monday;
-        case 2:
-            return week.tuesday;
-        case 3:
-            return week.wednesday;
-        case 4:
-            return week.thursday;
-        case 5:
-            return week.friday;
-        case 6:
-            return [];
-        default:
-            return [];
-    }
+export function isMCASTime(date: Date): boolean {
+    return isAfter(date, MCASStart) && isBefore(date, MCASEnd);
 }
