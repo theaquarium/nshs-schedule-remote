@@ -1,11 +1,13 @@
 import React, { ChangeEvent } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useAppState } from '../../state/AppStateContext';
 
 import { useSettings } from '../../state/SettingsContext';
 import { InPersonButton } from './InPersonButton';
 
 export function MainSettings() {
     const settings = useSettings();
+    const appState = useAppState();
     const history = useHistory();
     const setSettings = settings.setSettings;
 
@@ -192,7 +194,7 @@ export function MainSettings() {
                     Do you attend school in person?
                 </label>
             </div>
-            {state.inPerson ? (
+            {state.inPerson && appState.value.useAlternatingWeeks ? (
                 <div className="px-5 my-4">
                     <label className="label is-medium mb-2">
                         Which days do you attend in person?

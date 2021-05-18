@@ -1,9 +1,11 @@
 import React, { ChangeEvent } from 'react';
+import { useAppState } from '../../state/AppStateContext';
 import { useSettings } from '../../state/SettingsContext';
 import { WizardInPersonButton } from './WizardInPersonButton';
 
 export function WizardMain() {
     const settings = useSettings();
+    const appState = useAppState();
 
     const [state, setState] = React.useState({
         userNickname: settings.value.userNickname,
@@ -94,7 +96,7 @@ export function WizardMain() {
                     Do you attend school in person?
                 </label>
             </div>
-            {state.inPerson ? (
+            {state.inPerson && appState.value.useAlternatingWeeks ? (
                 <div className="px-5 my-4">
                     <label className="label is-medium mb-2">
                         Which days do you attend in person?

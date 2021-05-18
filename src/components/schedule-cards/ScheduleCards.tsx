@@ -59,12 +59,12 @@ export function ScheduleCards() {
         }
 
         const dayName = weekdayNumToName(weekday);
-        const inPerson =
-            settings.value.inPerson &&
-            appState.value.weekNum !== undefined &&
-            dayName !== undefined &&
-            settings.value.inPersonDays[appState.value.weekNum]?.[dayName];
-
+        const inPerson = appState.value.useAlternatingWeeks
+            ? settings.value.inPerson &&
+              appState.value.weekNum !== undefined &&
+              dayName !== undefined &&
+              settings.value.inPersonDays[appState.value.weekNum]?.[dayName]
+            : settings.value.inPerson;
         if (block.blockType === 'flex') {
             return (
                 <FlexScheduleCard

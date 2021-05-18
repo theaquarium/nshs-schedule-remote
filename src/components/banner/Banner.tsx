@@ -94,13 +94,14 @@ export function Banner() {
                 );
             } else {
                 const dayName = weekdayNumToName(appState.value.weekday);
-                const inPerson =
-                    settings.value.inPerson &&
-                    appState.value.weekNum !== undefined &&
-                    dayName !== undefined &&
-                    settings.value.inPersonDays[appState.value.weekNum]?.[
-                        dayName
-                    ];
+                const inPerson = appState.value.useAlternatingWeeks
+                    ? settings.value.inPerson &&
+                      appState.value.weekNum !== undefined &&
+                      dayName !== undefined &&
+                      settings.value.inPersonDays[appState.value.weekNum]?.[
+                          dayName
+                      ]
+                    : settings.value.inPerson;
                 return (
                     <ClassBanner
                         isNow={isNow}
@@ -119,11 +120,12 @@ export function Banner() {
                 flexSettings = {} as Record<string, FlexSettings>;
 
             const dayName = weekdayNumToName(appState.value.weekday);
-            const inPerson =
-                settings.value.inPerson &&
-                appState.value.weekNum !== undefined &&
-                dayName !== undefined &&
-                settings.value.inPersonDays[appState.value.weekNum]?.[dayName];
+            const inPerson = appState.value.useAlternatingWeeks
+                ? settings.value.inPerson &&
+                  appState.value.weekNum !== undefined &&
+                  dayName !== undefined &&
+                  settings.value.inPersonDays[appState.value.weekNum]?.[dayName]
+                : settings.value.inPerson;
 
             return (
                 <FlexBlockBanner
