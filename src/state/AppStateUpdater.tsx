@@ -2,14 +2,20 @@ import React from 'react';
 import { AppStateType, useAppState } from './AppStateContext';
 import { getCurrentWeekNumber, isVacationDay } from '../NPSSchedule';
 
-import { getDay, isBefore, isAfter, isWeekend, isEqual } from 'date-fns';
+import {
+    getDay,
+    isBefore,
+    isAfter,
+    isWeekend,
+    isEqual,
+    getWeek,
+} from 'date-fns';
 
 import { useHistory, useLocation } from 'react-router-dom';
 
 import {
     getWeek as getScheduleWeek,
     getDay as getScheduleDay,
-    LunchBlocks,
     LunchBlock,
     Block,
 } from '../schedule';
@@ -34,6 +40,7 @@ export function AppStateUpdater(props: any) {
             let newBlock: Block | undefined;
             let shouldNotifyLunch = false;
             let newLunch: LunchBlock | undefined;
+            let useAlternatingWeeks: boolean = true;
 
             // Run the actual update
             setAppState((appState: AppStateType) => {
@@ -47,9 +54,9 @@ export function AppStateUpdater(props: any) {
                 } else {
                     const startDate = new Date(
                         2021,
-                        4,
+                        5,
+                        1,
                         14,
-                        15,
                         50,
                         30,
                     ).getTime();
@@ -61,6 +68,7 @@ export function AppStateUpdater(props: any) {
                     console.log(
                         `App state updating now with time: ${now.toString()}`,
                     );
+                    console.log(`Current week is year week ${getWeek(now)}`);
                 }
 
                 const stateChanges: Partial<AppStateType> = {
@@ -74,6 +82,12 @@ export function AppStateUpdater(props: any) {
                 if (isMCAS !== stateChanges.isMCASTime) {
                     stateChanges.isMCASTime = isMCAS;
                 }
+
+                // Special Schedules
+                stateChanges.yearWeekNumber = getWeek(now);
+                stateChanges.useAlternatingWeeks =
+                    stateChanges.yearWeekNumber < 21; // New schedule doesn't have alternating weeks anymore
+                useAlternatingWeeks = stateChanges.useAlternatingWeeks;
 
                 // Update weekday
                 const weekdayNum = getDay(now);
@@ -122,6 +136,7 @@ export function AppStateUpdater(props: any) {
                 const scheduleWeek = getScheduleWeek(
                     stateChanges.weekNum,
                     stateChanges.isMCASTime,
+                    stateChanges.yearWeekNumber,
                 );
                 const scheduleDay = getScheduleDay(
                     scheduleWeek,
@@ -175,23 +190,29 @@ export function AppStateUpdater(props: any) {
                 stateChanges.nextBlock = nextBlock;
 
                 // Find active lunch block (or set to -1 if not lunch)
-                const activeLunchBlock = LunchBlocks.find((block) => {
-                    const startTime = todayFromTimeString(now, block.startTime);
-                    const endTime = todayFromTimeString(now, block.endTime);
+                const activeLunchBlock = currentBlock?.lunchBlocks?.find(
+                    (block) => {
+                        const startTime = todayFromTimeString(
+                            now,
+                            block.startTime,
+                        );
+                        const endTime = todayFromTimeString(now, block.endTime);
 
-                    // If either is malformed, skip
-                    if (!startTime || !endTime) return false;
+                        // If either is malformed, skip
+                        if (!startTime || !endTime) return false;
 
-                    return (
-                        (isBefore(startTime, now) || isEqual(startTime, now)) &&
-                        isAfter(endTime, now)
-                    );
-                });
+                        return (
+                            (isBefore(startTime, now) ||
+                                isEqual(startTime, now)) &&
+                            isAfter(endTime, now)
+                        );
+                    },
+                );
                 const activeLunch =
                     activeLunchBlock === undefined ||
                     currentBlock?.isLunch !== true
                         ? -1
-                        : LunchBlocks.indexOf(activeLunchBlock);
+                        : activeLunchBlock.lunchId;
 
                 if (
                     stateChanges.hasSchoolToday &&
@@ -254,8 +275,13 @@ export function AppStateUpdater(props: any) {
 
             // Redirect to page if on homepage
             const goRegex = /^\/(?:(?:w1|w2)\/(?:monday|tuesday|wednesday|thursday|friday)\/?)?$/;
+            const goRegexNoWeekNum = /^\/(?:(?:monday|tuesday|wednesday|thursday|friday)\/?)?$/;
 
-            if (shouldUpdateURL && goRegex.test(location.pathname)) {
+            const isOnSchedulePage = useAlternatingWeeks
+                ? goRegex.test(location.pathname)
+                : goRegexNoWeekNum.test(location.pathname);
+
+            if (shouldUpdateURL && isOnSchedulePage) {
                 history.replace('/');
             }
         };

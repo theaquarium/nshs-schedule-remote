@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-    Block,
-    getDay,
-    getWeek,
-    LunchBlock,
-    LunchBlocks,
-} from '../../schedule';
+import { Block, getDay, getWeek, LunchBlock } from '../../schedule';
 import { BlockSettings, useSettings } from '../../state/SettingsContext';
 import { generateLoginLink, todayFromTimeString } from '../../utils';
 import { useDialog } from '../dialog/Dialog';
@@ -62,6 +56,7 @@ export function ClassBanner({
             const scheduleWeek = getWeek(
                 appState.value.weekNum,
                 appState.value.isMCASTime,
+                appState.value.yearWeekNumber,
             );
             const day = getDay(scheduleWeek, weekday);
 
@@ -85,10 +80,11 @@ export function ClassBanner({
                 remainingString = `Your next block starts in ${timeToNextString}.`;
             }
         }
-    } else if (block.isLunch) {
+    } else if (block.isLunch && block.lunchBlocks) {
+        // Check that it's lunch and lunch blocks are configured properly
         const blockLunchSetting = settings.value.lunches[block.blockType];
 
-        const calcRemaining = (block: Block | LunchBlock) => {
+        const calcRemaining = (block: Block | LunchBlock): string => {
             const nextClassStartTime =
                 todayFromTimeString(now, block.endTime) || new Date(0);
 
@@ -101,7 +97,7 @@ export function ClassBanner({
             if (blockLunchSetting === 0) {
                 if (activeLunchBlock === 0) {
                     remainingString = `Your lunch ends in ${calcRemaining(
-                        LunchBlocks[0],
+                        block.lunchBlocks?.[0],
                     )}.`;
                 } else {
                     remainingString = `This block ends in ${calcRemaining(
@@ -111,11 +107,11 @@ export function ClassBanner({
             } else if (blockLunchSetting === 1) {
                 if (activeLunchBlock === 0) {
                     remainingString = `You have lunch in ${calcRemaining(
-                        LunchBlocks[0],
+                        block.lunchBlocks?.[0],
                     )}.`;
                 } else if (activeLunchBlock === 1) {
                     remainingString = `Your lunch ends in ${calcRemaining(
-                        LunchBlocks[1],
+                        block.lunchBlocks?.[1],
                     )}.`;
                 } else {
                     remainingString = `This block ends in ${calcRemaining(
@@ -129,7 +125,7 @@ export function ClassBanner({
                     )}.`;
                 } else {
                     remainingString = `You have lunch in ${calcRemaining(
-                        LunchBlocks[1],
+                        block.lunchBlocks?.[1],
                     )}.`;
                 }
             }
@@ -245,13 +241,14 @@ export function ClassBanner({
                                     }
                                 >
                                     <p className="has-text-weight-bold">
-                                        {LunchBlocks[0].name}
+                                        {block.lunchBlocks?.[0].name}
                                     </p>
                                     <p>
-                                        {LunchBlocks[0].startTime}-
-                                        {LunchBlocks[0].endTime}
+                                        {block.lunchBlocks?.[0].startTime}-
+                                        {block.lunchBlocks?.[0].endTime}
                                         <span className="is-italic">
-                                            &nbsp;({LunchBlocks[0].length})
+                                            &nbsp;(
+                                            {block.lunchBlocks?.[0].length})
                                         </span>
                                     </p>
                                     {settings.value.lunches[block.blockType] ===
@@ -284,13 +281,14 @@ export function ClassBanner({
                                     }
                                 >
                                     <p className="has-text-weight-bold">
-                                        {LunchBlocks[1].name}
+                                        {block.lunchBlocks?.[1].name}
                                     </p>
                                     <p>
-                                        {LunchBlocks[1].startTime}-
-                                        {LunchBlocks[1].endTime}
+                                        {block.lunchBlocks?.[1].startTime}-
+                                        {block.lunchBlocks?.[1].endTime}
                                         <span className="is-italic">
-                                            &nbsp;({LunchBlocks[1].length})
+                                            &nbsp;(
+                                            {block.lunchBlocks?.[1].length})
                                         </span>
                                     </p>
                                     {settings.value.lunches[block.blockType] ===
@@ -323,13 +321,14 @@ export function ClassBanner({
                                     }
                                 >
                                     <p className="has-text-weight-bold">
-                                        {LunchBlocks[2].name}
+                                        {block.lunchBlocks?.[2].name}
                                     </p>
                                     <p>
-                                        {LunchBlocks[2].startTime}-
-                                        {LunchBlocks[2].endTime}
+                                        {block.lunchBlocks?.[2].startTime}-
+                                        {block.lunchBlocks?.[2].endTime}
                                         <span className="is-italic">
-                                            &nbsp;({LunchBlocks[2].length})
+                                            &nbsp;(
+                                            {block.lunchBlocks?.[2].length})
                                         </span>
                                     </p>
                                     {settings.value.lunches[block.blockType] ===

@@ -54,9 +54,8 @@ export const VacationDays = [
     new Date(2021, 3, 22),
     new Date(2021, 3, 23),
     new Date(2021, 4, 31), // Memorial Day
-    new Date(2021, 5, 21), // Final days of school (Remove as snow days happen)
-    new Date(2021, 5, 22),
-    new Date(2021, 5, 23),
+    new Date(2021, 5, 18),
+    new Date(2021, 5, 23), // Final days of school (Remove as snow days happen)
     new Date(2021, 5, 24),
 ];
 

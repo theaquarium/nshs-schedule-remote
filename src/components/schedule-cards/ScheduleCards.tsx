@@ -17,9 +17,22 @@ export function ScheduleCards() {
         '/:weeknum/:weekday',
     );
 
-    const weeknum = routeMatch?.params?.weeknum === 'w1' ? 0 : 1;
-    const weekday = weekdayNameToNum(routeMatch?.params?.weekday);
-    const scheduleWeek = getWeek(weeknum, appState.value.isMCASTime);
+    const routeMatchNoWeekNum = useRouteMatch<{ weekday: string }>('/:weekday');
+
+    let weeknum = 0;
+    let weekday: number | undefined = 1;
+    if (appState.value.useAlternatingWeeks) {
+        weekday = weekdayNameToNum(routeMatch?.params?.weekday);
+        weeknum = routeMatch?.params?.weeknum === 'w1' ? 0 : 1;
+    } else {
+        weekday = weekdayNameToNum(routeMatchNoWeekNum?.params?.weekday);
+    }
+
+    const scheduleWeek = getWeek(
+        weeknum,
+        appState.value.isMCASTime,
+        appState.value.yearWeekNumber,
+    );
     const day = getDay(scheduleWeek, weekday);
 
     if (!day) {
@@ -29,7 +42,8 @@ export function ScheduleCards() {
     // Don't render blocks as past if it's not on today's page
     let isPast =
         weekday === appState.value.weekday &&
-        weeknum === appState.value.weekNum;
+        (appState.value.useAlternatingWeeks === false ||
+            weeknum === appState.value.weekNum);
 
     const cards = day.map((block) => {
         let blockSettings = settings.value.blockSettings[block.blockType];
@@ -78,7 +92,8 @@ export function ScheduleCards() {
                 blockSettings={blockSettings}
                 isActive={
                     block.blockType === appState.value.activeBlock &&
-                    weeknum === appState.value.weekNum &&
+                    (weeknum === appState.value.weekNum ||
+                        appState.value.useAlternatingWeeks === false) &&
                     weekday === appState.value.weekday
                 }
                 activeLunchBlock={

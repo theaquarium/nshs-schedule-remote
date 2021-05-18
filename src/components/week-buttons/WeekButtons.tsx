@@ -3,12 +3,30 @@ import React from 'react';
 import { useAppState } from '../../state/AppStateContext';
 import { Link, useRouteMatch } from 'react-router-dom';
 import { weekdayNumToName } from '../../utils';
+import { useDialog } from '../dialog/Dialog';
+import { NoWeekButtonsDialog } from './NoWeekButtonsDialog';
 
 export function WeekButtons() {
     const appState = useAppState();
+    const dialogState = useDialog();
     const routeMatch = useRouteMatch<{ weeknum: string; weekday: string }>(
         '/:weeknum/:weekday',
     );
+
+    if (appState.value.useAlternatingWeeks === false) {
+        const openDialog = () => {
+            dialogState.open(<NoWeekButtonsDialog />);
+        };
+
+        return (
+            <button
+                className="button is-rounded is-fullwidth is-ghost is-normal my-2"
+                onClick={openDialog}
+            >
+                Where are the week tabs?
+            </button>
+        );
+    }
 
     const backupWeekday =
         appState.value.weekday !== 0 && appState.value.weekday !== 6

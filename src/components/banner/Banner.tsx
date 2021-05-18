@@ -27,6 +27,7 @@ export function Banner() {
         const scheduleWeek = getWeek(
             appState.value.weekNum,
             appState.value.isMCASTime,
+            appState.value.yearWeekNumber,
         );
         const day = getDay(scheduleWeek, weekday);
 

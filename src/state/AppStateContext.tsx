@@ -14,6 +14,8 @@ export interface AppStateType {
     lastQuoteUpdate?: number;
     quoteIndex?: number;
     isMCASTime?: boolean;
+    yearWeekNumber?: number;
+    useAlternatingWeeks?: boolean;
 }
 
 export interface AppStateContextType {

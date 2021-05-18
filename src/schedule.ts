@@ -1,4 +1,5 @@
 import { MCASSchedule } from './MCASSchedule';
+import { WeekByWeekSchedule } from './SpecialSchedules';
 
 export interface Block {
     name: string;
@@ -19,6 +20,7 @@ export interface Block {
     async: boolean;
     length: string;
     blockNumber: number;
+    lunchBlocks?: LunchBlock[];
 }
 
 export interface ScheduleWeek {
@@ -37,6 +39,7 @@ export interface LunchBlock {
     lunchId: number;
 }
 
+/*
 export const LunchBlocks: LunchBlock[] = [
     {
         name: '1st Lunch',
@@ -60,6 +63,7 @@ export const LunchBlocks: LunchBlock[] = [
         lunchId: 2,
     },
 ];
+*/
 
 export const Schedule: Record<string, ScheduleWeek> = {
     week1: {
@@ -83,6 +87,29 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 async: false,
                 length: '80 minutes',
                 blockNumber: 1,
+                lunchBlocks: [
+                    {
+                        name: '1st Lunch',
+                        startTime: '10:45',
+                        endTime: '11:20',
+                        length: '35 minutes',
+                        lunchId: 0,
+                    },
+                    {
+                        name: '2nd Lunch',
+                        startTime: '11:30',
+                        endTime: '12:05',
+                        length: '35 minutes',
+                        lunchId: 1,
+                    },
+                    {
+                        name: '3rd Lunch',
+                        startTime: '12:20',
+                        endTime: '12:55',
+                        length: '35 minutes',
+                        lunchId: 2,
+                    },
+                ],
             },
             {
                 name: 'C Block',
@@ -125,6 +152,29 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 async: false,
                 length: '80 minutes',
                 blockNumber: 1,
+                lunchBlocks: [
+                    {
+                        name: '1st Lunch',
+                        startTime: '10:45',
+                        endTime: '11:20',
+                        length: '35 minutes',
+                        lunchId: 0,
+                    },
+                    {
+                        name: '2nd Lunch',
+                        startTime: '11:30',
+                        endTime: '12:05',
+                        length: '35 minutes',
+                        lunchId: 1,
+                    },
+                    {
+                        name: '3rd Lunch',
+                        startTime: '12:20',
+                        endTime: '12:55',
+                        length: '35 minutes',
+                        lunchId: 2,
+                    },
+                ],
             },
             {
                 name: 'G Block',
@@ -269,6 +319,29 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 async: false,
                 length: '80 minutes',
                 blockNumber: 3,
+                lunchBlocks: [
+                    {
+                        name: '1st Lunch',
+                        startTime: '10:45',
+                        endTime: '11:20',
+                        length: '35 minutes',
+                        lunchId: 0,
+                    },
+                    {
+                        name: '2nd Lunch',
+                        startTime: '11:30',
+                        endTime: '12:05',
+                        length: '35 minutes',
+                        lunchId: 1,
+                    },
+                    {
+                        name: '3rd Lunch',
+                        startTime: '12:20',
+                        endTime: '12:55',
+                        length: '35 minutes',
+                        lunchId: 2,
+                    },
+                ],
             },
             {
                 name: 'C Block',
@@ -311,6 +384,29 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 async: false,
                 length: '80 minutes',
                 blockNumber: 3,
+                lunchBlocks: [
+                    {
+                        name: '1st Lunch',
+                        startTime: '10:45',
+                        endTime: '11:20',
+                        length: '35 minutes',
+                        lunchId: 0,
+                    },
+                    {
+                        name: '2nd Lunch',
+                        startTime: '11:30',
+                        endTime: '12:05',
+                        length: '35 minutes',
+                        lunchId: 1,
+                    },
+                    {
+                        name: '3rd Lunch',
+                        startTime: '12:20',
+                        endTime: '12:55',
+                        length: '35 minutes',
+                        lunchId: 2,
+                    },
+                ],
             },
             {
                 name: 'G Block',
@@ -355,6 +451,29 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 async: false,
                 length: '80 minutes',
                 blockNumber: 1,
+                lunchBlocks: [
+                    {
+                        name: '1st Lunch',
+                        startTime: '10:45',
+                        endTime: '11:20',
+                        length: '35 minutes',
+                        lunchId: 0,
+                    },
+                    {
+                        name: '2nd Lunch',
+                        startTime: '11:30',
+                        endTime: '12:05',
+                        length: '35 minutes',
+                        lunchId: 1,
+                    },
+                    {
+                        name: '3rd Lunch',
+                        startTime: '12:20',
+                        endTime: '12:55',
+                        length: '35 minutes',
+                        lunchId: 2,
+                    },
+                ],
             },
             {
                 name: 'C Block',
@@ -397,6 +516,29 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 async: false,
                 length: '80 minutes',
                 blockNumber: 1,
+                lunchBlocks: [
+                    {
+                        name: '1st Lunch',
+                        startTime: '10:45',
+                        endTime: '11:20',
+                        length: '35 minutes',
+                        lunchId: 0,
+                    },
+                    {
+                        name: '2nd Lunch',
+                        startTime: '11:30',
+                        endTime: '12:05',
+                        length: '35 minutes',
+                        lunchId: 1,
+                    },
+                    {
+                        name: '3rd Lunch',
+                        startTime: '12:20',
+                        endTime: '12:55',
+                        length: '35 minutes',
+                        lunchId: 2,
+                    },
+                ],
             },
             {
                 name: 'G Block',
@@ -541,6 +683,29 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 async: false,
                 length: '80 minutes',
                 blockNumber: 3,
+                lunchBlocks: [
+                    {
+                        name: '1st Lunch',
+                        startTime: '10:45',
+                        endTime: '11:20',
+                        length: '35 minutes',
+                        lunchId: 0,
+                    },
+                    {
+                        name: '2nd Lunch',
+                        startTime: '11:30',
+                        endTime: '12:05',
+                        length: '35 minutes',
+                        lunchId: 1,
+                    },
+                    {
+                        name: '3rd Lunch',
+                        startTime: '12:20',
+                        endTime: '12:55',
+                        length: '35 minutes',
+                        lunchId: 2,
+                    },
+                ],
             },
             {
                 name: 'C Block',
@@ -583,6 +748,29 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 async: false,
                 length: '80 minutes',
                 blockNumber: 3,
+                lunchBlocks: [
+                    {
+                        name: '1st Lunch',
+                        startTime: '10:45',
+                        endTime: '11:20',
+                        length: '35 minutes',
+                        lunchId: 0,
+                    },
+                    {
+                        name: '2nd Lunch',
+                        startTime: '11:30',
+                        endTime: '12:05',
+                        length: '35 minutes',
+                        lunchId: 1,
+                    },
+                    {
+                        name: '3rd Lunch',
+                        startTime: '12:20',
+                        endTime: '12:55',
+                        length: '35 minutes',
+                        lunchId: 2,
+                    },
+                ],
             },
             {
                 name: 'G Block',
@@ -608,7 +796,11 @@ export const Schedule: Record<string, ScheduleWeek> = {
     },
 };
 
-export function getWeek(weekNum?: number, isMCAS?: boolean): ScheduleWeek {
+export function getWeek(
+    weekNum?: number,
+    isMCAS?: boolean,
+    yearWeekNum?: number,
+): ScheduleWeek {
     if (isMCAS) {
         switch (weekNum) {
             case 0:
@@ -618,6 +810,8 @@ export function getWeek(weekNum?: number, isMCAS?: boolean): ScheduleWeek {
             default:
                 return MCASSchedule.week1;
         }
+    } else if (yearWeekNum && WeekByWeekSchedule[yearWeekNum]) {
+        return WeekByWeekSchedule[yearWeekNum];
     } else {
         switch (weekNum) {
             case 0:

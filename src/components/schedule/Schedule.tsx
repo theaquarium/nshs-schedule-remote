@@ -8,6 +8,7 @@ import { useAppState } from '../../state/AppStateContext';
 import { WeekButtons } from '../week-buttons/WeekButtons';
 import { Banner } from '../banner/Banner';
 import { weekdayNumToName } from '../../utils';
+import { WeekdayTabsNoWeekNum } from '../weekday-tabs/WeekdayTabsNoWeekNum';
 
 export function Schedule() {
     const appState = useAppState();
@@ -16,8 +17,12 @@ export function Schedule() {
     let scheduleContent;
 
     const onScheduleCardsPageRegex = /^\/(?:(w1|w2)\/(monday|tuesday|wednesday|thursday|friday)\/?)$/;
+    const onScheduleCardsPageRegexNoWeekNum = /^\/(?:(monday|tuesday|wednesday|thursday|friday)\/?)$/;
 
-    const isOnSchedulePage = onScheduleCardsPageRegex.test(location.pathname);
+    const isOnSchedulePage =
+        appState.value.useAlternatingWeeks === false
+            ? onScheduleCardsPageRegexNoWeekNum.test(location.pathname)
+            : onScheduleCardsPageRegex.test(location.pathname);
 
     if (isOnSchedulePage) {
         scheduleContent = <ScheduleCards />;
@@ -37,25 +42,28 @@ export function Schedule() {
             const weekdayName = weekdayNumToName(appState.value.weekday);
 
             // Redirect away from /
+            if (appState.value.useAlternatingWeeks === false) {
+                scheduleContent = <Redirect to={`/${weekdayName}`} />;
+            } else {
+                let weekNumName;
 
-            let weekNumName;
+                switch (appState.value.weekNum) {
+                    case 0:
+                        weekNumName = 'w1';
+                        break;
+                    case 1:
+                        weekNumName = 'w2';
+                        break;
+                    case -1:
+                        // This should never happen, but just in case show week 1
+                        weekNumName = 'w1';
+                        break;
+                }
 
-            switch (appState.value.weekNum) {
-                case 0:
-                    weekNumName = 'w1';
-                    break;
-                case 1:
-                    weekNumName = 'w2';
-                    break;
-                case -1:
-                    // This should never happen, but just in case show week 1
-                    weekNumName = 'w1';
-                    break;
+                scheduleContent = (
+                    <Redirect to={`/${weekNumName}/${weekdayName}`} />
+                );
             }
-
-            scheduleContent = (
-                <Redirect to={`/${weekNumName}/${weekdayName}`} />
-            );
         }
     }
 
@@ -66,7 +74,11 @@ export function Schedule() {
                 {appState.value.ready ? (
                     <React.Fragment>
                         <WeekButtons />
-                        <WeekdayTabs />
+                        {appState.value.useAlternatingWeeks ? (
+                            <WeekdayTabs />
+                        ) : (
+                            <WeekdayTabsNoWeekNum />
+                        )}
                         {scheduleContent}
                     </React.Fragment>
                 ) : (

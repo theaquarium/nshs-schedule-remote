@@ -1,5 +1,5 @@
 import React from 'react';
-import { Block, LunchBlocks } from '../../schedule';
+import { Block } from '../../schedule';
 import { BlockSettings, useSettings } from '../../state/SettingsContext';
 import { generateLoginLink } from '../../utils';
 import { useDialog } from '../dialog/Dialog';
@@ -145,13 +145,14 @@ export function ScheduleCard({
                                         }}
                                     >
                                         <p className="has-text-weight-bold">
-                                            {LunchBlocks[0].name}
+                                            {block.lunchBlocks?.[0].name}
                                         </p>
                                         <p>
-                                            {LunchBlocks[0].startTime}-
-                                            {LunchBlocks[0].endTime}
+                                            {block.lunchBlocks?.[0].startTime}-
+                                            {block.lunchBlocks?.[0].endTime}
                                             <span className="is-italic">
-                                                &nbsp;({LunchBlocks[0].length})
+                                                &nbsp;(
+                                                {block.lunchBlocks?.[0].length})
                                             </span>
                                         </p>
                                         {settings.value.lunches[
@@ -178,13 +179,14 @@ export function ScheduleCard({
                                         }}
                                     >
                                         <p className="has-text-weight-bold">
-                                            {LunchBlocks[1].name}
+                                            {block.lunchBlocks?.[1].name}
                                         </p>
                                         <p>
-                                            {LunchBlocks[1].startTime}-
-                                            {LunchBlocks[1].endTime}
+                                            {block.lunchBlocks?.[1].startTime}-
+                                            {block.lunchBlocks?.[1].endTime}
                                             <span className="is-italic">
-                                                &nbsp;({LunchBlocks[1].length})
+                                                &nbsp;(
+                                                {block.lunchBlocks?.[1].length})
                                             </span>
                                         </p>
                                         {settings.value.lunches[
@@ -211,13 +213,14 @@ export function ScheduleCard({
                                         }}
                                     >
                                         <p className="has-text-weight-bold">
-                                            {LunchBlocks[2].name}
+                                            {block.lunchBlocks?.[2].name}
                                         </p>
                                         <p>
-                                            {LunchBlocks[2].startTime}-
-                                            {LunchBlocks[2].endTime}
+                                            {block.lunchBlocks?.[2].startTime}-
+                                            {block.lunchBlocks?.[2].endTime}
                                             <span className="is-italic">
-                                                &nbsp;({LunchBlocks[2].length})
+                                                &nbsp;(
+                                                {block.lunchBlocks?.[2].length})
                                             </span>
                                         </p>
                                         {settings.value.lunches[
