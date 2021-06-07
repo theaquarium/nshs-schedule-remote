@@ -35,7 +35,7 @@ export const WeekNumbers: Record<number, Record<number, number>> = {
         24: 0,
         25: 1,
         26: 0,
-        27: 1,
+        // 27: 1,
         // 28: -2,
     },
 };
@@ -57,6 +57,7 @@ export const VacationDays = [
     new Date(2021, 5, 18),
     new Date(2021, 5, 23), // Final days of school (Remove as snow days happen)
     new Date(2021, 5, 24),
+    new Date(2021, 5, 25),
 ];
 
 export function getCurrentWeekNumber(date: Date): number {
