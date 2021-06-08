@@ -1,5 +1,5 @@
 import { MCASSchedule } from './MCASSchedule';
-import { WeekByWeekSchedule } from './SpecialSchedules';
+import { DummyEndOfYearSchedule, WeekByWeekSchedule } from './SpecialSchedules';
 
 export interface Block {
     name: string;
@@ -239,7 +239,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 blockNumber: 2,
             },
             {
-                name: 'Flex',
+                name: 'Flex Block',
                 blockType: 'flex',
                 startTime: '11:15',
                 endTime: '12:05',
@@ -603,7 +603,7 @@ export const Schedule: Record<string, ScheduleWeek> = {
                 blockNumber: 2,
             },
             {
-                name: 'Flex',
+                name: 'Flex Block',
                 blockType: 'flex',
                 startTime: '11:15',
                 endTime: '12:05',
@@ -812,6 +812,8 @@ export function getWeek(
         }
     } else if (yearWeekNum && WeekByWeekSchedule[yearWeekNum]) {
         return WeekByWeekSchedule[yearWeekNum];
+    } else if (yearWeekNum && yearWeekNum > 26) {
+        return DummyEndOfYearSchedule;
     } else {
         switch (weekNum) {
             case 0:

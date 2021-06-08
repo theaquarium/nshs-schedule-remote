@@ -137,7 +137,7 @@ export function FlexScheduleCard({
                                     isPast ? 'has-text-grey' : ''
                                 }`}
                             >
-                                Flex Block
+                                {block.name}
                             </p>
                             <p
                                 className={`subtitle ${

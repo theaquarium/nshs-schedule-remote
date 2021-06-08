@@ -16,6 +16,7 @@ export interface AppStateType {
     isMCASTime?: boolean;
     yearWeekNumber?: number;
     useAlternatingWeeks?: boolean;
+    endOfYear?: boolean;
 }
 
 export interface AppStateContextType {

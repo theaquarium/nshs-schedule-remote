@@ -13,6 +13,10 @@ export function WeekButtons() {
         '/:weeknum/:weekday',
     );
 
+    if (appState.value.endOfYear) {
+        return null;
+    }
+
     if (appState.value.useAlternatingWeeks === false) {
         const openDialog = () => {
             dialogState.open(<NoWeekButtonsDialog />);

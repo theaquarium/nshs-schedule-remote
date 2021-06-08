@@ -79,7 +79,7 @@ export const MCASSchedule: Record<string, ScheduleWeek> = {
                 blockNumber: 2,
             },
             {
-                name: 'Flex',
+                name: 'Flex Block',
                 blockType: 'flex',
                 startTime: '11:15',
                 endTime: '12:05',
@@ -261,7 +261,7 @@ export const MCASSchedule: Record<string, ScheduleWeek> = {
                 blockNumber: 2,
             },
             {
-                name: 'Flex',
+                name: 'Flex Block',
                 blockType: 'flex',
                 startTime: '11:15',
                 endTime: '12:05',

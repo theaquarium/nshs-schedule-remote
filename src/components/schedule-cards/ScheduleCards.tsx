@@ -41,6 +41,7 @@ export function ScheduleCards() {
 
     // Don't render blocks as past if it's not on today's page
     let isPast =
+        appState.value.hasSchoolToday === true &&
         weekday === appState.value.weekday &&
         (appState.value.useAlternatingWeeks === false ||
             weeknum === appState.value.weekNum);
@@ -68,10 +69,11 @@ export function ScheduleCards() {
         if (block.blockType === 'flex') {
             return (
                 <FlexScheduleCard
-                    key={`${weekday}-${block.blockType}`}
+                    key={`${weekday}-${block.blockType}-${block.startTime}-${block.endTime}`}
                     block={block}
                     flexSettings={settings.value.flexSettings}
                     isActive={
+                        appState.value.hasSchoolToday === true &&
                         block.blockType === appState.value.activeBlock &&
                         weeknum === appState.value.weekNum &&
                         weekday === appState.value.weekday
@@ -87,10 +89,11 @@ export function ScheduleCards() {
 
         return (
             <ScheduleCard
-                key={`${weekday}-${block.blockType}`}
+                key={`${weekday}-${block.blockType}-${block.startTime}-${block.endTime}`}
                 block={block}
                 blockSettings={blockSettings}
                 isActive={
+                    appState.value.hasSchoolToday === true &&
                     block.blockType === appState.value.activeBlock &&
                     (weeknum === appState.value.weekNum ||
                         appState.value.useAlternatingWeeks === false) &&
@@ -98,6 +101,7 @@ export function ScheduleCards() {
                 }
                 activeLunchBlock={
                     // Don't show active lunch block on other days
+                    appState.value.hasSchoolToday === true &&
                     weekday === appState.value.weekday
                         ? appState.value.activeLunch
                         : -1

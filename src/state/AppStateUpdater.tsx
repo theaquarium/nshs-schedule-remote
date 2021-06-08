@@ -55,10 +55,10 @@ export function AppStateUpdater(props: any) {
                     const startDate = new Date(
                         2021,
                         5,
-                        7,
-                        14,
-                        50,
+                        22,
+                        12,
                         30,
+                        45,
                     ).getTime();
 
                     const timeSinceStart = Date.now() - debugStartTime.current;
@@ -76,6 +76,10 @@ export function AppStateUpdater(props: any) {
                     ready: true,
                     lastUpdateTime: now.getTime(),
                 };
+
+                // End of Year Message
+                const endDate = new Date(2021, 5, 22, 12, 30, 0);
+                stateChanges.endOfYear = isAfter(now, endDate);
 
                 // MCAS
                 const isMCAS = isMCASTime(now);

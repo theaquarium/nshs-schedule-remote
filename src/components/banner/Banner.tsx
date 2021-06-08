@@ -11,6 +11,7 @@ import { FlexBlockBanner } from './FlexBlockBanner';
 import { FlexSettings, useSettings } from '../../state/SettingsContext';
 import { getDay, getWeek } from '../../schedule';
 import { weekdayNumToName } from '../../utils';
+import { EndOfYearBanner } from './EndOfYearBanner';
 
 export function Banner() {
     const appState = useAppState();
@@ -19,6 +20,10 @@ export function Banner() {
     if (!appState.value.ready) {
         return <LoadingBanner />;
     } else {
+        if (appState.value.endOfYear) {
+            return <EndOfYearBanner />;
+        }
+
         if (!appState.value.hasSchoolToday) {
             return <EndOfDayBanner isEndOfDay={false} />;
         }
