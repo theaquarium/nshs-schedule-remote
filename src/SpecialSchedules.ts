@@ -1231,7 +1231,7 @@ export const WeekByWeekSchedule: Record<number, ScheduleWeek> = {
                 blockNumber: 1,
             },
             {
-                name: 'D Block',
+                name: 'C Block',
                 blockType: 'c',
                 startTime: '10:05',
                 endTime: '10:25',
