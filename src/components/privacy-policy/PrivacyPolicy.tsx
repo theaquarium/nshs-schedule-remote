@@ -74,7 +74,7 @@ export function PrivacyPolicy() {
                 <p>
                     If there are any questions regarding this privacy policy you
                     may contact me at&nbsp;
-                    <a href="mailto:peter@vashevko.com">peter@vashevko.com</a>
+                    <a href="mailto:leah@vashevko.com">leah@vashevko.com</a>
                     &nbsp;or message me on Discord at&nbsp;
                     <a href="https://discord.gg/KXxZt2BPUF">
                         join the Discord server
