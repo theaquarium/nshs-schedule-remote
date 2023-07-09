@@ -761,8 +761,8 @@ export function Help() {
                         <p>
                             If you have any other questions, please contact me
                             at&nbsp;
-                            <a href="mailto:peter@vashevko.com">
-                                peter@vashevko.com
+                            <a href="mailto:leah@vashevko.com">
+                                leah@vashevko.com
                             </a>
                             &nbsp;or{' '}
                             <a href="https://discord.gg/KXxZt2BPUF">
