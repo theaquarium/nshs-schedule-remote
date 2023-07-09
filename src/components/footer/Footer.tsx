@@ -22,7 +22,7 @@ export function Footer() {
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        Peter Vashevko
+                        Leah Vashevko
                     </a>
                     .
                     <br />

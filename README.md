@@ -4,7 +4,7 @@ The new NSHS schedule is pretty confusing and hard to keep track of, so this is 
 
 ## License
 
-Copyright 2021 Peter Vashevko
+Copyright 2021 Leah Vashevko
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this project except in compliance with the License. You may obtain a copy of the License at
 
